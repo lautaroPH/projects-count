@@ -65,7 +65,7 @@ const LinkList = ({
       <div
         key={id}
         className="overflow-hidden w-full border-gray-100 rounded-xl 
-      bg-white mb-2 dark:border-gray-800 dark:bg-[#3b3b3b]"
+      bg-white mb-2 dark:border-gray-800 dark:bg-gray-900"
       >
         <div className="flex justify-between">
           <div className="flex pt-3 pl-3 items-center">
@@ -110,10 +110,10 @@ const LinkList = ({
               <div className="flex my-3">
                 {tecnologiesArray.map((tecnologie) => (
                   <p
-                    className="rounded-full shadow-md border text-violet-700 font-mono border-gray-300 bg-gray-200 px-3 py-[3px] mr-1 dark:text-gray-200 mb-2"
+                    className="rounded-full shadow-md dark:shadow-gray-800 border text-violet-700 font-mono border-gray-300 bg-gray-200 dark:bg-[#282C34] dark:border-[#46484e] px-3 py-[3px] mr-1 dark:text-gray-200 mb-2"
                     key={tecnologie}
                   >
-                    {tecnologie}
+                    {tecnologie.trim()}
                   </p>
                 ))}
               </div>
@@ -140,17 +140,17 @@ const LinkList = ({
 
         <div className="flex justify-around items-center h-auto my-2">
           <LikeButton id={id} likes={likes} />
-          <button className="flex text-purple-700 items-center hover:bg-gray-200 p-2 rounded transition-all ease-in-out duration-300">
+          <button className="flex text-purple-700 dark:text-white items-center hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
             <ChatIcon className="h-6 mr-1" /> Comentar
           </button>
           <a href={link} target="_blank" rel="noreferrer">
-            <button className="flex text-purple-700 items-center hover:bg-gray-200 p-2 rounded transition-all ease-in-out duration-300">
+            <button className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
               <ExternalLinkIcon className="h-6 mr-1" /> Visitar
             </button>
           </a>
           {githubRepo && (
             <a href={githubRepo} target="_blank" rel="noreferrer">
-              <button className="flex text-purple-700 items-center hover:bg-gray-200 p-2 rounded transition-all ease-in-out duration-300">
+              <button className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
                 <CodeIcon className="h-6 mr-1" /> Repositorio
               </button>
             </a>

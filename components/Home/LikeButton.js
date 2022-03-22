@@ -34,7 +34,7 @@ const LikeButton = ({ id, likes }) => {
       onClick={user ? likeLink : () => openLoginInfoModal('like')}
       className="flex text-purple-700 transition-colors 
          mr-3 ease-in duration-300 hover:text-purple-800 cursor-pointer
-         dark:text-white dark:hover:text-gray-300 hover:bg-gray-200 p-2 rounded "
+         dark:text-white dark:hover:bg-[#282C34] hover:bg-gray-200 p-2 rounded "
     >
       {hasLiked ? (
         <HeartIconFilled className="h-6 mr-1" />
