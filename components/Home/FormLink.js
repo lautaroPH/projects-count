@@ -2,7 +2,7 @@ import { uploadLink } from 'firebaseMain/firebaseFunction';
 import useUser from 'hooks/useUser';
 import { useState } from 'react';
 import { getFileExtension } from 'utils/getFileExtension';
-import { linkFormSchema } from 'Validations/LinkFormValidation';
+import { linkFormSchema } from 'validations/LinkFormValidation';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useTheme } from 'next-themes';
 
