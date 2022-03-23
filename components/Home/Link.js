@@ -4,15 +4,16 @@ import { useTimeAgo } from 'hooks/useTimeAgo';
 import useUser from 'hooks/useUser';
 import { useState, useEffect } from 'react';
 import ButtonDelete from './ButtonDelete';
-import LikeButton from './LikeButton';
 import Image from 'next/image';
-import { ChatIcon, CodeIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { db } from 'firebaseMain/firebase';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import LikesCommentsNumber from './LikesCommentsNumber';
+import AllButtons from './AllButtons';
+import Tecnologies from './Tecnologies';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
-const LinkList = ({
+const Link = ({
   title,
   link,
   description,
@@ -39,10 +40,8 @@ const LinkList = ({
       ),
     [id]
   );
-  if (timestamp !== null) {
-    const createdAt = new Date(parseInt(timestamp?.seconds * 1000));
-  }
 
+  const createdAt = new Date(parseInt(timestamp && timestamp?.seconds * 1000));
   const timeago = useTimeAgo(createdAt !== undefined && createdAt);
   const createdAtFormated = useDateTimeFormat(
     createdAt !== undefined && createdAt
@@ -106,18 +105,7 @@ const LinkList = ({
               {descriptionWithUppercase}
             </p>
 
-            {tecnologies && (
-              <div className="flex my-3">
-                {tecnologiesArray.map((tecnologie) => (
-                  <p
-                    className="rounded-full shadow-md dark:shadow-gray-800 border text-violet-700 font-mono border-gray-300 bg-gray-200 dark:bg-[#282C34] dark:border-[#46484e] px-3 py-[3px] mr-1 dark:text-gray-200 mb-2"
-                    key={tecnologie}
-                  >
-                    {tecnologie.trim()}
-                  </p>
-                ))}
-              </div>
-            )}
+            {tecnologies && <Tecnologies tecnologiesArray={tecnologiesArray} />}
           </div>
         </div>
 
@@ -127,35 +115,9 @@ const LinkList = ({
           </div>
         )}
 
-        {likes.length > 0 && (
-          <p>
-            {likes[0].data().username !== user.username ? (
-              <>Le gusta a {likes[0].data().username}</>
-            ) : (
-              likes.length > 1 && <>Le gusta a {likes[1].data().username} </>
-            )}
-            {likes.length > 1 && <>y a {likes.length}</>}
-          </p>
-        )}
+        <LikesCommentsNumber likes={likes} username={user?.username} />
 
-        <div className="flex justify-around items-center h-auto my-2">
-          <LikeButton id={id} likes={likes} />
-          <button className="flex text-purple-700 dark:text-white items-center hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
-            <ChatIcon className="h-6 mr-1" /> Comentar
-          </button>
-          <a href={link} target="_blank" rel="noreferrer">
-            <button className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
-              <ExternalLinkIcon className="h-6 mr-1" /> Visitar
-            </button>
-          </a>
-          {githubRepo && (
-            <a href={githubRepo} target="_blank" rel="noreferrer">
-              <button className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300">
-                <CodeIcon className="h-6 mr-1" /> Repositorio
-              </button>
-            </a>
-          )}
-        </div>
+        <AllButtons id={id} likes={likes} githubRepo={githubRepo} link={link} />
       </div>
 
       <ModalDelete
@@ -169,4 +131,4 @@ const LinkList = ({
   );
 };
 
-export default LinkList;
+export default Link;

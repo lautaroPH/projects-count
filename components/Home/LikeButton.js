@@ -24,14 +24,9 @@ const LikeButton = ({ id, likes }) => {
     }
   };
 
-  const openLoginInfoModal = (accion) => {
-    seTitle(`Logueate para dar ${accion} `);
-    setOpenModal(true);
-  };
-
   return (
     <button
-      onClick={user ? likeLink : () => openLoginInfoModal('like')}
+      onClick={user && likeLink}
       className="flex text-purple-700 transition-colors 
          mr-3 ease-in duration-300 hover:text-purple-800 cursor-pointer
          dark:text-white dark:hover:bg-[#282C34] hover:bg-gray-200 p-2 rounded "

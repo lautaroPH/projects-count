@@ -9,7 +9,7 @@ import {
 } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 import { useEffect, useState } from 'react';
-import LinkList from './LinkList';
+import Link from './Link';
 import SkeletonLoaderLink from '../Loaders/SkeletonLoaderLink';
 
 const ListOfLinks = () => {
@@ -74,7 +74,7 @@ const ListOfLinks = () => {
       ) : (
         <div className="my-2">
           {links.map((link) => (
-            <LinkList
+            <Link
               id={link?.id}
               key={link?.id}
               title={link?.data()?.title}
