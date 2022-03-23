@@ -200,6 +200,11 @@ const FormLink = ({ setOpenForm }) => {
                 values.title === '' ||
                 values.link === '' ||
                 values.description === '' ||
+                errors.title ||
+                errors.link ||
+                errors.githubRepo ||
+                errors.tecnologies ||
+                errors.description ||
                 isSubmitting
               }
             >
