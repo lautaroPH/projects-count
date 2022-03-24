@@ -8,6 +8,7 @@ import LikesCommentsNumber from './LikesCommentsNumber';
 import AllButtons from './AllButtons';
 import Tecnologies from './Tecnologies';
 import { getLikes } from 'firebaseMain/firebaseFunction';
+import SkeletonLoaderButtonsLinks from 'components/Loaders/SkeletonLoaderButtonsLinks';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -24,7 +25,7 @@ const Link = ({
   image,
   username,
 }) => {
-  const [likes, setLikes] = useState([]);
+  const [likes, setLikes] = useState(null);
 
   useEffect(() => getLikes(id, setLikes), [id]);
 
@@ -79,29 +80,45 @@ const Link = ({
           )}
         </div>
 
-        <div className="flex pl-4">
-          <div className="flex-1 mt-2 inline-block">
-            <h3 className=" dark:text-gray-50 text-xl font-bold mb-2">
-              {titleWithUppercase}
-            </h3>
+        <div className="pl-4 mt-2">
+          <h3 className=" dark:text-gray-50 text-xl font-bold mb-2">
+            {titleWithUppercase}
+          </h3>
 
-            <p className=" dark:text-gray-200 mb-2 pr-3">
-              {descriptionWithUppercase}
-            </p>
+          <p className=" dark:text-gray-200 mb-2 pr-3">
+            {descriptionWithUppercase}
+          </p>
 
-            {tecnologies && <Tecnologies tecnologiesArray={tecnologiesArray} />}
-          </div>
+          {tecnologies && <Tecnologies tecnologiesArray={tecnologiesArray} />}
         </div>
 
         {image && (
-          <div className="h-70">
+          // <div className="h-full w-full relative">
+          //   <Image
+          //     src={image}
+          //     layout="fill"
+          //     alt={title}
+          //     objectFit="contain"
+          //   />
+          // </div>
+          <div>
             <img src={image} className="h-auto w-full" alt={title} />
           </div>
         )}
+        {likes ? (
+          <>
+            <LikesCommentsNumber likes={likes} username={user?.username} />
 
-        <LikesCommentsNumber likes={likes} username={user?.username} />
-
-        <AllButtons id={id} likes={likes} githubRepo={githubRepo} link={link} />
+            <AllButtons
+              id={id}
+              likes={likes}
+              githubRepo={githubRepo}
+              link={link}
+            />
+          </>
+        ) : (
+          <SkeletonLoaderButtonsLinks />
+        )}
       </div>
     </>
   );

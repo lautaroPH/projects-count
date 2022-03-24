@@ -10,7 +10,7 @@ const LikeButton = ({ id, likes }) => {
   const user = useUser();
 
   useEffect(
-    () => setHasLiked(likes.findIndex((like) => like.id === user?.id) !== -1),
+    () => setHasLiked(likes?.findIndex((like) => like.id === user?.id) !== -1),
     [likes, user]
   );
 

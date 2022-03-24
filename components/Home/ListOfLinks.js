@@ -35,9 +35,13 @@ const ListOfLinks = () => {
   return (
     <div id="ver-links">
       {links.length === 0 && !noLinks ? (
-        <SkeletonLoaderLink />
+        <>
+          <SkeletonLoaderLink />
+          <SkeletonLoaderLink />
+        </>
       ) : (
         <div className="my-2">
+          {/* <SkeletonLoaderLink /> */}
           {links.map((link) => (
             <Link
               id={link?.id}
