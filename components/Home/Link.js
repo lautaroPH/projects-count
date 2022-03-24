@@ -1,15 +1,13 @@
-import ModalDelete from 'components/Modals/ModalDelete';
 import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
 import { useTimeAgo } from 'hooks/useTimeAgo';
 import useUser from 'hooks/useUser';
 import { useState, useEffect } from 'react';
 import ButtonDelete from './ButtonDelete';
 import Image from 'next/image';
-import { db } from 'firebaseMain/firebase';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import LikesCommentsNumber from './LikesCommentsNumber';
 import AllButtons from './AllButtons';
 import Tecnologies from './Tecnologies';
+import { getLikes } from 'firebaseMain/firebaseFunction';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -24,24 +22,15 @@ const Link = ({
   tecnologies,
   avatar,
   image,
-  setDocumentDeleted,
   username,
 }) => {
   const [likes, setLikes] = useState([]);
 
-  useEffect(
-    () =>
-      onSnapshot(
-        query(
-          collection(db, 'links', id, 'likes'),
-          orderBy('timestamp', 'desc')
-        ),
-        (snapshot) => setLikes(snapshot.docs)
-      ),
-    [id]
-  );
+  useEffect(() => getLikes(id, setLikes), [id]);
 
-  const createdAt = new Date(parseInt(timestamp && timestamp?.seconds * 1000));
+  if (timestamp !== null) {
+    const createdAt = new Date(parseInt(timestamp?.seconds * 1000));
+  }
   const timeago = useTimeAgo(createdAt !== undefined && createdAt);
   const createdAtFormated = useDateTimeFormat(
     createdAt !== undefined && createdAt
@@ -53,11 +42,6 @@ const Link = ({
     description.charAt(0).toUpperCase() + description.slice(1);
 
   const tecnologiesArray = tecnologies?.split(',');
-
-  const [openDeleteModal, setDeleteModal] = useState(false);
-
-  const titleDelete =
-    '¿Estas seguro de querer eliminar para siempre este link?';
 
   return (
     <>
@@ -90,7 +74,7 @@ const Link = ({
           </div>
           {userId === user?.id && (
             <p className="pt-3 pr-3">
-              <ButtonDelete setDeleteModal={setDeleteModal} />
+              <ButtonDelete id={id} image={image} />
             </p>
           )}
         </div>
@@ -119,14 +103,6 @@ const Link = ({
 
         <AllButtons id={id} likes={likes} githubRepo={githubRepo} link={link} />
       </div>
-
-      <ModalDelete
-        openDeleteModal={openDeleteModal}
-        setDeleteModal={setDeleteModal}
-        title={titleDelete}
-        id={id}
-        setDocumentDeleted={setDocumentDeleted}
-      />
     </>
   );
 };

@@ -7,8 +7,6 @@ import { HeartIcon } from '@heroicons/react/outline';
 const LikeButton = ({ id, likes }) => {
   const [hasLiked, setHasLiked] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-
   const user = useUser();
 
   useEffect(
@@ -18,9 +16,9 @@ const LikeButton = ({ id, likes }) => {
 
   const likeLink = async () => {
     if (hasLiked) {
-      await deleteLike({ id, user });
+      await deleteLike(id, user);
     } else {
-      await uploadLike({ id, user });
+      await uploadLike(id, user);
     }
   };
 

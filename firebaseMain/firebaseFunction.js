@@ -6,6 +6,11 @@ import {
   deleteDoc,
   setDoc,
   updateDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
 } from 'firebase/firestore';
 import {
   signInWithPopup,
@@ -14,8 +19,19 @@ import {
   GithubAuthProvider,
 } from 'firebase/auth';
 import { authentication, db, storage } from './firebase';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadString,
+} from 'firebase/storage';
 import Swal from 'sweetalert2';
+import {
+  swalUploadingLinkDark,
+  swalUploadingLinkLight,
+  swalUploadLinkSuccessDark,
+  swalUploadLinkSuccessLight,
+} from 'swals/swalsComponents';
 
 const mapUserFromFirebaseAuthToUser = (user) => {
   if (user !== null && user !== undefined) {
@@ -52,27 +68,10 @@ const uploadLink = async (
   user,
   currentTheme
 ) => {
-  if (currentTheme === 'dark') {
-    Swal.fire({
-      imageUrl:
-        'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647967168/Dual_Ring-1s-200px_1_wl4kwa.gif',
-      imageHeight: 80,
-      imageWidth: 80,
-      background: 'rgb(17 24 39)',
-      color: '#fff',
-      title: `Guardando proyecto: "${title}"`,
-      text: 'Esto podria demorar unos segundos',
-    });
-  } else {
-    Swal.fire({
-      imageUrl:
-        'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647907326/Dual_Ring-1s-200px_j4unt1.gif',
-      imageHeight: 80,
-      imageWidth: 80,
-      title: `Guardando proyecto: "${title}"`,
-      text: 'Esto podria demorar unos segundos',
-    });
-  }
+  currentTheme === 'dark'
+    ? Swal.fire(swalUploadingLinkDark(title))
+    : Swal.fire(swalUploadingLinkLight(title));
+
   const docRef = await addDoc(collection(db, 'links'), {
     title,
     link,
@@ -87,23 +86,14 @@ const uploadLink = async (
   });
 
   const id = docRef.id;
+
   if (selectedFile) {
     await uploadImage(selectedFile, id);
   }
 
-  if (currentTheme === 'dark') {
-    Swal.fire({
-      icon: 'success',
-      background: 'rgb(17 24 39)',
-      color: '#fff',
-      title: `${title} guardado correctamente`,
-    });
-  } else {
-    Swal.fire({
-      icon: 'success',
-      title: `${title} guardado correctamente`,
-    });
-  }
+  currentTheme === 'dark'
+    ? Swal.fire(swalUploadLinkSuccessDark(title))
+    : Swal.fire(swalUploadLinkSuccessLight(title));
 };
 
 const uploadImage = async (selectedFile, id) => {
@@ -117,12 +107,22 @@ const uploadImage = async (selectedFile, id) => {
   });
 };
 
-const deleteLike = async ({ id, user }) => {
+const getLinks = (callbackNoLink, callbackLinks) => {
+  return onSnapshot(
+    query(collection(db, 'links'), orderBy('timestamp', 'desc'), limit(30)),
+    (snapshot) => {
+      callbackNoLink(snapshot.empty);
+      callbackLinks(snapshot.docs);
+    }
+  );
+};
+
+const deleteLike = async (id, user) => {
   const { id: userId } = user;
   await deleteDoc(doc(db, 'links', id, 'likes', userId));
 };
 
-const uploadLike = async ({ id, user }) => {
+const uploadLike = async (id, user) => {
   const { id: userId, username } = user;
   await setDoc(doc(db, 'links', id, 'likes', userId), {
     id: userId,
@@ -131,8 +131,28 @@ const uploadLike = async ({ id, user }) => {
   });
 };
 
-const deleteLink = async ({ id }) => {
+const getLikes = (id, callback) => {
+  return onSnapshot(
+    query(collection(db, 'links', id, 'likes'), orderBy('timestamp', 'desc')),
+    (snapshot) => {
+      callback(snapshot?.docs);
+    }
+  );
+};
+
+const deleteLink = async (id, image) => {
   await deleteDoc(doc(db, 'links', id));
+  const likeRef = collection(db, `links/${id}/likes`);
+  const documentSnapshot = await getDocs(likeRef);
+
+  documentSnapshot.docs.map(async (like) => {
+    await deleteDoc(doc(db, `links/${id}/likes/${like.id}`));
+  });
+
+  if (image) {
+    const desertRef = ref(storage, `links/${id}/image`);
+    deleteObject(desertRef);
+  }
 };
 
 export {
@@ -143,4 +163,6 @@ export {
   deleteLike,
   uploadLike,
   deleteLink,
+  getLikes,
+  getLinks,
 };

@@ -1,48 +1,13 @@
-import {
-  collection,
-  getDocs,
-  limit,
-  onSnapshot,
-  orderBy,
-  query,
-  startAfter,
-} from 'firebase/firestore';
-import { db } from 'firebaseMain/firebase';
 import { useEffect, useState } from 'react';
 import Link from './Link';
 import SkeletonLoaderLink from '../Loaders/SkeletonLoaderLink';
+import { getLinks } from 'firebaseMain/firebaseFunction';
 
 const ListOfLinks = () => {
   const [links, setLinks] = useState([]);
   const [noLinks, setNoLinks] = useState(false);
-  const [documentDeleted, setDocumentDeleted] = useState(false);
 
-  useEffect(() => {
-    if (documentDeleted) {
-      const unsubscribe = onSnapshot(
-        query(collection(db, 'links'), orderBy('timestamp', 'desc'), limit(30)),
-        (snapshot) => {
-          setNoLinks(snapshot.empty);
-          setLinks(snapshot.docs);
-          setDocumentDeleted(false);
-        }
-      );
-      return () => {
-        unsubscribe();
-      };
-    } else {
-      const unsubscribe = onSnapshot(
-        query(collection(db, 'links'), orderBy('timestamp', 'desc'), limit(30)),
-        (snapshot) => {
-          setNoLinks(snapshot.empty);
-          setLinks(snapshot.docs);
-        }
-      );
-      return () => {
-        unsubscribe();
-      };
-    }
-  }, [documentDeleted]);
+  useEffect(() => getLinks(setNoLinks, setLinks), []);
 
   // const getMoreLinks = async () => {
   //   setHasNextPage(true);
@@ -88,7 +53,6 @@ const ListOfLinks = () => {
               image={link?.data()?.image}
               avatar={link?.data()?.userImage}
               timestamp={link?.data()?.timestamp}
-              setDocumentDeleted={setDocumentDeleted}
             />
           ))}
         </div>
