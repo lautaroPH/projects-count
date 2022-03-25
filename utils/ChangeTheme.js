@@ -16,7 +16,7 @@ const renderThemeChanger = () => {
   if (currentTheme === 'dark') {
     return (
       <SunIcon
-        className="w-7 h-7 ml-2"
+        style={{ width: '28px', height: '28px', marginLeft: '8px' }}
         role="button"
         onClick={() => setTheme('light')}
       />
@@ -24,7 +24,7 @@ const renderThemeChanger = () => {
   } else {
     return (
       <MoonIcon
-        className="w-7 h-7 ml-2"
+        style={{ width: '28px', height: '28px', marginLeft: '8px' }}
         role="button"
         onClick={() => setTheme('dark')}
       />
