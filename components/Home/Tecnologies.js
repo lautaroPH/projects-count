@@ -1,6 +1,6 @@
 const Tecnologies = ({ tecnologiesArray }) => {
   return (
-    <div className="flex my-3">
+    <div className="flex flex-wrap my-3">
       {tecnologiesArray.map((tecnologie, i) => (
         <p
           className="rounded-full shadow-md dark:shadow-gray-800 border text-violet-700 font-mono border-gray-300 bg-gray-200 

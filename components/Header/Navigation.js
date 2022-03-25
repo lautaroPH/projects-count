@@ -11,8 +11,8 @@ const Navigation = () => {
   return (
     <div
       className="fixed bottom-0 z-10 flex justify-center
-    w-full gap-6 bg-gray-200 py-1 sm:p-0 dark:bg-gray-900 
-    sm:bg-transparent sm:static sm:w-auto"
+    w-full gap-6 bg-white py-1 sm:p-0 dark:bg-gray-900 
+    sm:bg-transparent sm:static sm:w-auto border-t sm:border-none"
     >
       <Link href={home} passHref>
         <a className={pathname == home ? 'navigation-active' : 'navigation '}>

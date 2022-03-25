@@ -8,7 +8,6 @@ import LikesCommentsNumber from './LikesCommentsNumber';
 import AllButtons from './AllButtons';
 import Tecnologies from './Tecnologies';
 import { getLikes } from 'firebaseMain/firebaseFunction';
-import SkeletonLoaderButtonsLinks from 'components/Loaders/SkeletonLoaderButtonsLinks';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -25,7 +24,7 @@ const Link = ({
   image,
   username,
 }) => {
-  const [likes, setLikes] = useState(null);
+  const [likes, setLikes] = useState([]);
 
   useEffect(() => getLikes(id, setLikes), [id]);
 
@@ -48,12 +47,12 @@ const Link = ({
     <>
       <div
         key={id}
-        className="overflow-hidden w-full border-gray-100 rounded-xl 
-      bg-white mb-2 dark:border-gray-800 dark:bg-gray-900"
+        className="overflow-hidden w-full border-gray-100 sm:rounded-xl 
+      bg-white border-b border-b-gray-300 sm:border-none sm:mb-2 dark:border-gray-800 dark:bg-gray-900"
       >
         <div className="flex justify-between">
           <div className="flex pt-3 pl-3 items-center">
-            <div className="h-14 w-14">
+            <div className="h-10 w-10 sm:h-14 sm:w-14">
               {avatar && (
                 <Image
                   className="rounded-full"
@@ -67,8 +66,8 @@ const Link = ({
             </div>
 
             <div className="ml-2">
-              <h4 className="text-xl">{username}</h4>
-              <p className="text-sm font-light">
+              <h4 className="sm:text-xl text-base">{username}</h4>
+              <p className="text-xs sm:text-sm font-light mb-1">
                 <time title={createdAtFormated}>{timeago}</time>
               </p>
             </div>
@@ -105,20 +104,9 @@ const Link = ({
             <img src={image} className="h-auto w-full" alt={title} />
           </div>
         )}
-        {likes ? (
-          <>
-            <LikesCommentsNumber likes={likes} username={user?.username} />
+        <LikesCommentsNumber likes={likes} username={user?.username} />
 
-            <AllButtons
-              id={id}
-              likes={likes}
-              githubRepo={githubRepo}
-              link={link}
-            />
-          </>
-        ) : (
-          <SkeletonLoaderButtonsLinks />
-        )}
+        <AllButtons id={id} likes={likes} githubRepo={githubRepo} link={link} />
       </div>
     </>
   );

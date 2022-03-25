@@ -40,7 +40,7 @@ const ListOfLinks = () => {
           <SkeletonLoaderLink />
         </>
       ) : (
-        <div className="my-2">
+        <div className="sm:mt-7 mb-20 border-t border-gray-300 sm:border-none">
           {/* <SkeletonLoaderLink /> */}
           {links.map((link) => (
             <Link
