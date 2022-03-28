@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import FormLink from 'components/Home/FormLink';
+import FormLink from 'components/Home/Main/Forms/FormLink';
 import { Fragment } from 'react';
 
 const ModalForm = ({ openForm, setOpenForm }) => {
@@ -7,7 +7,7 @@ const ModalForm = ({ openForm, setOpenForm }) => {
     <Transition.Root show={openForm} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10  inset-0 overflow-y-auto"
+        className="fixed z-30  inset-0 overflow-y-auto"
         onClose={setOpenForm}
       >
         <div
