@@ -71,3 +71,7 @@ input[type="number"] {
 .overflow-hidden-important{
   overflow: hidden !important;
 }
+
+.textareaScrollNone::-webkit-scrollbar{
+  width: 0;
+}
