@@ -1,13 +1,7 @@
 import Header from 'components/Header/Header';
-import ButtonOpenModalForm from 'components/Home/ButtonOpenModalForm';
-import ListOfLinks from 'components/Home/ListOfLinks';
-import ModalForm from 'components/Modals/ModalForm';
-import useUser from 'hooks/useUser';
-import { useState } from 'react';
-
+import AsideAboutMe from 'components/Home/AsideProfile/AsideAboutMe';
+import ListOfLinks from 'components/Home/Main/ListOfLinks';
 export default function Home() {
-  const [openForm, setOpenForm] = useState(false);
-  const user = useUser();
   return (
     <div>
       <Header
@@ -16,15 +10,14 @@ export default function Home() {
         para compartir con los demas de forma totalmente anonima"
       />
 
-      {user && openForm ? (
-        <ModalForm openForm={openForm} setOpenForm={setOpenForm} />
-      ) : (
-        user && <ButtonOpenModalForm setOpenForm={setOpenForm} />
-      )}
-      <div className="grid lg:grid-cols-[200px_50%_200px] xl:grid-cols-[200px_38%_200px] justify-center">
-        <h1>hola</h1>
-        <ListOfLinks />
-        <h1>hola</h1>
+      <div className="flex justify-center items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[25%_50%_25%] xl:grid-cols-[20%_35%_20%] justify-center mt-7 w-full">
+          <AsideAboutMe />
+          <div className="mx-7">
+            <ListOfLinks />
+          </div>
+          <div className="bg-white h-72 w-80"></div>
+        </div>
       </div>
     </div>
   );
