@@ -30,6 +30,26 @@ const swalDeleteSuccessLight = {
   timer: '2000',
 };
 
+const swalDeleteLoadingDark = {
+  imageUrl:
+    'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647967168/Dual_Ring-1s-200px_1_wl4kwa.gif',
+  imageHeight: 80,
+  imageWidth: 80,
+  background: 'rgb(17 24 39)',
+  color: '#fff',
+  title: `Eliminando link`,
+  text: 'Esto podria demorar unos segundos',
+};
+
+const swalDeleteLoadingLight = {
+  imageUrl:
+    'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647907326/Dual_Ring-1s-200px_j4unt1.gif',
+  imageHeight: 80,
+  imageWidth: 80,
+  title: `Eliminando link`,
+  text: 'Esto podria demorar unos segundos',
+};
+
 const swalUploadingLinkDark = (title) => {
   return {
     imageUrl:
@@ -60,6 +80,7 @@ const swalUploadLinkSuccessDark = (title) => {
     background: 'rgb(17 24 39)',
     color: '#fff',
     title: `${title} guardado correctamente`,
+    timer: '2000',
   };
 };
 
@@ -67,6 +88,7 @@ const swalUploadLinkSuccessLight = (title) => {
   return {
     icon: 'success',
     title: `${title} guardado correctamente`,
+    timer: '2000',
   };
 };
 
@@ -79,4 +101,6 @@ export {
   swalUploadingLinkLight,
   swalUploadLinkSuccessDark,
   swalUploadLinkSuccessLight,
+  swalDeleteLoadingDark,
+  swalDeleteLoadingLight,
 };
