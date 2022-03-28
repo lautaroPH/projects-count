@@ -6,7 +6,7 @@ const HomeDescription = () => {
   return (
     <div className="mt-6 sm:mt-0 flex flex-col xl:flex-row justify-center items-center h-screen">
       <div className="flex-1 xl:ml-10">
-        <p className="mt-4 px-6 font-semibold text-violet-600 dark:text-gray-100 text-3xl sm:text-4xl sm:mt-20 sm:px-12 md:px-20 lg:mt-10 lg:mb-2 lg:text-center xl:text-left">
+        <p className="mt-4 px-6 font-semibold text-violet-600 dark:text-gray-100 text-3xl sm:text-4xl sm:mt-20 sm:px-12 md:px-20 lg:mt-10 lg:mb-2 lg:text-center xl:text-left xl:text-6xl">
           Compartí tus proyectos, interactua con otros programadores y aprende
           en el proceso
         </p>
