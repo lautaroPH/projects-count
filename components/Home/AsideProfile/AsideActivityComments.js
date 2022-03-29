@@ -1,6 +1,7 @@
 import SkeletonLoaderCommentAsideUser from 'components/Loaders/SkeletonLoaderCommentAsideUser';
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
+import { getUserComments } from 'firebaseMain/firebaseFunction';
 import useUser from 'hooks/useUser';
 import { useState, useEffect } from 'react';
 
@@ -12,16 +13,7 @@ const AsideActivityComments = () => {
 
   useEffect(() => {
     if (user?.id) {
-      const commentQuery = query(
-        collection(db, 'users', user?.id, 'comments'),
-        orderBy('timestamp', 'desc'),
-        limit(3)
-      );
-
-      getDocs(commentQuery).then((documentSnapshotsNew) => {
-        setComments(documentSnapshotsNew.docs);
-        setNoComments(documentSnapshotsNew.empty);
-      });
+      getUserComments(user.id, setComments, setNoComments);
     }
   }, [user]);
 
@@ -36,7 +28,7 @@ const AsideActivityComments = () => {
             key={comment.id}
             className={`${
               comments.length - 1 !== i && `px-3`
-            } text-sm mt-2 w-full`}
+            } text-sm mt-2 w-full overflow-hidden`}
           >
             <div
               className={`${
