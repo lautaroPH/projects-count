@@ -28,13 +28,14 @@ const FormComment = ({ id, title }) => {
       {({ values, isSubmitting, errors }) => (
         <Form className="bg-transparent rounded pt-2 mb-4 mr-4 ml-4">
           <div className="mb-4 flex w-full">
-            <div className="h-12 w-12 mr-2">
+            <div className="h-14 w-14 mr-2">
               {user?.avatar && (
                 <Image
                   src={user?.avatar}
                   alt={user?.username}
                   width={150}
                   height={150}
+                  layout="responsive"
                   className="rounded-full"
                 />
               )}

@@ -1,9 +1,9 @@
 import { getComments, getLikes } from 'firebaseMain/firebaseFunction';
 import React from 'react';
 import AllButtons from './Buttons/AllButtons';
-import FormComment from './Forms/FormComment';
 import LikesCommentsNumber from './LikesCommentsNumber';
 import { useState, useEffect } from 'react';
+import CommentsList from './Comments/CommentsList';
 
 const Footer = ({ id, username, dataUserLike, githubRepo, link, title }) => {
   const [likes, setLikes] = useState([]);
@@ -33,7 +33,14 @@ const Footer = ({ id, username, dataUserLike, githubRepo, link, title }) => {
         openCommentInput={openCommentInput}
       />
 
-      {openCommentInput && <FormComment id={id} title={title} />}
+      {openCommentInput && (
+        <CommentsList
+          id={id}
+          title={title}
+          openCommentInput={openCommentInput}
+          comments={comments}
+        />
+      )}
     </>
   );
 };
