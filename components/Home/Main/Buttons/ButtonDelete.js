@@ -1,4 +1,4 @@
-import { deleteLink } from 'firebaseMain/firebaseFunction';
+import { deleteLink } from 'firebaseFunction/deleteLink';
 import { useTheme } from 'next-themes';
 import {
   swalConfirmDeleteDark,
@@ -9,6 +9,7 @@ import {
   swalDeleteSucessDark,
 } from 'swals/swalsComponents';
 import Swal from 'sweetalert2';
+
 const ButtonDelete = ({ id, image, userId }) => {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;

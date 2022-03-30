@@ -1,8 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import useUser from 'hooks/useUser';
 import { commentFormSchema } from 'validations/CommentFormValidation';
 import Image from 'next/image';
-import { uploadComment } from 'firebaseMain/firebaseFunction';
+import { uploadComment } from 'firebaseFunction/uploadComment';
 
 const FormComment = ({ id, title }) => {
   const user = useUser();

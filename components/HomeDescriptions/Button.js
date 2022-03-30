@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { loginWithGithub } from 'firebaseMain/firebaseFunction';
 import { useRouter } from 'next/router';
+import { loginWithGithub } from 'firebaseFunction/loginWithGithub';
 
 const Button = ({ firstIcon, secondIcon }) => {
   const [githubHoverIcon, setGithubHoverIcon] = useState(false);

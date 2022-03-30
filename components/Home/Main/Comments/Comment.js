@@ -1,9 +1,20 @@
 import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
 import { useTimeAgo } from 'hooks/useTimeAgo';
+import useUser from 'hooks/useUser';
 import Image from 'next/image';
 import { useState } from 'react';
+import ButtonDeleteComment from './ButtonDeleteComment';
 
-const Comment = ({ avatar, comment, timestamp, userId, username }) => {
+const Comment = ({
+  commentId,
+  linkId,
+  avatar,
+  comment,
+  timestamp,
+  userId,
+  username,
+}) => {
+  const user = useUser();
   if (timestamp !== null) {
     const createdAt = new Date(parseInt(timestamp?.seconds * 1000));
   }
@@ -26,10 +37,24 @@ const Comment = ({ avatar, comment, timestamp, userId, username }) => {
         />
       </div>
       <div className="bg-gray-100 w-[90%] rounded-lg p-2 relative">
-        <p className="font-semibold">{username}</p>
-        <p className="text-xs sm:text-sm font-light mb-1">
-          <time title={createdAtFormated}>{timeago}</time>
-        </p>
+        <div className="flex justify-between">
+          <div>
+            <p className="font-semibold">{username}</p>
+            <p className="text-xs sm:text-sm font-light mb-1">
+              <time title={createdAtFormated}>{timeago}</time>
+            </p>
+          </div>
+          {userId === user?.id && (
+            <p className="-mt-1">
+              <ButtonDeleteComment
+                commentId={commentId}
+                linkId={linkId}
+                userId={user?.id}
+              />
+            </p>
+          )}
+        </div>
+
         <p className="overflow-hidden text-sm">
           {comment.substring(0, 260)}
           {comment.length > 240 && !openAllComment && (

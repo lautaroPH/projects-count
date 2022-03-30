@@ -1,7 +1,5 @@
 import SkeletonLoaderCommentAsideUser from 'components/Loaders/SkeletonLoaderCommentAsideUser';
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
-import { db } from 'firebaseMain/firebase';
-import { getUserComments } from 'firebaseMain/firebaseFunction';
+import { getUserComments } from 'firebaseFunction/getUserComments';
 import useUser from 'hooks/useUser';
 import { useState, useEffect } from 'react';
 

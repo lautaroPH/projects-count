@@ -1,8 +1,9 @@
-import { deleteLike, uploadLike } from 'firebaseMain/firebaseFunction';
 import useUser from 'hooks/useUser';
 import { useEffect, useState } from 'react';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import { HeartIcon } from '@heroicons/react/outline';
+import { deleteLike } from 'firebaseFunction/deleteLike';
+import { uploadLike } from 'firebaseFunction/uploadLike';
 
 const LikeButton = ({ id, likes, dataUserLike }) => {
   const [hasLiked, setHasLiked] = useState(false);

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Link from './Link';
-import { getLinks } from 'firebaseMain/firebaseFunction';
 import ButtonOpenModalForm from './Buttons/ButtonOpenModalForm';
 import useUser from 'hooks/useUser';
 import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
+import { getLinks } from 'firebaseFunction/getLinks';
 
 const ListOfLinks = () => {
   const [links, setLinks] = useState([]);

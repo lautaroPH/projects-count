@@ -1,4 +1,3 @@
-import { uploadLink } from 'firebaseMain/firebaseFunction';
 import useUser from 'hooks/useUser';
 import { useState } from 'react';
 import { linkFormSchema } from 'validations/LinkFormValidation';
@@ -12,6 +11,7 @@ import {
   swalUploadLinkSuccessDark,
   swalUploadLinkSuccessLight,
 } from 'swals/swalsComponents';
+import { uploadLink } from 'firebaseFunction/uploadLink';
 
 const FormLink = ({ setOpenForm }) => {
   const [selectedFile, setSelectedFile] = useState(null);

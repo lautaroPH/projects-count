@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import { logout } from 'firebaseMain/firebaseFunction';
 import Image from 'next/image';
+import { logout } from 'firebaseFunction/logout';
 
 const LogoutDropDown = ({ user }) => {
   return (

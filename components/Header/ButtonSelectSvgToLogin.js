@@ -1,5 +1,5 @@
+import { loginWithGithub } from 'firebaseFunction/loginWithGithub';
 import { useState } from 'react';
-import { loginWithGithub } from 'firebaseMain/firebaseFunction';
 
 const ButtonSelectSvgToLogin = ({ firstIcon, secondIcon }) => {
   const [githubHoverIcon, setGithubHoverIcon] = useState(false);
