@@ -16,7 +16,7 @@ const AsideActivityComments = () => {
   }, [user]);
 
   return (
-    <div className="mt-2 flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full mt-2">
       <h5 className="text-base font-semibold">Comentarios recientes</h5>
       {comments.length === 0 && !noComments ? (
         <SkeletonLoaderCommentAsideUser />
@@ -33,9 +33,9 @@ const AsideActivityComments = () => {
                 comments.length - 1 === i && `px-3`
               } border-b-2 dark:border-b-gray-800`}
             >
-              <p className="text-gray-500 dark:text-gray-300 items-center mb-1 hover:underline cursor-pointer">
+              <a className="items-center mb-1 text-gray-500 cursor-pointer dark:text-gray-300 hover:underline">
                 Comentario en {comment?.data().title}
-              </p>
+              </a>
               <p className="mb-2">
                 {comment?.data().comment.length > 98 ? (
                   <>{comment.data().comment.substring(0, 98)}...</>
@@ -48,7 +48,7 @@ const AsideActivityComments = () => {
         ))
       )}
       {noComments && (
-        <p className="text-gray-400 text-sm border-b-2 w-full text-center px-2 mt-1">
+        <p className="w-full px-2 mt-1 text-sm text-center text-gray-400 border-b-2">
           No hay comentarios
         </p>
       )}

@@ -7,21 +7,23 @@ const AsideAboutMe = () => {
     <div>
       <div className="flex justify-end w-full ">
         <div className="w-[75%]">
-          <div className="bg-white dark:bg-gray-900 w-full px-2">
-            <div className="flex border-b-2 flex-col items-center p-2">
-              <h2 className="text-violet-700 dark:text-white text-xl text-center">
+          <div className="w-full px-2 bg-white dark:bg-gray-900">
+            <div className="flex flex-col items-center p-2 border-b-2">
+              <h2 className="text-xl text-center text-violet-700 dark:text-white">
                 Mi perfil
               </h2>
               <div className="mt-2 text-center">
-                <h4 className="font-semibold text-lg">{user?.username}</h4>
+                <h4 className="text-lg font-semibold">{user?.username}</h4>
               </div>
               <div className="flex cursor-pointer">
                 <p className="mr-2 text-gray-500">Profesion</p>
-                <p className="text-violet-600 hover:underline">Editar</p>
+                <button className="text-violet-600 hover:underline">
+                  Editar
+                </button>
               </div>
             </div>
             <div className="px-4 py-2">
-              <h2 className=" font-semibold dark:text-white  text-center">
+              <h2 className="font-semibold text-center  dark:text-white">
                 Sobre mi
               </h2>
               <p className="">
