@@ -38,8 +38,7 @@ const ButtonDeleteComment = ({ linkId, commentId, userId }) => {
 
   return (
     <button
-      className="text-red-500 transition-colors border-2 border-transparent ease-out duration-300 text-sm
-    hover:text-red-700 dark:hover:text-red-400 hover:border-red-600 p-1 rounded-lg"
+      className="p-1 text-sm text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
       onClick={() => handleClick(linkId, commentId)}
     >
       Eliminar

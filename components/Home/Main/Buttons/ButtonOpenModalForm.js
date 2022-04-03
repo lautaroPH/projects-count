@@ -7,7 +7,7 @@ const ButtonOpenModalForm = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mb-7">
+      <div className="flex items-center justify-center mb-7">
         <div className="fixed bottom-0 right-0 py-[3.25rem] px-1 z-20 sm:p-3 lg:relative lg:flex lg:justify-between lg:items-center lg:bg-white lg:dark:bg-gray-900 lg:w-full xl:w-full lg:p-4 lg:rounded-lg">
           <button
             onClick={() => setOpenForm(true)}
@@ -17,7 +17,7 @@ const ButtonOpenModalForm = () => {
             Crear publicación
           </button>
           <PlusCircleIcon
-            className="h-14 w-14 lg:ml-3 text-violet-800 dark:text-white cursor-pointer hover:text-violet-900 dark:hover:text-gray-300 transition-all ease-in-out duration-200"
+            className="transition-all duration-200 ease-in-out cursor-pointer h-14 w-14 lg:ml-3 text-violet-800 dark:text-white hover:text-violet-900 dark:hover:text-gray-300"
             onClick={() => setOpenForm(true)}
           />
         </div>

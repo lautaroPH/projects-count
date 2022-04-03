@@ -1,4 +1,5 @@
 import { deleteLink } from 'firebaseFunction/deleteLink';
+import { getLinks } from 'firebaseFunction/getLinks';
 import { useTheme } from 'next-themes';
 import {
   swalConfirmDeleteDark,
@@ -10,7 +11,7 @@ import {
 } from 'swals/swalsComponents';
 import Swal from 'sweetalert2';
 
-const ButtonDelete = ({ id, image, userId }) => {
+const ButtonDelete = ({ id, image, userId, setLinks, setNoLinks }) => {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
@@ -19,6 +20,7 @@ const ButtonDelete = ({ id, image, userId }) => {
       Swal.fire(swalConfirmDeleteDark).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingDark);
+          getLinks(setNoLinks, setLinks);
           deleteLink(id, image, userId).then(() => {
             Swal.fire(swalDeleteSucessDark);
           });
@@ -28,6 +30,7 @@ const ButtonDelete = ({ id, image, userId }) => {
       Swal.fire(swalConfirmDeleteLight).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingLight);
+          getLinks(setNoLinks, setLinks);
           deleteLink(id, image, userId).then(() => {
             Swal.fire(swalDeleteSuccessLight);
           });
@@ -38,8 +41,7 @@ const ButtonDelete = ({ id, image, userId }) => {
 
   return (
     <button
-      className="text-red-500 transition-colors border-2 border-transparent ease-out duration-300 
-    hover:text-red-700 dark:hover:text-red-400 hover:border-red-600 p-1 rounded-lg"
+      className="p-1 text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
       onClick={() => handleClick(id, image)}
     >
       Eliminar
