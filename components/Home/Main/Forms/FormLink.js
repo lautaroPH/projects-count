@@ -53,7 +53,7 @@ const FormLink = ({ setOpenForm }) => {
       {({ values, isSubmitting, errors }) => (
         <Form>
           <div className="mb-4">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold mb-2">
+            <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Titulo
             </label>
             <Field
@@ -68,11 +68,11 @@ const FormLink = ({ setOpenForm }) => {
             <ErrorMessage
               name="title"
               component="small"
-              className="px-1 text-red-800 text-base dark:text-red-600"
+              className="px-1 text-base text-red-800 dark:text-red-600"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold mb-2">
+            <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Link
             </label>
             <Field
@@ -87,11 +87,11 @@ const FormLink = ({ setOpenForm }) => {
             <ErrorMessage
               name="link"
               component="small"
-              className="px-1 text-red-800 text-base dark:text-red-600"
+              className="px-1 text-base text-red-800 dark:text-red-600"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold mb-2">
+            <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Repositorio (opcional)
             </label>
             <Field
@@ -106,11 +106,11 @@ const FormLink = ({ setOpenForm }) => {
             <ErrorMessage
               name="githubRepo"
               component="small"
-              className="px-1 text-red-800 text-base dark:text-red-600"
+              className="px-1 text-base text-red-800 dark:text-red-600"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold mb-2">
+            <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Tecnologías (opcional)
             </label>
             <Field
@@ -126,11 +126,11 @@ const FormLink = ({ setOpenForm }) => {
             <ErrorMessage
               name="tecnologies"
               component="small"
-              className="px-1 text-red-800 text-base dark:text-red-600"
+              className="px-1 text-base text-red-800 dark:text-red-600"
             />
           </div>
           <div className="mb-2">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold mb-2">
+            <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Descripción
             </label>
             <Field
@@ -147,15 +147,15 @@ const FormLink = ({ setOpenForm }) => {
             <ErrorMessage
               name="description"
               component="small"
-              className="px-1 text-red-800 text-base dark:text-red-600"
+              className="px-1 text-base text-red-800 dark:text-red-600"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-violet-700 dark:text-gray-100 text-sm font-bold">
+            <label className="block text-sm font-bold text-violet-700 dark:text-gray-100">
               Preview del proyecto (imagen)
             </label>
             <input
-              className="appearance-none rounded w-full py-2 text-violet-700 dark:text-gray-100 leading-tight focus:outline-none  dark:border-gray-500"
+              className="w-full py-2 leading-tight rounded appearance-none text-violet-700 dark:text-gray-100 focus:outline-none dark:border-gray-500"
               type="file"
               name="imagen"
               onChange={(e) =>
@@ -168,12 +168,12 @@ const FormLink = ({ setOpenForm }) => {
               }
             />
             {errorFileExtension ? (
-              <small className="px-1 text-red-800 text-base dark:text-red-600">
+              <small className="px-1 text-base text-red-800 dark:text-red-600">
                 {errorFileExtension}
               </small>
             ) : (
               erroFileSize && (
-                <small className="px-1 text-red-800 text-base dark:text-red-600">
+                <small className="px-1 text-base text-red-800 dark:text-red-600">
                   {erroFileSize}
                 </small>
               )
