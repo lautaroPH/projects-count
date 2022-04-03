@@ -20,6 +20,8 @@ const Link = ({
   avatar,
   image,
   username,
+  setLinks,
+  setNoLinks,
 }) => {
   const dataUserLike = {
     title,
@@ -49,12 +51,11 @@ const Link = ({
     <>
       <div
         key={id}
-        className="overflow-hidden border-gray-100 sm:rounded-xl 
-      bg-white border-b border-b-gray-300 sm:border-none sm:mb-2 dark:border-gray-800 dark:bg-gray-900"
+        className="overflow-hidden bg-white border-b border-gray-100 sm:rounded-xl border-b-gray-300 sm:border-none sm:mb-2 dark:border-gray-800 dark:bg-gray-900"
       >
         <div className="flex justify-between">
-          <div className="flex pt-3 pl-3 items-center">
-            <div className="h-10 w-10 sm:h-14 sm:w-14">
+          <div className="flex items-center pt-3 pl-3">
+            <div className="w-10 h-10 sm:h-14 sm:w-14">
               {avatar && (
                 <Image
                   className="rounded-full"
@@ -68,25 +69,31 @@ const Link = ({
             </div>
 
             <div className="ml-2">
-              <h4 className="sm:text-xl text-base">{username}</h4>
-              <p className="text-xs sm:text-sm font-light mb-1">
+              <h4 className="text-base sm:text-xl">{username}</h4>
+              <p className="mb-1 text-xs font-light sm:text-sm">
                 <time title={createdAtFormated}>{timeago}</time>
               </p>
             </div>
           </div>
           {userId === user?.id && (
             <p className="pt-3 pr-3">
-              <ButtonDelete id={id} image={image} userId={user?.id} />
+              <ButtonDelete
+                setLinks={setLinks}
+                setNoLinks={setNoLinks}
+                id={id}
+                image={image}
+                userId={user?.id}
+              />
             </p>
           )}
         </div>
 
         <div className="pl-4 mt-2">
-          <h3 className=" dark:text-gray-50 text-xl font-bold mb-2">
+          <h3 className="mb-2 text-xl font-bold dark:text-gray-50">
             {titleWithUppercase}
           </h3>
 
-          <p className=" dark:text-gray-200 mb-2 pr-3">
+          <p className="pr-3 mb-2 dark:text-gray-200">
             {descriptionWithUppercase}
           </p>
 
@@ -94,7 +101,7 @@ const Link = ({
         </div>
 
         {image && (
-          // <div className="h-full w-full relative">
+          // <div className="relative w-full h-full">
           //   <Image
           //     src={image}
           //     layout="fill"
@@ -103,7 +110,7 @@ const Link = ({
           //   />
           // </div>
           <div>
-            <img src={image} className="h-auto w-full" alt={title} />
+            <img src={image} className="w-full h-auto" alt={title} />
           </div>
         )}
 

@@ -60,12 +60,14 @@ const ListOfLinks = () => {
               image={link?.data()?.image}
               avatar={link?.data()?.userImage}
               timestamp={link?.data()?.timestamp}
+              setLinks={setLinks}
+              setNoLinks={setNoLinks}
             />
           ))}
         </div>
       )}
       {noLinks && (
-        <h4 className="sm:ml-16 ml-4 text-red-600 font-medium">
+        <h4 className="ml-4 font-medium text-red-600 sm:ml-16">
           No hay links para mostrar
         </h4>
       )}
