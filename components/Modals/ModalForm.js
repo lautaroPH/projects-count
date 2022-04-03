@@ -7,12 +7,11 @@ const ModalForm = ({ openForm, setOpenForm }) => {
     <Transition.Root show={openForm} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-30  inset-0 overflow-y-auto"
+        className="fixed inset-0 z-30 overflow-y-auto"
         onClose={setOpenForm}
       >
         <div
-          className="flex items-center justify-center 
-        min-h-screen pt-4 px-4 pb-20 text-center"
+          className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center"
         >
           <Transition.Child
             as={Fragment}
@@ -24,13 +23,11 @@ const ModalForm = ({ openForm, setOpenForm }) => {
             leaveTo="opacity-0"
           >
             <Dialog.Overlay
-              className="fixed inset-0 bg-gray-600 
-          bg-opacity-75 transition-opacity"
+              className="fixed inset-0 transition-opacity bg-gray-600 bg-opacity-75"
             />
           </Transition.Child>
           <span
-            className="hidden sm:inline-block 
-          sm:align-middle sm:h-screen"
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
           >
             &#8203;
@@ -46,9 +43,7 @@ const ModalForm = ({ openForm, setOpenForm }) => {
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className="inline-block align-bottom dark:bg-gray-dark bg-white rounded-lg 
-                px-4 pt-5 pb-4  text-left overflow-hidden shadow-xl transform 
-                transition-all sm:my-8 sm:align-middle max-w-lg w-full"
+              className="inline-block w-full max-w-lg px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-800 sm:my-8 sm:align-middle"
             >
               <FormLink setOpenForm={setOpenForm} />
             </div>
