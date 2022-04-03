@@ -3,16 +3,18 @@ import useUser from 'hooks/useUser';
 import { commentFormSchema } from 'validations/CommentFormValidation';
 import Image from 'next/image';
 import { uploadComment } from 'firebaseFunction/uploadComment';
+import { useRouter } from 'next/router';
 
 const FormComment = ({ id, title }) => {
   const user = useUser();
 
-  const textarea = document.querySelector('textarea');
+  const textareaComment = document.getElementById('comment');
+  const router = useRouter();
 
   const handleAutoResizeTextarea = (e) => {
-    textarea.style.height = '48px';
+    textareaComment.style.height = '48px';
     let scHeight = e.target.scrollHeight;
-    textarea.style.height = scHeight + 'px';
+    textareaComment.style.height = scHeight + 'px';
   };
 
   return (
@@ -20,15 +22,15 @@ const FormComment = ({ id, title }) => {
       initialValues={{ comment: '' }}
       validationSchema={commentFormSchema}
       onSubmit={async (values, { resetForm }) => {
-        await uploadComment(id, user, values.comment, title);
+        await uploadComment(id, user, values.comment, title, router);
         resetForm();
-        textarea.style.height = '48px';
+        textareaComment.style.height = '48px';
       }}
     >
       {({ values, isSubmitting, errors }) => (
-        <Form className="bg-transparent rounded pt-2 mb-4 mr-4 ml-4">
-          <div className="mb-4 flex w-full">
-            <div className="h-14 w-14 mr-2">
+        <Form className="pt-2 mb-4 ml-4 mr-4 bg-transparent rounded">
+          <div className="flex w-full mb-4">
+            <div className="mr-2 h-14 w-14">
               {user?.avatar && (
                 <Image
                   src={user?.avatar}
@@ -42,10 +44,9 @@ const FormComment = ({ id, title }) => {
             </div>
             <div className="w-full">
               <Field
+                id="comment"
                 as="textarea"
-                className=" bg-transparent w-full h-12 textareaScrollNone
-                border border-gray-400 dark:border-gray-500 appearance-none py-3  rounded-3xl px-3  resize-none
-                text-gray-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline dark:placeholder-gray-400"
+                className="w-full h-12 px-3 py-3 leading-tight text-gray-700 bg-transparent border border-gray-400 appearance-none resize-none textareaScrollNone dark:border-gray-500 rounded-3xl dark:text-white focus:outline-none focus:shadow-outline dark:placeholder-gray-400"
                 name="comment"
                 placeholder="Escribe tu comentario"
                 required
@@ -53,7 +54,7 @@ const FormComment = ({ id, title }) => {
                 onKeyUp={handleAutoResizeTextarea}
               />
               {values.comment.trim().length > 1250 && (
-                <small className="px-1 text-red-500 text-sm font-semibold dark:text-red-600">
+                <small className="px-1 text-sm font-semibold text-red-500 dark:text-red-600">
                   {errors.comment}
                 </small>
               )}
