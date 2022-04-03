@@ -4,6 +4,7 @@ module.exports = {
     domains: [
       'avatars.githubusercontent.com',
       'firebasestorage.googleapis.com',
+      'res.cloudinary.com',
     ],
   },
 };
