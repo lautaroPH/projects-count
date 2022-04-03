@@ -9,7 +9,7 @@ const Buttons = () => {
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
   return (
-    <div className="flex justify-center items-center flex-col sm:flex-row sm:justify-around xl:mt-20 w-full md:w-4/5">
+    <div className="flex flex-col items-center justify-center w-full sm:flex-row sm:justify-around xl:mt-20 md:w-4/5">
       {currentTheme === 'dark' ? (
         <Button firstIcon={<GithubSvgLight />} secondIcon={<GithubSvgDark />} />
       ) : (
@@ -20,15 +20,12 @@ const Buttons = () => {
       )}
 
       <Link passHref href="/inicio">
-        <a className="w-4/5 sm:w-[45%]">
-          <button
-            className="buttonsIndex bg-violet-800 text-white  dark:bg-white dark:text-[#282C34]
+        <a
+          className="flex items-center justify-center sm:w-[45%] buttonsIndex bg-violet-800 text-white  dark:bg-white dark:text-[#282C34]
         hover:bg-transparent dark:hover:bg-transparent dark:hover:text-white  hover:text-violet-800
-         w-full
-        "
-          >
-            Entrar como invitado
-          </button>
+         w-4/5"
+        >
+          Entrar como invitado
         </a>
       </Link>
     </div>
