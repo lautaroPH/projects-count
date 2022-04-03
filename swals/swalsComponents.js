@@ -34,6 +34,24 @@ const swalConfirmDeleteCommentLight = {
   confirmButtonColor: '#f00',
 };
 
+const swalConfirmDeleteAnswerDark = {
+  icon: 'warning',
+  text: '¿Estas seguro de querer eliminar para siempre tu respuesta?',
+  confirmButtonText: 'Eliminar definitivamente',
+  background: 'rgb(17 24 39)',
+  color: '#fff',
+  showCancelButton: `Cancelar`,
+  confirmButtonColor: '#f00',
+};
+
+const swalConfirmDeleteAnswerLight = {
+  icon: 'warning',
+  text: '¿Estas seguro de querer eliminar para siempre tu respuesta?',
+  confirmButtonText: 'Eliminar definitivamente',
+  showCancelButton: `Cancelar`,
+  confirmButtonColor: '#f00',
+};
+
 const swalDeleteSucessDark = {
   text: 'El link fue eliminado con exito',
   background: 'rgb(17 24 39)',
@@ -49,7 +67,7 @@ const swalDeleteSuccessLight = {
 };
 
 const swalDeleteSucessCommentDark = {
-  text: 'Elcomentariok fue eliminado con exito',
+  text: 'El comentario fue eliminado con exito',
   background: 'rgb(17 24 39)',
   color: '#fff',
   icon: 'success',
@@ -58,6 +76,20 @@ const swalDeleteSucessCommentDark = {
 
 const swalDeleteSuccessCommentLight = {
   text: 'El comentario fue eliminado con exito',
+  icon: 'success',
+  timer: '2000',
+};
+
+const swalDeleteSucessAnswerDark = {
+  text: 'La respuesta fue eliminado con exito',
+  background: 'rgb(17 24 39)',
+  color: '#fff',
+  icon: 'success',
+  timer: '2000',
+};
+
+const swalDeleteSuccessAnswerLight = {
+  text: 'La respuesta fue eliminado con exito',
   icon: 'success',
   timer: '2000',
 };
@@ -99,6 +131,26 @@ const swalDeleteLoadingCommentLight = {
   imageHeight: 80,
   imageWidth: 80,
   title: `Eliminando comentario`,
+  text: 'Esto podria demorar unos segundos',
+};
+
+const swalDeleteLoadingAnswerDark = {
+  imageUrl:
+    'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647967168/Dual_Ring-1s-200px_1_wl4kwa.gif',
+  imageHeight: 80,
+  imageWidth: 80,
+  background: 'rgb(17 24 39)',
+  color: '#fff',
+  title: `Eliminando respuesta`,
+  text: 'Esto podria demorar unos segundos',
+};
+
+const swalDeleteLoadingAnswerLight = {
+  imageUrl:
+    'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647907326/Dual_Ring-1s-200px_j4unt1.gif',
+  imageHeight: 80,
+  imageWidth: 80,
+  title: `Eliminando respuesta`,
   text: 'Esto podria demorar unos segundos',
 };
 
@@ -161,4 +213,10 @@ export {
   swalDeleteSuccessCommentLight,
   swalDeleteLoadingCommentDark,
   swalDeleteLoadingCommentLight,
+  swalConfirmDeleteAnswerDark,
+  swalConfirmDeleteAnswerLight,
+  swalDeleteLoadingAnswerDark,
+  swalDeleteLoadingAnswerLight,
+  swalDeleteSucessAnswerDark,
+  swalDeleteSuccessAnswerLight,
 };
