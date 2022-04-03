@@ -14,6 +14,7 @@ const Answer = ({
   answer,
   commentId,
   timestamp,
+  userIdFromLink,
 }) => {
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
@@ -40,7 +41,14 @@ const Answer = ({
       <div className="bg-gray-100 dark:bg-gray-800 w-[90%] rounded-lg p-2 relative">
         <div className="flex justify-between">
           <div>
-            <p className="font-semibold">{username}</p>
+            <div className="flex items-center">
+              <p className="mr-2 font-semibold">{username}</p>
+              {userId === userIdFromLink && (
+                <span className="px-2 py-[1px] text-gray-100 bg-gray-600 font-light rounded-md dark:bg-gray-300 dark:text-gray-800">
+                  Autor
+                </span>
+              )}
+            </div>
             <p className="mb-1 text-xs font-light dark:text-gray-300 sm:text-sm">
               <time title={createdAtFormated}>{timeago}</time>
             </p>

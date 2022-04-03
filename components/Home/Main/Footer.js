@@ -8,7 +8,15 @@ import FormComment from './Forms/FormComment';
 import Comment from './Comments/Comment';
 import useUser from 'hooks/useUser';
 
-const Footer = ({ id, username, dataUserLike, githubRepo, link, title }) => {
+const Footer = ({
+  id,
+  username,
+  dataUserLike,
+  githubRepo,
+  link,
+  title,
+  userIdFromLink,
+}) => {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [openCommentInput, setOpenCommentInput] = useState(false);
@@ -54,7 +62,7 @@ const Footer = ({ id, username, dataUserLike, githubRepo, link, title }) => {
                 timestamp={comment.data().timestamp}
                 userId={comment.data().userId}
                 username={comment.data().username}
-                seeAllComments={seeAllComments}
+                userIdFromLink={userIdFromLink}
               />
             ) : (
               seeAllComments && (
@@ -68,7 +76,7 @@ const Footer = ({ id, username, dataUserLike, githubRepo, link, title }) => {
                   timestamp={comment.data().timestamp}
                   userId={comment.data().userId}
                   username={comment.data().username}
-                  seeAllComments={seeAllComments}
+                  userIdFromLink={userIdFromLink}
                 />
               )
             );

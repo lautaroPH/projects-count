@@ -121,6 +121,7 @@ const Link = ({
           githubRepo={githubRepo}
           link={link}
           title={title}
+          userIdFromLink={userId}
         />
       </div>
     </>
