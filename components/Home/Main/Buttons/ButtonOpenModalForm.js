@@ -22,7 +22,13 @@ const ButtonOpenModalForm = () => {
           />
         </div>
       </div>
-      {openForm && <ModalForm openForm={openForm} setOpenForm={setOpenForm} />}
+      {openForm && (
+        <ModalForm
+          openForm={openForm}
+          setOpenForm={setOpenForm}
+          isEdited={false}
+        />
+      )}
     </>
   );
 };
