@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Tecnologies from './Tecnologies';
 import ButtonDelete from './Buttons/ButtonDelete';
 import Footer from './Footer';
+import ButtonEditLink from './Buttons/ButtonEditLink';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -77,6 +78,18 @@ const Link = ({
           </div>
           {userId === user?.id && (
             <p className="pt-3 pr-3">
+              <ButtonEditLink
+                setLinks={setLinks}
+                setNoLinks={setNoLinks}
+                id={id}
+                userId={user?.id}
+                title={title}
+                link={link}
+                description={description}
+                githubRepo={githubRepo}
+                tecnologies={tecnologies}
+                image={image}
+              />
               <ButtonDelete
                 setLinks={setLinks}
                 setNoLinks={setNoLinks}
@@ -121,7 +134,6 @@ const Link = ({
           githubRepo={githubRepo}
           link={link}
           title={title}
-          userIdFromLink={userId}
         />
       </div>
     </>
