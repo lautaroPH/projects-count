@@ -3,9 +3,6 @@ import { useState } from 'react';
 
 const ButtonEditLink = ({
   id,
-  userId,
-  setLinks,
-  setNoLinks,
   title,
   link,
   description,
@@ -26,11 +23,8 @@ const ButtonEditLink = ({
         <ModalForm
           openForm={openEditform}
           setOpenForm={setOpenEditform}
-          isEdited={true}
+          isEditing={true}
           id={id}
-          setLinks={setLinks}
-          setNoLinks={setNoLinks}
-          userId={userId}
           title={title}
           link={link}
           description={description}

@@ -1,16 +1,12 @@
 import { Dialog, Transition } from '@headlessui/react';
 import FormLink from 'components/Home/Main/Forms/FormLink';
-import FormLinkEdit from 'components/Home/Main/Forms/FormLinkEdit';
 import { Fragment } from 'react';
 
 const ModalForm = ({
   openForm,
   setOpenForm,
-  isEdited,
+  isEditing,
   id,
-  setLinks,
-  setNoLinks,
-  userId,
   title,
   link,
   description,
@@ -54,23 +50,17 @@ const ModalForm = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div className="inline-block w-full max-w-lg px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-800 sm:my-8 sm:align-middle">
-              {isEdited ? (
-                <FormLinkEdit
-                  id={id}
-                  setLinks={setLinks}
-                  setNoLinks={setNoLinks}
-                  setOpenFormEdit={setOpenForm}
-                  userId={userId}
-                  title={title}
-                  link={link}
-                  description={description}
-                  githubRepo={githubRepo}
-                  tecnologies={tecnologies}
-                  image={image}
-                />
-              ) : (
-                <FormLink setOpenForm={setOpenForm} />
-              )}
+              <FormLink
+                setOpenForm={setOpenForm}
+                id={id}
+                title={title}
+                link={link}
+                description={description}
+                githubRepo={githubRepo}
+                tecnologies={tecnologies}
+                image={image}
+                isEditing={isEditing}
+              />
             </div>
           </Transition.Child>
         </div>

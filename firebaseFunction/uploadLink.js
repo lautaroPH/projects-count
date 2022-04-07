@@ -1,7 +1,6 @@
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 import { uploadImage } from './uploadImage';
-import { uploadUserLink } from './uploadUserLink';
 
 export const uploadLink = async (values, selectedFile, user) => {
   const { title, link, githubRepo, tecnologies, description } = values;
@@ -28,9 +27,7 @@ export const uploadLink = async (values, selectedFile, user) => {
 
   const id = docRef.id;
 
-  uploadUserLink(user?.id, id, values);
-
   if (selectedFile) {
-    await uploadImage(selectedFile, id, user?.id);
+    await uploadImage(selectedFile, id);
   }
 };

@@ -26,7 +26,7 @@ const ButtonOpenModalForm = () => {
         <ModalForm
           openForm={openForm}
           setOpenForm={setOpenForm}
-          isEdited={false}
+          isEditing={false}
         />
       )}
     </>

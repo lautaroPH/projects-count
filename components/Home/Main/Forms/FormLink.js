@@ -6,14 +6,31 @@ import { useTheme } from 'next-themes';
 import { imageValidation } from 'utils/ImageValidation';
 import Swal from 'sweetalert2';
 import {
+  swalUploadEditLinkSuccessDark,
+  swalUploadEditLinkSuccessLight,
+  swalUploadingEditLinkDark,
+  swalUploadingEditLinkLight,
   swalUploadingLinkDark,
   swalUploadingLinkLight,
   swalUploadLinkSuccessDark,
   swalUploadLinkSuccessLight,
 } from 'swals/swalsComponents';
 import { uploadLink } from 'firebaseFunction/uploadLink';
+import TextareaAutosize from 'react-textarea-autosize';
+import Image from 'next/image';
+import { editLink } from 'firebaseFunction/editLink';
 
-const FormLink = ({ setOpenForm }) => {
+const FormLink = ({
+  setOpenForm,
+  isEditing,
+  id,
+  title,
+  link,
+  description,
+  githubRepo,
+  tecnologies,
+  image,
+}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorFileExtension, setErrorFileExtension] = useState('');
   const [erroFileSize, setErroFileSize] = useState('');
@@ -23,34 +40,48 @@ const FormLink = ({ setOpenForm }) => {
   const user = useUser();
 
   const handleUploadLink = (values) => {
-    currentTheme === 'dark'
-      ? Swal.fire(swalUploadingLinkDark(values?.title))
-      : Swal.fire(swalUploadingLinkLight(values?.title));
-
-    uploadLink(values, selectedFile, user).then(() => {
+    if (isEditing) {
       currentTheme === 'dark'
-        ? Swal.fire(swalUploadLinkSuccessDark(values?.title))
-        : Swal.fire(swalUploadLinkSuccessLight(values?.title));
-      setSelectedFile('');
-      setOpenForm(false);
-    });
+        ? Swal.fire(swalUploadingEditLinkDark(values?.title))
+        : Swal.fire(swalUploadingEditLinkLight(values?.title));
+
+      editLink(id, values, selectedFile).then(() => {
+        currentTheme === 'dark'
+          ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
+          : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
+        setSelectedFile('');
+        setOpenForm(false);
+      });
+    } else {
+      currentTheme === 'dark'
+        ? Swal.fire(swalUploadingLinkDark(values?.title))
+        : Swal.fire(swalUploadingLinkLight(values?.title));
+
+      uploadLink(values, selectedFile, user).then(() => {
+        currentTheme === 'dark'
+          ? Swal.fire(swalUploadLinkSuccessDark(values?.title))
+          : Swal.fire(swalUploadLinkSuccessLight(values?.title));
+        setSelectedFile('');
+        setOpenForm(false);
+      });
+    }
   };
 
   return (
     <Formik
       initialValues={{
-        title: '',
-        link: '',
-        description: '',
-        githubRepo: '',
-        tecnologies: '',
+        title,
+        link,
+        description,
+        githubRepo,
+        tecnologies,
       }}
       validationSchema={linkFormSchema}
       onSubmit={(values) => {
         return handleUploadLink(values);
       }}
     >
-      {({ values, isSubmitting, errors }) => (
+      {({ values, isSubmitting, errors, handleChange }) => (
         <Form>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
@@ -133,16 +164,17 @@ const FormLink = ({ setOpenForm }) => {
             <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
               Descripción
             </label>
-            <Field
-              as="textarea"
+            <TextareaAutosize
               className={`${
                 errors.description &&
                 'border border-red-700 dark:border-red-700'
-              } inputLinks resize-y`}
+              } textareaScrollNone inputLinks resize-none`}
+              value={values.description}
+              onChange={handleChange}
               name="description"
               placeholder="Descripción de la página, tiempo en desarrollo, etc"
-              rows="5"
               autoComplete="off"
+              minRows={5}
             />
             <ErrorMessage
               name="description"
@@ -167,6 +199,26 @@ const FormLink = ({ setOpenForm }) => {
                 )
               }
             />
+            {image && !selectedFile && (
+              <div className="relative w-full h-52">
+                <Image
+                  src={image}
+                  layout="fill"
+                  alt="preview"
+                  className="w-full"
+                />
+              </div>
+            )}
+            {selectedFile && (
+              <div className="relative w-full h-52">
+                <Image
+                  src={selectedFile}
+                  layout="fill"
+                  alt="preview"
+                  className="w-full"
+                />
+              </div>
+            )}
             {errorFileExtension ? (
               <small className="px-1 text-base text-red-800 dark:text-red-600">
                 {errorFileExtension}
@@ -184,14 +236,14 @@ const FormLink = ({ setOpenForm }) => {
               className="buttonFormSumbit"
               type="submit"
               disabled={
-                values.title.trim() === '' ||
-                values.link.trim() === '' ||
-                values.description.trim() === '' ||
-                errors.title ||
-                errors.link ||
-                errors.githubRepo ||
-                errors.tecnologies ||
-                errors.description ||
+                values?.title?.trim() === '' ||
+                values?.link?.trim() === '' ||
+                values?.description?.trim() === '' ||
+                errors?.title ||
+                errors?.link ||
+                errors?.githubRepo ||
+                errors?.tecnologies ||
+                errors?.description ||
                 errorFileExtension ||
                 erroFileSize ||
                 isSubmitting

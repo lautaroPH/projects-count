@@ -178,6 +178,30 @@ const swalUploadingLinkLight = (title) => {
   };
 };
 
+const swalUploadingEditLinkDark = (title) => {
+  return {
+    imageUrl:
+      'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647967168/Dual_Ring-1s-200px_1_wl4kwa.gif',
+    imageHeight: 80,
+    imageWidth: 80,
+    background: 'rgb(17 24 39)',
+    color: '#fff',
+    title: `Editando proyecto: "${title}"`,
+    text: 'Esto podria demorar unos segundos',
+  };
+};
+
+const swalUploadingEditLinkLight = (title) => {
+  return {
+    imageUrl:
+      'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647907326/Dual_Ring-1s-200px_j4unt1.gif',
+    imageHeight: 80,
+    imageWidth: 80,
+    title: `Editando proyecto: "${title}"`,
+    text: 'Esto podria demorar unos segundos',
+  };
+};
+
 const swalUploadLinkSuccessDark = (title) => {
   return {
     icon: 'success',
@@ -192,6 +216,24 @@ const swalUploadLinkSuccessLight = (title) => {
   return {
     icon: 'success',
     title: `${title} guardado correctamente`,
+    timer: '2000',
+  };
+};
+
+const swalUploadEditLinkSuccessDark = (title) => {
+  return {
+    icon: 'success',
+    background: 'rgb(17 24 39)',
+    color: '#fff',
+    title: `${title} editado correctamente`,
+    timer: '2000',
+  };
+};
+
+const swalUploadEditLinkSuccessLight = (title) => {
+  return {
+    icon: 'success',
+    title: `${title} editado correctamente`,
     timer: '2000',
   };
 };
@@ -219,4 +261,8 @@ export {
   swalDeleteLoadingAnswerLight,
   swalDeleteSucessAnswerDark,
   swalDeleteSuccessAnswerLight,
+  swalUploadEditLinkSuccessLight,
+  swalUploadEditLinkSuccessDark,
+  swalUploadingEditLinkLight,
+  swalUploadingEditLinkDark,
 };

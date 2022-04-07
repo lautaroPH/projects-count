@@ -1,33 +1,43 @@
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import useUser from 'hooks/useUser';
 import Image from 'next/image';
 import { AnswerFormValidation } from 'validations/AnswerFormValidation';
 import { uploadAnswer } from 'firebaseFunction/uploadAnswer';
+import TextareaAutosize from 'react-textarea-autosize';
+import { editAnswer } from 'firebaseFunction/editAnswer';
 
-const AnswerCommentForm = ({ linkId, commentId, index }) => {
+const FormCommentAnswer = ({
+  linkId,
+  commentId,
+  setOpenEditAnswer,
+  answer,
+  id,
+  isEditing,
+}) => {
   const user = useUser();
-
-  const textareaAnswer = document.getElementById(`answer-${index}`);
-
-  const handleAutoResizeTextarea = (e) => {
-    textareaAnswer.style.height = '45px';
-    let scHeight = e.target.scrollHeight;
-    textareaAnswer.style.height = scHeight + 'px';
-  };
 
   return (
     <Formik
-      initialValues={{ answer: '' }}
+      initialValues={{ answer: answer ? answer : '' }}
       validationSchema={AnswerFormValidation}
       onSubmit={async (values, { resetForm }) => {
-        await uploadAnswer(linkId, user, values.answer, commentId);
+        if (isEditing) {
+          await editAnswer(linkId, commentId, id, values.answer);
+          setOpenEditAnswer(false);
+        } else {
+          await uploadAnswer(linkId, user, values.answer, commentId);
+        }
         resetForm();
-        textareaAnswer.style.height = '45px';
       }}
     >
-      {({ values, isSubmitting, errors }) => (
-        <Form className="pb-1 bg-transparent rounded">
-          <div className="flex w-full mb-2">
+      {({ values, isSubmitting, errors, handleChange }) => (
+        <Form
+          className={`${
+            !isEditing &&
+            `flex justify-center w-full pb-1 bg-transparent rounded`
+          }`}
+        >
+          {!isEditing && (
             <div className="mt-1 mr-1 w-9 h-9">
               {user?.avatar && (
                 <Image
@@ -40,16 +50,22 @@ const AnswerCommentForm = ({ linkId, commentId, index }) => {
                 />
               )}
             </div>
+          )}
+
+          <div className={`${!isEditing && `flex w-[90%] mb-2`}`}>
             <div className="w-full">
-              <Field
-                id={`answer-${index}`}
-                as="textarea"
-                className="w-full px-3 py-3 leading-tight text-gray-700 bg-transparent border border-gray-400 appearance-none resize-none h-11 textareaScrollNone dark:border-gray-500 rounded-3xl dark:text-white focus:outline-none focus:shadow-outline dark:placeholder-gray-400"
+              <TextareaAutosize
+                className={`${
+                  isEditing
+                    ? `focus:border focus:rounded-md`
+                    : `px-3 py-3 border rounded-3xl `
+                } w-full leading-tight dark:placeholder-gray-400 dark:text-white text-gray-700 bg-transparent border-gray-400 appearance-none resize-none textareaScrollNone dark:border-gray-500  focus:outline-none focus:shadow-outline`}
+                value={values.answer}
+                onChange={handleChange}
                 name="answer"
                 placeholder="Añadir una respuesta"
-                required
                 autoComplete="off"
-                onKeyUp={handleAutoResizeTextarea}
+                autoFocus={true}
               />
               {values.answer.trim().length > 1250 && (
                 <small className="px-1 text-sm font-semibold text-red-500 dark:text-red-600">
@@ -74,6 +90,17 @@ const AnswerCommentForm = ({ linkId, commentId, index }) => {
                   >
                     {isSubmitting ? 'Respondiendo...' : 'Responder'}
                   </button>
+                  {isEditing && (
+                    <button
+                      className="ml-2 bg-transparent border border-violet-800 text-dark  px-2 rounded-full font-semibold text-sm py-[2px]
+                    dark:border-white dark:bg-transparent  dark:text-white  
+                    hover:bg-violet-700 dark:hover:bg-white dark:hover:text-black hover:text-white
+                    transition-all duration-300 "
+                      onClick={() => setOpenEditAnswer(false)}
+                    >
+                      Cancelar
+                    </button>
+                  )}
                   {values.answer.trim().length >= 1200 &&
                     values.answer.trim().length <= 1250 && (
                       <p className="ml-3 text-sm font-semibold text-violet-600 dark:text-gray-300">
@@ -96,4 +123,4 @@ const AnswerCommentForm = ({ linkId, commentId, index }) => {
   );
 };
 
-export default AnswerCommentForm;
+export default FormCommentAnswer;

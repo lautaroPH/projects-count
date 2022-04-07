@@ -23,6 +23,7 @@ const Link = ({
   username,
   setLinks,
   setNoLinks,
+  isEdited,
 }) => {
   const dataUserLike = {
     title,
@@ -73,16 +74,14 @@ const Link = ({
               <h4 className="text-base sm:text-xl">{username}</h4>
               <p className="mb-1 text-xs font-light sm:text-sm">
                 <time title={createdAtFormated}>{timeago}</time>
+                {isEdited && <span className="ml-1">• Editado •</span>}
               </p>
             </div>
           </div>
           {userId === user?.id && (
             <p className="pt-3 pr-3">
               <ButtonEditLink
-                setLinks={setLinks}
-                setNoLinks={setNoLinks}
                 id={id}
-                userId={user?.id}
                 title={title}
                 link={link}
                 description={description}

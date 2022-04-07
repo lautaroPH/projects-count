@@ -1,10 +1,11 @@
 import React from 'react';
-import AnswerCommentForm from '../Forms/AnswerCommentForm';
+import FormCommentAnswer from '../Forms/FormCommentAnswer';
 import Answer from './Answer';
 import { useState, useEffect } from 'react';
 import { getAnswers } from 'firebaseFunction/getAnswers';
 import useUser from 'hooks/useUser';
-const AnswersList = ({ linkId, commentId, index }) => {
+
+const AnswersList = ({ linkId, commentId }) => {
   const [openAnswerForm, setOpenAnswerForm] = useState(false);
   const [answers, setAnswers] = useState([]);
   const user = useUser();
@@ -16,7 +17,7 @@ const AnswersList = ({ linkId, commentId, index }) => {
 
   return (
     <>
-      <div className="flex items-center justify-end px-5 pb-3 text-xs">
+      <div className="flex items-center justify-end px-2 pb-3 mt-1 text-xs">
         {user && (
           <button
             onClick={() => {
@@ -50,15 +51,9 @@ const AnswersList = ({ linkId, commentId, index }) => {
         )}
       </div>
       {openAnswerForm && (
-        <div className="ml-[57px] px-4">
-          {user && (
-            <AnswerCommentForm
-              index={index}
-              linkId={linkId}
-              commentId={commentId}
-            />
-          )}
-          {answers.length > 0 ? (
+        <div className="ml-[48px]">
+          {user && <FormCommentAnswer linkId={linkId} commentId={commentId} />}
+          {answers.length > 0 &&
             answers?.map((answer) => (
               <Answer
                 key={answer.id}
@@ -70,13 +65,9 @@ const AnswersList = ({ linkId, commentId, index }) => {
                 answer={answer.data().answer}
                 commentId={answer.data().commentId}
                 timestamp={answer.data().timestamp}
+                isEdited={answer.data().isEdited}
               />
-            ))
-          ) : (
-            <p className="pb-2 text-sm font-semibold text-gray-500 dark:text-gray-300">
-              No hay respuestas para ver
-            </p>
-          )}
+            ))}
         </div>
       )}
     </>

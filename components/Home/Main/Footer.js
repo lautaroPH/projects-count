@@ -48,14 +48,13 @@ const Footer = ({
 
       {openCommentInput && (
         <div className="mb-3">
-          {user && <FormComment id={id} title={title} />}
+          {user && <FormComment linkId={id} title={title} isEditing={false} />}
 
           {comments.map((comment, i) => {
             return i <= 9 ? (
               <Comment
                 key={comment.id}
                 linkId={id}
-                index={i}
                 commentId={comment.id}
                 avatar={comment.data().avatar}
                 comment={comment.data().comment}
@@ -63,13 +62,13 @@ const Footer = ({
                 userId={comment.data().userId}
                 username={comment.data().username}
                 userIdFromLink={userIdFromLink}
+                isEdited={comment.data().isEdited}
               />
             ) : (
               seeAllComments && (
                 <Comment
                   key={comment.id}
                   linkId={id}
-                  index={i}
                   commentId={comment.id}
                   avatar={comment.data().avatar}
                   comment={comment.data().comment}
@@ -77,15 +76,12 @@ const Footer = ({
                   userId={comment.data().userId}
                   username={comment.data().username}
                   userIdFromLink={userIdFromLink}
+                  isEdited={comment.data().isEdited}
                 />
               )
             );
           })}
-          {comments.length <= 0 && (
-            <p className="px-2 py-1 ml-2 text-base font-semibold text-gray-500 dark:text-gray-300">
-              No hay comentarios para ver
-            </p>
-          )}
+
           {!seeAllComments && comments.length > 10 && (
             <button
               className="px-2 py-1 ml-2 text-sm font-semibold text-gray-500 transition-all duration-200 ease-in-out rounded-md hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800"

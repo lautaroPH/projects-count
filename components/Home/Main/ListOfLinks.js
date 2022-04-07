@@ -62,6 +62,7 @@ const ListOfLinks = () => {
               timestamp={link?.data()?.timestamp}
               setLinks={setLinks}
               setNoLinks={setNoLinks}
+              isEdited={link?.data()?.isEdited}
             />
           ))}
         </div>
