@@ -30,6 +30,8 @@ const FormLink = ({
   githubRepo,
   tecnologies,
   image,
+  links,
+  setLinks,
 }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorFileExtension, setErrorFileExtension] = useState('');
@@ -45,7 +47,7 @@ const FormLink = ({
         ? Swal.fire(swalUploadingEditLinkDark(values?.title))
         : Swal.fire(swalUploadingEditLinkLight(values?.title));
 
-      editLink(id, values, selectedFile).then(() => {
+      editLink(id, values, selectedFile, setLinks, links).then(() => {
         currentTheme === 'dark'
           ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
           : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
@@ -70,11 +72,11 @@ const FormLink = ({
   return (
     <Formik
       initialValues={{
-        title,
-        link,
-        description,
-        githubRepo,
-        tecnologies,
+        title: title ? title : '',
+        link: link ? link : '',
+        description: description ? description : '',
+        githubRepo: githubRepo ? githubRepo : '',
+        tecnologies: tecnologies ? tecnologies : '',
       }}
       validationSchema={linkFormSchema}
       onSubmit={(values) => {

@@ -1,16 +1,4 @@
-import ModalForm from 'components/Modals/ModalForm';
-import { useState } from 'react';
-
-const ButtonEditLink = ({
-  id,
-  title,
-  link,
-  description,
-  githubRepo,
-  tecnologies,
-  image,
-}) => {
-  const [openEditform, setOpenEditform] = useState(false);
+const ButtonEditLink = ({ setOpenEditform }) => {
   return (
     <>
       <button
@@ -19,20 +7,6 @@ const ButtonEditLink = ({
       >
         Editar
       </button>
-      {openEditform && (
-        <ModalForm
-          openForm={openEditform}
-          setOpenForm={setOpenEditform}
-          isEditing={true}
-          id={id}
-          title={title}
-          link={link}
-          description={description}
-          githubRepo={githubRepo}
-          tecnologies={tecnologies}
-          image={image}
-        />
-      )}
     </>
   );
 };

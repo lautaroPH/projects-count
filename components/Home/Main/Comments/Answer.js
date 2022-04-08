@@ -17,6 +17,8 @@ const Answer = ({
   commentId,
   timestamp,
   isEdited,
+  comments,
+  setComments,
 }) => {
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
@@ -73,6 +75,8 @@ const Answer = ({
             commentId={commentId}
             id={id}
             isEditing={true}
+            comments={comments}
+            setComments={setComments}
           />
         ) : (
           <p className="overflow-hidden text-sm">

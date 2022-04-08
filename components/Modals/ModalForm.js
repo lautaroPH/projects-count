@@ -13,6 +13,8 @@ const ModalForm = ({
   githubRepo,
   tecnologies,
   image,
+  links,
+  setLinks,
 }) => {
   return (
     <Transition.Root show={openForm} as={Fragment}>
@@ -60,6 +62,8 @@ const ModalForm = ({
                 tecnologies={tecnologies}
                 image={image}
                 isEditing={isEditing}
+                links={links}
+                setLinks={setLinks}
               />
             </div>
           </Transition.Child>

@@ -10,10 +10,18 @@ const AllButtons = ({
   setOpenCommentInput,
   openCommentInput,
   dataUserLike,
+  links,
+  setLinks,
 }) => {
   return (
     <div className="flex items-center h-auto my-1 justify-evenly sm:justify-around">
-      <LikeButton id={id} likes={likes} dataUserLike={dataUserLike} />
+      <LikeButton
+        id={id}
+        likes={likes}
+        dataUserLike={dataUserLike}
+        links={links}
+        setLinks={setLinks}
+      />
       <CommentButton
         setOpenCommentInput={setOpenCommentInput}
         openCommentInput={openCommentInput}

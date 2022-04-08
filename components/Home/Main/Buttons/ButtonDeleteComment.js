@@ -10,7 +10,15 @@ import {
 } from 'swals/swalsComponents';
 import Swal from 'sweetalert2';
 
-const ButtonDeleteComment = ({ linkId, commentId, userId }) => {
+const ButtonDeleteComment = ({
+  linkId,
+  commentId,
+  userId,
+  comments,
+  setComments,
+  commentsNumber,
+  setCommentsNumber,
+}) => {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
@@ -19,16 +27,28 @@ const ButtonDeleteComment = ({ linkId, commentId, userId }) => {
       Swal.fire(swalConfirmDeleteCommentDark).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingCommentDark);
-          deleteComment(linkId, commentId, userId).then(() => {
-            Swal.fire(swalDeleteSucessCommentDark);
-          });
+          deleteComment(linkId, commentId, userId, setComments, comments).then(
+            () => {
+              setCommentsNumber(commentsNumber - 1);
+              Swal.fire(swalDeleteSucessCommentDark);
+            }
+          );
         }
       });
     } else {
       Swal.fire(swalConfirmDeleteCommentLight).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingCommentLight);
-          deleteComment(linkId, commentId, userId).then(() => {
+          deleteComment(
+            linkId,
+            commentId,
+            userId,
+            setComments,
+            comments,
+            commentsNumber
+          ).then(() => {
+            setCommentsNumber(commentsNumber - 1);
+
             Swal.fire(swalDeleteSuccessCommentLight);
           });
         }

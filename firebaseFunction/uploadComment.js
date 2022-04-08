@@ -7,10 +7,19 @@ import {
 } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 import Swal from 'sweetalert2';
-import { deleteLike } from './deleteLike';
+import { getLastCommentUpload } from './getLastCommentUpload';
+import { uploadCommentsNumber } from './uploadCommentsNumber';
 import { uploadUserComment } from './uploadUserComment';
 
-export const uploadComment = async (id, user, comment, title, router) => {
+export const uploadComment = async (
+  id,
+  user,
+  comment,
+  title,
+  setComments,
+  setLinks,
+  links
+) => {
   const { id: userId, username, avatar } = user;
   const commentTrim = comment.trim();
 
@@ -26,15 +35,17 @@ export const uploadComment = async (id, user, comment, title, router) => {
       comment: commentTrim,
       timestamp: serverTimestamp(),
     });
-    await uploadUserComment(id, userId, comment, title, commentRef.id);
+    uploadUserComment(id, userId, comment, title, commentRef.id);
+    uploadCommentsNumber(id);
+    getLastCommentUpload(id, commentRef.id, setComments);
   } else {
     Swal.fire({
       text: 'Este link no existe más',
       icon: 'error',
       timer: '3000',
     });
-    router.reload();
+    const newLinks = links.filter((link) => link.id !== id);
 
-    deleteLike(id, userId);
+    setLinks(newLinks);
   }
 };

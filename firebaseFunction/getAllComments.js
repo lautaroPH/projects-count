@@ -1,14 +1,15 @@
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
-export const getAllComments = (id, callback) => {
-  return onSnapshot(
-    query(
-      collection(db, 'links', id, 'comments'),
-      orderBy('timestamp', 'desc')
-    ),
-    (snapshot) => {
-      callback(snapshot?.docs);
-    }
+export const getAllComments = (id, callback, callbackEmpty) => {
+  const querySnapshot = query(
+    collection(db, 'links', id, 'comments'),
+    orderBy('timestamp', 'desc'),
+    limit(6)
   );
+
+  getDocs(querySnapshot).then((snapshot) => {
+    callbackEmpty(snapshot.empty);
+    callback(snapshot.docs);
+  });
 };

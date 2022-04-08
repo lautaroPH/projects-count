@@ -13,6 +13,8 @@ const FormCommentAnswer = ({
   answer,
   id,
   isEditing,
+  comments,
+  setComments,
 }) => {
   const user = useUser();
 
@@ -25,7 +27,14 @@ const FormCommentAnswer = ({
           await editAnswer(linkId, commentId, id, values.answer);
           setOpenEditAnswer(false);
         } else {
-          await uploadAnswer(linkId, user, values.answer, commentId);
+          await uploadAnswer(
+            linkId,
+            user,
+            values.answer,
+            commentId,
+            comments,
+            setComments
+          );
         }
         resetForm();
       }}

@@ -1,5 +1,4 @@
 import { deleteLink } from 'firebaseFunction/deleteLink';
-import { getLinks } from 'firebaseFunction/getLinks';
 import { useTheme } from 'next-themes';
 import {
   swalConfirmDeleteDark,
@@ -11,7 +10,7 @@ import {
 } from 'swals/swalsComponents';
 import Swal from 'sweetalert2';
 
-const ButtonDelete = ({ id, image, userId, setLinks, setNoLinks }) => {
+const ButtonDelete = ({ id, image, userId, setLinks, links }) => {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
@@ -20,8 +19,7 @@ const ButtonDelete = ({ id, image, userId, setLinks, setNoLinks }) => {
       Swal.fire(swalConfirmDeleteDark).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingDark);
-          getLinks(setNoLinks, setLinks);
-          deleteLink(id, image, userId).then(() => {
+          deleteLink(id, image, userId, setLinks, links).then(() => {
             Swal.fire(swalDeleteSucessDark);
           });
         }
@@ -30,8 +28,7 @@ const ButtonDelete = ({ id, image, userId, setLinks, setNoLinks }) => {
       Swal.fire(swalConfirmDeleteLight).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingLight);
-          getLinks(setNoLinks, setLinks);
-          deleteLink(id, image, userId).then(() => {
+          deleteLink(id, image, userId, setLinks, links).then(() => {
             Swal.fire(swalDeleteSuccessLight);
           });
         }

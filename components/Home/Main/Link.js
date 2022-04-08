@@ -6,6 +6,8 @@ import Tecnologies from './Tecnologies';
 import ButtonDelete from './Buttons/ButtonDelete';
 import Footer from './Footer';
 import ButtonEditLink from './Buttons/ButtonEditLink';
+import ModalForm from 'components/Modals/ModalForm';
+import { useState } from 'react';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -22,7 +24,7 @@ const Link = ({
   image,
   username,
   setLinks,
-  setNoLinks,
+  links,
   isEdited,
 }) => {
   const dataUserLike = {
@@ -42,6 +44,7 @@ const Link = ({
     createdAt !== undefined && createdAt
   );
   const user = useUser();
+  const [openEditform, setOpenEditform] = useState(false);
 
   const titleWithUppercase = title.charAt(0).toUpperCase() + title.slice(1);
   const descriptionWithUppercase =
@@ -80,18 +83,10 @@ const Link = ({
           </div>
           {userId === user?.id && (
             <p className="pt-3 pr-3">
-              <ButtonEditLink
-                id={id}
-                title={title}
-                link={link}
-                description={description}
-                githubRepo={githubRepo}
-                tecnologies={tecnologies}
-                image={image}
-              />
+              <ButtonEditLink setOpenEditform={setOpenEditform} />
               <ButtonDelete
                 setLinks={setLinks}
-                setNoLinks={setNoLinks}
+                links={links}
                 id={id}
                 image={image}
                 userId={user?.id}
@@ -133,8 +128,26 @@ const Link = ({
           githubRepo={githubRepo}
           link={link}
           title={title}
+          links={links}
+          setLinks={setLinks}
         />
       </div>
+      {openEditform && (
+        <ModalForm
+          openForm={openEditform}
+          setOpenForm={setOpenEditform}
+          isEditing={true}
+          id={id}
+          title={title}
+          link={link}
+          description={description}
+          githubRepo={githubRepo}
+          tecnologies={tecnologies}
+          image={image}
+          links={links}
+          setLinks={setLinks}
+        />
+      )}
     </>
   );
 };

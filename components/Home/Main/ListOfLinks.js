@@ -61,7 +61,7 @@ const ListOfLinks = () => {
               avatar={link?.data()?.userImage}
               timestamp={link?.data()?.timestamp}
               setLinks={setLinks}
-              setNoLinks={setNoLinks}
+              links={links}
               isEdited={link?.data()?.isEdited}
             />
           ))}

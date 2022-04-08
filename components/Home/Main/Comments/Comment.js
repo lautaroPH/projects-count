@@ -17,6 +17,12 @@ const Comment = ({
   userId,
   username,
   isEdited,
+  comments,
+  setComments,
+  commentsNumber,
+  links,
+  setLinks,
+  setCommentsNumber,
 }) => {
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
@@ -59,6 +65,10 @@ const Comment = ({
                     commentId={commentId}
                     linkId={linkId}
                     userId={user?.id}
+                    comments={comments}
+                    setComments={setComments}
+                    commentsNumber={commentsNumber}
+                    setCommentsNumber={setCommentsNumber}
                   />
                 </p>
               )}
@@ -84,11 +94,20 @@ const Comment = ({
                 commentId={commentId}
                 isEditing={true}
                 userId={userId}
+                comments={comments}
+                setComments={setComments}
+                links={links}
+                setLinks={setLinks}
               />
             )}
           </div>
         </div>
-        <AnswersList linkId={linkId} commentId={commentId} />
+        <AnswersList
+          linkId={linkId}
+          commentId={commentId}
+          comments={comments}
+          setComments={setComments}
+        />
       </div>
     </>
   );

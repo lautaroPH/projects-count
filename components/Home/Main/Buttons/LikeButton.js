@@ -5,7 +5,7 @@ import { HeartIcon } from '@heroicons/react/outline';
 import { deleteLike } from 'firebaseFunction/deleteLike';
 import { uploadLike } from 'firebaseFunction/uploadLike';
 
-const LikeButton = ({ id, likes, dataUserLike }) => {
+const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
   const [hasLiked, setHasLiked] = useState(false);
 
   const user = useUser();
@@ -19,7 +19,7 @@ const LikeButton = ({ id, likes, dataUserLike }) => {
     if (hasLiked) {
       await deleteLike(id, user?.id);
     } else {
-      await uploadLike(id, user, dataUserLike);
+      await uploadLike(id, user, dataUserLike, links, setLinks);
     }
   };
 

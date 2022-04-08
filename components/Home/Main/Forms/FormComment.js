@@ -3,7 +3,6 @@ import useUser from 'hooks/useUser';
 import { commentFormSchema } from 'validations/CommentFormValidation';
 import Image from 'next/image';
 import { uploadComment } from 'firebaseFunction/uploadComment';
-import { useRouter } from 'next/router';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editComment } from 'firebaseFunction/editComment';
 
@@ -15,19 +14,42 @@ const FormComment = ({
   title,
   isEditing,
   userId,
+  commentsNumber,
+  setComments,
+  comments,
+  setLinks,
+  links,
+  setCommentsNumber,
 }) => {
   const user = useUser();
-  const router = useRouter();
   return (
     <Formik
       initialValues={{ comment: comment ? comment : '' }}
       validationSchema={commentFormSchema}
       onSubmit={async (values, { resetForm }) => {
         if (isEditing) {
-          await editComment(linkId, commentId, values.comment, userId);
+          await editComment(
+            linkId,
+            commentId,
+            values.comment,
+            userId,
+            comments,
+            setComments,
+            setLinks,
+            links
+          );
           setOpenEditComment(false);
         } else {
-          await uploadComment(linkId, user, values.comment, title, router);
+          await uploadComment(
+            linkId,
+            user,
+            values.comment,
+            title,
+            setComments,
+            setLinks,
+            links
+          );
+          setCommentsNumber(commentsNumber + 1);
         }
         resetForm();
       }}

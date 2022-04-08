@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { getAnswers } from 'firebaseFunction/getAnswers';
 import useUser from 'hooks/useUser';
 
-const AnswersList = ({ linkId, commentId }) => {
+const AnswersList = ({ linkId, commentId, comments, setComments }) => {
   const [openAnswerForm, setOpenAnswerForm] = useState(false);
   const [answers, setAnswers] = useState([]);
   const user = useUser();
@@ -52,7 +52,14 @@ const AnswersList = ({ linkId, commentId }) => {
       </div>
       {openAnswerForm && (
         <div className="ml-[48px]">
-          {user && <FormCommentAnswer linkId={linkId} commentId={commentId} />}
+          {user && (
+            <FormCommentAnswer
+              linkId={linkId}
+              commentId={commentId}
+              comments={comments}
+              setComments={setComments}
+            />
+          )}
           {answers.length > 0 &&
             answers?.map((answer) => (
               <Answer
@@ -66,6 +73,8 @@ const AnswersList = ({ linkId, commentId }) => {
                 commentId={answer.data().commentId}
                 timestamp={answer.data().timestamp}
                 isEdited={answer.data().isEdited}
+                comments={comments}
+                setComments={setComments}
               />
             ))}
         </div>
