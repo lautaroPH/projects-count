@@ -5,20 +5,19 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useTheme } from 'next-themes';
 import { imageValidation } from 'utils/ImageValidation';
 import Swal from 'sweetalert2';
-import {
-  swalUploadEditLinkSuccessDark,
-  swalUploadEditLinkSuccessLight,
-  swalUploadingEditLinkDark,
-  swalUploadingEditLinkLight,
-  swalUploadingLinkDark,
-  swalUploadingLinkLight,
-  swalUploadLinkSuccessDark,
-  swalUploadLinkSuccessLight,
-} from 'swals/swalsComponents';
+
 import { uploadLink } from 'firebaseFunction/uploadLink';
 import TextareaAutosize from 'react-textarea-autosize';
 import Image from 'next/image';
 import { editLink } from 'firebaseFunction/editLink';
+import { swalUploadingEditLinkDark } from 'swals/dark/swalUploadingEditLinkDark';
+import { swalUploadingEditLinkLight } from 'swals/light/swalUploadingEditLinkLight';
+import { swalUploadEditLinkSuccessDark } from 'swals/dark/swalUploadEditLinkSuccessDark';
+import { swalUploadEditLinkSuccessLight } from 'swals/light/swalUploadEditLinkSuccessLight';
+import { swalUploadingLinkDark } from 'swals/dark/swalUploadingLinkDark';
+import { swalUploadingLinkLight } from 'swals/light/swalUploadingLinkLight';
+import { swalUploadLinkSuccessDark } from 'swals/dark/swalUploadLinkSuccessDark';
+import { swalUploadLinkSuccessLight } from 'swals/light/swalUploadLinkSuccessLight';
 
 const FormLink = ({
   setOpenForm,

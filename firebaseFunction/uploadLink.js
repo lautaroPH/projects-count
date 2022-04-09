@@ -10,7 +10,7 @@ export const uploadLink = async (values, selectedFile, user) => {
   const githubRepoTrimmed = githubRepo.trim();
   const tecnologiesTrimmed = tecnologies.trim();
 
-  const dataToSave = {
+  const docRef = await addDoc(collection(db, 'links'), {
     title: titleTrimmed,
     link: linkTrimmed,
     githubRepo: githubRepoTrimmed,
@@ -21,9 +21,7 @@ export const uploadLink = async (values, selectedFile, user) => {
     id: user?.id,
     userImage: user?.avatar,
     timestamp: serverTimestamp(),
-  };
-
-  const docRef = await addDoc(collection(db, 'links'), dataToSave);
+  });
 
   const id = docRef.id;
 

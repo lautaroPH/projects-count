@@ -1,13 +1,12 @@
 import { deleteAnswer } from 'firebaseFunction/deleteAnswer';
 import { useTheme } from 'next-themes';
-import {
-  swalConfirmDeleteAnswerDark,
-  swalConfirmDeleteAnswerLight,
-  swalDeleteLoadingAnswerDark,
-  swalDeleteLoadingAnswerLight,
-  swalDeleteSuccessAnswerLight,
-  swalDeleteSucessAnswerDark,
-} from 'swals/swalsComponents';
+import { swalConfirmDeleteAnswerDark } from 'swals/dark/swalConfirmDeleteAnswerDark';
+import { swalDeleteLoadingAnswerDark } from 'swals/dark/swalDeleteLoadingAnswerDark';
+import { swalDeleteSucessAnswerDark } from 'swals/dark/swalDeleteSucessAnswerDark';
+import { swalConfirmDeleteAnswerLight } from 'swals/light/swalConfirmDeleteAnswerLight';
+import { swalDeleteLoadingAnswerLight } from 'swals/light/swalDeleteLoadingAnswerLight';
+import { swalDeleteSuccessAnswerLight } from 'swals/light/swalDeleteSuccessAnswerLight';
+
 import Swal from 'sweetalert2';
 
 const ButtonDeleteAnswer = ({ linkId, commentId, answerId }) => {

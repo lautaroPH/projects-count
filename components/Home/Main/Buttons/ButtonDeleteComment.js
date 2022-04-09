@@ -1,13 +1,11 @@
 import { deleteComment } from 'firebaseFunction/deleteComment';
 import { useTheme } from 'next-themes';
-import {
-  swalConfirmDeleteCommentDark,
-  swalConfirmDeleteCommentLight,
-  swalDeleteLoadingCommentDark,
-  swalDeleteLoadingCommentLight,
-  swalDeleteSuccessCommentLight,
-  swalDeleteSucessCommentDark,
-} from 'swals/swalsComponents';
+import { swalConfirmDeleteCommentDark } from 'swals/dark/swalConfirmDeleteCommentDark';
+import { swalDeleteLoadingCommentDark } from 'swals/dark/swalDeleteLoadingCommentDark';
+import { swalDeleteSucessCommentDark } from 'swals/dark/swalDeleteSucessCommentDark';
+import { swalConfirmDeleteCommentLight } from 'swals/light/swalConfirmDeleteCommentLight';
+import { swalDeleteLoadingCommentLight } from 'swals/light/swalDeleteLoadingCommentLight';
+import { swalDeleteSuccessCommentLight } from 'swals/light/swalDeleteSuccessCommentLight';
 import Swal from 'sweetalert2';
 
 const ButtonDeleteComment = ({

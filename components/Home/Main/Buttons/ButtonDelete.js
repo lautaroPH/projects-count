@@ -1,13 +1,12 @@
 import { deleteLink } from 'firebaseFunction/deleteLink';
 import { useTheme } from 'next-themes';
-import {
-  swalConfirmDeleteDark,
-  swalConfirmDeleteLight,
-  swalDeleteLoadingDark,
-  swalDeleteLoadingLight,
-  swalDeleteSuccessLight,
-  swalDeleteSucessDark,
-} from 'swals/swalsComponents';
+import { swalConfirmDeleteDark } from 'swals/dark/swalConfirmDeleteDark';
+import { swalDeleteLoadingDark } from 'swals/dark/swalDeleteLoadingDark';
+import { swalDeleteSucessDark } from 'swals/dark/swalDeleteSucessDark';
+import { swalConfirmDeleteLight } from 'swals/light/swalConfirmDeleteLight';
+import { swalDeleteLoadingLight } from 'swals/light/swalDeleteLoadingLight';
+import { swalDeleteSuccessLight } from 'swals/light/swalDeleteSuccessLight';
+
 import Swal from 'sweetalert2';
 
 const ButtonDelete = ({ id, image, userId, setLinks, links }) => {
