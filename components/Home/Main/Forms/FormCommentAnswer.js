@@ -5,6 +5,7 @@ import { AnswerFormValidation } from 'validations/AnswerFormValidation';
 import { uploadAnswer } from 'firebaseFunction/uploadAnswer';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editAnswer } from 'firebaseFunction/editAnswer';
+import { useTheme } from 'next-themes';
 
 const FormCommentAnswer = ({
   linkId,
@@ -15,9 +16,12 @@ const FormCommentAnswer = ({
   isEditing,
   comments,
   setComments,
+  setCommentsNumber,
 }) => {
   const user = useUser();
+  const { systemTheme, theme } = useTheme();
 
+  const currentTheme = theme === 'system' ? systemTheme : theme;
   return (
     <Formik
       initialValues={{ answer: answer ? answer : '' }}
@@ -33,7 +37,9 @@ const FormCommentAnswer = ({
             values.answer,
             commentId,
             comments,
-            setComments
+            setComments,
+            currentTheme,
+            setCommentsNumber
           );
         }
         resetForm();

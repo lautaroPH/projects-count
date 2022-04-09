@@ -1,7 +1,15 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
+import { useDeleteArray } from 'hooks/useDeleteArray';
+import { useEditArray } from 'hooks/useEditArray';
+import { swalNoCommentDark } from 'swals/dark/swalNoCommentDark';
+import { swalNoLInkDark } from 'swals/dark/swalNoLInkDark';
+import { swalNoCommentLight } from 'swals/light/swalNoCommentLight';
+import { swalNoLInkLight } from 'swals/light/swalNoLInkLight';
 import Swal from 'sweetalert2';
 import { editUserComment } from './editUserComment';
+import { getOneComment } from './getOneComment';
+import { getOneLink } from './getOneLink';
 
 export const editComment = async (
   linkId,
@@ -11,41 +19,43 @@ export const editComment = async (
   comments,
   setComments,
   setLinks,
-  links
+  links,
+  currentTheme,
+  setCommentsNumber
 ) => {
-  const querySnapshot = doc(db, 'links', linkId);
+  await getOneLink(linkId)
+    .then(async () => {
+      await updateDoc(doc(db, 'links', linkId, 'comments', commentId), {
+        comment: comment.trim(),
+        isEdited: true,
+      })
+        .then(async () => {
+          await getOneComment(linkId, commentId).then((commentEdited) => {
+            const newArray = useEditArray(commentEdited, comments, commentId);
 
-  const linkRef = await getDoc(querySnapshot);
+            setComments(newArray);
 
-  if (linkRef.data()) {
-    await updateDoc(doc(db, 'links', linkId, 'comments', commentId), {
-      comment: comment.trim(),
-      isEdited: true,
+            editUserComment(userId, commentId, comment.trim());
+          });
+        })
+        .catch(() => {
+          currentTheme === 'light'
+            ? Swal.fire(swalNoCommentLight)
+            : Swal.fire(swalNoCommentDark);
+
+          const newArray = useDeleteArray(comments, commentId);
+
+          setComments(newArray);
+          setCommentsNumber((prev) => prev - 1);
+        });
+    })
+    .catch(() => {
+      currentTheme === 'light'
+        ? Swal.fire(swalNoLInkLight)
+        : Swal.fire(swalNoLInkDark);
+
+      const newArray = useDeleteArray(links, linkId);
+
+      setLinks(newArray);
     });
-
-    const querySnapshot = doc(db, 'links', linkId, 'comments', commentId);
-
-    const commentEditedRef = await getDoc(querySnapshot);
-
-    const newComments = comments.map((comment) => {
-      if (comment.id === commentId) {
-        return commentEditedRef;
-      }
-
-      return comment;
-    });
-
-    setComments(newComments);
-
-    editUserComment(userId, commentId, comment.trim());
-  } else {
-    Swal.fire({
-      text: 'Este link no existe más',
-      icon: 'error',
-      timer: '3000',
-    });
-    const newLinks = links.filter((link) => link.id !== linkId);
-
-    setLinks(newLinks);
-  }
 };

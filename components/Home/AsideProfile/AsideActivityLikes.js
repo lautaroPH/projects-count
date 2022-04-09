@@ -38,7 +38,7 @@ const AsideActivityLikes = () => {
       )}
 
       {noLikes && (
-        <p className="w-full mt-1 text-sm text-center text-gray-400 border-b-2 dark:text-gray-300">
+        <p className="w-full mt-1 text-sm text-center text-gray-400 border-b-2 dark:text-gray-300 dark:border-b-gray-800">
           No hay likes
         </p>
       )}

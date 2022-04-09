@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { uploadComment } from 'firebaseFunction/uploadComment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editComment } from 'firebaseFunction/editComment';
+import { useTheme } from 'next-themes';
 
 const FormComment = ({
   setOpenEditComment,
@@ -22,6 +23,9 @@ const FormComment = ({
   setCommentsNumber,
 }) => {
   const user = useUser();
+  const { systemTheme, theme } = useTheme();
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
   return (
     <Formik
       initialValues={{ comment: comment ? comment : '' }}
@@ -36,7 +40,9 @@ const FormComment = ({
             comments,
             setComments,
             setLinks,
-            links
+            links,
+            currentTheme,
+            setCommentsNumber
           );
           setOpenEditComment(false);
         } else {
@@ -47,7 +53,8 @@ const FormComment = ({
             title,
             setComments,
             setLinks,
-            links
+            links,
+            currentTheme
           );
           setCommentsNumber(commentsNumber + 1);
         }

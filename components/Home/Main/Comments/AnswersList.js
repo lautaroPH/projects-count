@@ -5,7 +5,13 @@ import { useState, useEffect } from 'react';
 import { getAnswers } from 'firebaseFunction/getAnswers';
 import useUser from 'hooks/useUser';
 
-const AnswersList = ({ linkId, commentId, comments, setComments }) => {
+const AnswersList = ({
+  linkId,
+  commentId,
+  comments,
+  setComments,
+  setCommentsNumber,
+}) => {
   const [openAnswerForm, setOpenAnswerForm] = useState(false);
   const [answers, setAnswers] = useState([]);
   const user = useUser();
@@ -58,6 +64,7 @@ const AnswersList = ({ linkId, commentId, comments, setComments }) => {
               commentId={commentId}
               comments={comments}
               setComments={setComments}
+              setCommentsNumber={setCommentsNumber}
             />
           )}
           {answers.length > 0 &&

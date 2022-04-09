@@ -46,13 +46,15 @@ const FormLink = ({
         ? Swal.fire(swalUploadingEditLinkDark(values?.title))
         : Swal.fire(swalUploadingEditLinkLight(values?.title));
 
-      editLink(id, values, selectedFile, setLinks, links).then(() => {
-        currentTheme === 'dark'
-          ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
-          : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
-        setSelectedFile('');
-        setOpenForm(false);
-      });
+      editLink(id, values, selectedFile, setLinks, links, currentTheme).then(
+        () => {
+          currentTheme === 'dark'
+            ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
+            : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
+          setSelectedFile('');
+          setOpenForm(false);
+        }
+      );
     } else {
       currentTheme === 'dark'
         ? Swal.fire(swalUploadingLinkDark(values?.title))

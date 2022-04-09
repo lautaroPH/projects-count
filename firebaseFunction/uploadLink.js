@@ -4,18 +4,13 @@ import { uploadImage } from './uploadImage';
 
 export const uploadLink = async (values, selectedFile, user) => {
   const { title, link, githubRepo, tecnologies, description } = values;
-  const titleTrimmed = title.trim();
-  const linkTrimmed = link.trim();
-  const descriptionTrimmed = description.trim();
-  const githubRepoTrimmed = githubRepo.trim();
-  const tecnologiesTrimmed = tecnologies.trim();
 
   const docRef = await addDoc(collection(db, 'links'), {
-    title: titleTrimmed,
-    link: linkTrimmed,
-    githubRepo: githubRepoTrimmed,
-    tecnologies: tecnologiesTrimmed,
-    description: descriptionTrimmed,
+    title: title.trim(),
+    link: link.trim(),
+    githubRepo: githubRepo.trim(),
+    tecnologies: tecnologies.trim(),
+    description: description.trim(),
     username: user?.username,
     email: user?.email,
     id: user?.id,

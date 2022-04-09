@@ -4,11 +4,15 @@ import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import { HeartIcon } from '@heroicons/react/outline';
 import { deleteLike } from 'firebaseFunction/deleteLike';
 import { uploadLike } from 'firebaseFunction/uploadLike';
+import { useTheme } from 'next-themes';
 
 const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
   const [hasLiked, setHasLiked] = useState(false);
 
   const user = useUser();
+  const { systemTheme, theme } = useTheme();
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
 
   useEffect(
     () => setHasLiked(likes?.findIndex((like) => like.id === user?.id) !== -1),
@@ -19,7 +23,7 @@ const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
     if (hasLiked) {
       await deleteLike(id, user?.id);
     } else {
-      await uploadLike(id, user, dataUserLike, links, setLinks);
+      await uploadLike(id, user, dataUserLike, links, setLinks, currentTheme);
     }
   };
 

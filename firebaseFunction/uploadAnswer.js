@@ -1,12 +1,10 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
+import { useDeleteArray } from 'hooks/useDeleteArray';
+import { swalNoCommentDark } from 'swals/dark/swalNoCommentDark';
+import { swalNoCommentLight } from 'swals/light/swalNoCommentLight';
 import Swal from 'sweetalert2';
+import { getOneComment } from './getOneComment';
 
 export const uploadAnswer = async (
   id,
@@ -14,35 +12,35 @@ export const uploadAnswer = async (
   answer,
   commentId,
   comments,
-  setComments
+  setComments,
+  currentTheme,
+  setCommentsNumber
 ) => {
   const { id: userId, username, avatar } = user;
   const answerTrim = answer.trim();
 
-  const querySnapshot = doc(db, 'links', id, 'comments', commentId);
+  getOneComment(id, commentId)
+    .then(async () => {
+      await addDoc(
+        collection(db, 'links', id, 'comments', commentId, 'answers'),
+        {
+          userId,
+          username,
+          avatar,
+          answer: answerTrim,
+          commentId,
+          timestamp: serverTimestamp(),
+        }
+      );
+    })
+    .catch(() => {
+      currentTheme === 'light'
+        ? Swal.fire(swalNoCommentLight)
+        : Swal.fire(swalNoCommentDark);
 
-  const commentRef = await getDoc(querySnapshot);
+      const newArray = useDeleteArray(comments, commentId);
 
-  if (commentRef.data()) {
-    await addDoc(
-      collection(db, 'links', id, 'comments', commentId, 'answers'),
-      {
-        userId,
-        username,
-        avatar,
-        answer: answerTrim,
-        commentId,
-        timestamp: serverTimestamp(),
-      }
-    );
-  } else {
-    Swal.fire({
-      text: 'Este comentario no existe más',
-      icon: 'error',
-      timer: '3000',
+      setComments(newArray);
+      setCommentsNumber((prev) => prev - 1);
     });
-    const newComments = comments.filter((comment) => comment.id !== commentId);
-
-    setComments(newComments);
-  }
 };

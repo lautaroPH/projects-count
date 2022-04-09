@@ -3,7 +3,7 @@ import AllButtons from './Buttons/AllButtons';
 import LikesCommentsNumber from './LikesCommentsNumber';
 import { useState, useEffect } from 'react';
 import { getLikes } from 'firebaseFunction/getLikes';
-import { getAllComments } from 'firebaseFunction/getAllComments';
+import { getComments } from 'firebaseFunction/getComments';
 import FormComment from './Forms/FormComment';
 import Comment from './Comments/Comment';
 import useUser from 'hooks/useUser';
@@ -29,10 +29,8 @@ const Footer = ({
   const user = useUser();
 
   useEffect(() => getLikes(id, setLikes), [id]);
-  useEffect(() => getAllComments(id, setComments, setNoComments), [id]);
-  useEffect(() => {
-    getCommentsNumber(id).then(setCommentsNumber);
-  }, [id]);
+  useEffect(() => getComments(id, setComments, setNoComments), [id]);
+  useEffect(() => getCommentsNumber(id).then(setCommentsNumber), [id]);
 
   const handleLoadMoreComments = () => {
     const lastComment = comments[comments.length - 1];

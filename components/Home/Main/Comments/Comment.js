@@ -98,6 +98,7 @@ const Comment = ({
                 setComments={setComments}
                 links={links}
                 setLinks={setLinks}
+                setCommentsNumber={setCommentsNumber}
               />
             )}
           </div>
@@ -107,6 +108,7 @@ const Comment = ({
           commentId={commentId}
           comments={comments}
           setComments={setComments}
+          setCommentsNumber={setCommentsNumber}
         />
       </div>
     </>
