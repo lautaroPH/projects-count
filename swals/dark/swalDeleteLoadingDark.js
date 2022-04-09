@@ -5,6 +5,6 @@ export const swalDeleteLoadingDark = {
   imageWidth: 80,
   background: 'rgb(17 24 39)',
   color: '#fff',
-  title: `Eliminando link`,
+  title: `Eliminando publicación`,
   text: 'Esto podria demorar unos segundos',
 };

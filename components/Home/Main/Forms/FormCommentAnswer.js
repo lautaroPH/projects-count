@@ -89,13 +89,21 @@ const FormCommentAnswer = ({
               )}
 
               {values.answer.trim() !== '' && (
-                <div className="flex items-center mt-2">
+                <div
+                  className={`${
+                    isEditing && `justify-end`
+                  } flex items-center mt-2`}
+                >
                   <button
-                    className="bg-violet-700 border border-violet-800 text-white  px-2 rounded-full font-semibold text-sm py-[2px]
-                      dark:border-white dark:bg-white  dark:text-black  
-                      hover:bg-transparent dark:hover:bg-transparent dark:hover:text-white hover:text-black
-                      transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-violet-700
-                      disabled:hover:text-white dark:disabled:hover:text-black dark:disabled:opacity-60 dark:disabled:hover:bg-white"
+                    className={`${
+                      isEditing
+                        ? `pr-2 text-sm font-semibold text-violet-600 hover:underline dark:text-white`
+                        : ` bg-violet-700 border border-violet-800 text-white  px-2 rounded-full font-semibold text-sm py-[2px]
+                    dark:border-white dark:bg-white  dark:text-black  
+                    hover:bg-transparent dark:hover:bg-transparent dark:hover:text-white hover:text-black
+                    transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-violet-700
+                    disabled:hover:text-white dark:disabled:hover:text-black dark:disabled:opacity-60 dark:disabled:hover:bg-white`
+                    }`}
                     type="submit"
                     disabled={
                       values.answer.trim() === '' ||
@@ -105,17 +113,7 @@ const FormCommentAnswer = ({
                   >
                     {isSubmitting ? 'Respondiendo...' : 'Responder'}
                   </button>
-                  {isEditing && (
-                    <button
-                      className="ml-2 bg-transparent border border-violet-800 text-dark  px-2 rounded-full font-semibold text-sm py-[2px]
-                    dark:border-white dark:bg-transparent  dark:text-white  
-                    hover:bg-violet-700 dark:hover:bg-white dark:hover:text-black hover:text-white
-                    transition-all duration-300 "
-                      onClick={() => setOpenEditAnswer(false)}
-                    >
-                      Cancelar
-                    </button>
-                  )}
+
                   {values.answer.trim().length >= 1200 &&
                     values.answer.trim().length <= 1250 && (
                       <p className="ml-3 text-sm font-semibold text-violet-600 dark:text-gray-300">

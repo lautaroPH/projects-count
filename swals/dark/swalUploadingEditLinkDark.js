@@ -6,7 +6,7 @@ export const swalUploadingEditLinkDark = (title) => {
     imageWidth: 80,
     background: 'rgb(17 24 39)',
     color: '#fff',
-    title: `Editando proyecto: "${title}"`,
+    title: `Editando publiación: "${title}"`,
     text: 'Esto podria demorar unos segundos',
   };
 };

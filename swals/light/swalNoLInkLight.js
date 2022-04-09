@@ -1,5 +1,5 @@
 export const swalNoLInkLight = {
-  text: 'Este link no existe más',
+  text: 'Esta publicación no existe más',
   icon: 'error',
   timer: '3000',
 };

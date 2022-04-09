@@ -7,6 +7,7 @@ import AnswersList from './AnswersList';
 import ButtonDeleteComment from '../Buttons/ButtonDeleteComment';
 import { ButtonEditComment } from '../Buttons/ButtonEditComment';
 import FormComment from '../Forms/FormComment';
+import { XIcon } from '@heroicons/react/solid';
 
 const Comment = ({
   commentId,
@@ -71,6 +72,12 @@ const Comment = ({
                     setCommentsNumber={setCommentsNumber}
                   />
                 </p>
+              )}
+              {openEditComment && (
+                <XIcon
+                  className="w-6 h-6 pr-1 text-gray-400 cursor-pointer"
+                  onClick={() => setOpenEditComment(false)}
+                />
               )}
             </div>
             {!openEditComment ? (

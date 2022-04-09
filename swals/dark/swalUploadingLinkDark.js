@@ -6,7 +6,7 @@ export const swalUploadingLinkDark = (title) => {
     imageWidth: 80,
     background: 'rgb(17 24 39)',
     color: '#fff',
-    title: `Guardando proyecto: "${title}"`,
+    title: `Guardando publicación: "${title}"`,
     text: 'Esto podria demorar unos segundos',
   };
 };

@@ -1,11 +1,11 @@
 import { deleteAnswer } from 'firebaseFunction/deleteAnswer';
 import { useTheme } from 'next-themes';
-import { swalConfirmDeleteAnswerDark } from 'swals/dark/swalConfirmDeleteAnswerDark';
-import { swalDeleteLoadingAnswerDark } from 'swals/dark/swalDeleteLoadingAnswerDark';
-import { swalDeleteSucessAnswerDark } from 'swals/dark/swalDeleteSucessAnswerDark';
-import { swalConfirmDeleteAnswerLight } from 'swals/light/swalConfirmDeleteAnswerLight';
-import { swalDeleteLoadingAnswerLight } from 'swals/light/swalDeleteLoadingAnswerLight';
-import { swalDeleteSuccessAnswerLight } from 'swals/light/swalDeleteSuccessAnswerLight';
+import { swalConfirmDeleteCommentDark } from 'swals/dark/swalConfirmDeleteCommentDark';
+import { swalDeleteLoadingCommentDark } from 'swals/dark/swalDeleteLoadingCommentDark';
+import { swalDeleteSucessCommentDark } from 'swals/dark/swalDeleteSucessCommentDark';
+import { swalConfirmDeleteCommentLight } from 'swals/light/swalConfirmDeleteCommentLight';
+import { swalDeleteLoadingCommentLight } from 'swals/light/swalDeleteLoadingCommentLight';
+import { swalDeleteSuccessCommentLight } from 'swals/light/swalDeleteSuccessCommentLight';
 
 import Swal from 'sweetalert2';
 
@@ -15,20 +15,20 @@ const ButtonDeleteAnswer = ({ linkId, commentId, answerId }) => {
 
   const handleClick = async (linkId, commentId, answerId) => {
     if (currentTheme === 'dark') {
-      Swal.fire(swalConfirmDeleteAnswerDark).then((respuesta) => {
+      Swal.fire(swalConfirmDeleteCommentDark).then((respuesta) => {
         if (respuesta.isConfirmed) {
-          Swal.fire(swalDeleteLoadingAnswerDark);
+          Swal.fire(swalDeleteLoadingCommentDark);
           deleteAnswer(linkId, commentId, answerId).then(() => {
-            Swal.fire(swalDeleteSucessAnswerDark);
+            Swal.fire(swalDeleteSucessCommentDark);
           });
         }
       });
     } else {
-      Swal.fire(swalConfirmDeleteAnswerLight).then((respuesta) => {
+      Swal.fire(swalConfirmDeleteCommentLight).then((respuesta) => {
         if (respuesta.isConfirmed) {
-          Swal.fire(swalDeleteLoadingAnswerLight);
+          Swal.fire(swalDeleteLoadingCommentLight);
           deleteAnswer(linkId, commentId, answerId).then(() => {
-            Swal.fire(swalDeleteSuccessAnswerLight);
+            Swal.fire(swalDeleteSuccessCommentLight);
           });
         }
       });

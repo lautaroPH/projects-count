@@ -1,3 +1,4 @@
+import { XIcon } from '@heroicons/react/solid';
 import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
 import { useTimeAgo } from 'hooks/useTimeAgo';
 import useUser from 'hooks/useUser';
@@ -65,6 +66,12 @@ const Answer = ({
                 answerId={id}
               />
             </p>
+          )}
+          {openEditAnswer && (
+            <XIcon
+              className="w-6 h-6 pr-1 text-gray-400 cursor-pointer"
+              onClick={() => setOpenEditAnswer(false)}
+            />
           )}
         </div>
         {openEditAnswer ? (

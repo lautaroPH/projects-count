@@ -1,4 +1,4 @@
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
 export const uploadUserLike = async (id, userId, dataUserLike) => {
@@ -8,5 +8,6 @@ export const uploadUserLike = async (id, userId, dataUserLike) => {
     title,
     description,
     avatar,
+    timestamp: serverTimestamp(),
   });
 };

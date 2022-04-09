@@ -12,7 +12,6 @@ import { getMoreComments } from 'firebaseFunction/getMoreComments';
 
 const Footer = ({
   id,
-  username,
   dataUserLike,
   githubRepo,
   link,
@@ -21,12 +20,12 @@ const Footer = ({
   links,
   setLinks,
 }) => {
+  const user = useUser();
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [noComments, setNoComments] = useState(false);
   const [commentsNumber, setCommentsNumber] = useState(null);
   const [openCommentInput, setOpenCommentInput] = useState(false);
-  const user = useUser();
 
   useEffect(() => getLikes(id, setLikes), [id]);
   useEffect(() => getComments(id, setComments, setNoComments), [id]);
@@ -42,7 +41,7 @@ const Footer = ({
     <>
       <LikesCommentsNumber
         likes={likes}
-        username={username}
+        username={user?.username}
         openCommentInput={openCommentInput}
         setOpenCommentInput={setOpenCommentInput}
         commentsLength={commentsNumber}

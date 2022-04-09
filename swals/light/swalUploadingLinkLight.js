@@ -4,7 +4,7 @@ export const swalUploadingLinkLight = (title) => {
       'https://res.cloudinary.com/dv1ksnrvk/image/upload/v1647907326/Dual_Ring-1s-200px_j4unt1.gif',
     imageHeight: 80,
     imageWidth: 80,
-    title: `Guardando proyecto: "${title}"`,
+    title: `Guardando publicación: "${title}"`,
     text: 'Esto podria demorar unos segundos',
   };
 };

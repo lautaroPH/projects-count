@@ -27,6 +27,9 @@ const Link = ({
   links,
   isEdited,
 }) => {
+  const user = useUser();
+  const [openEditform, setOpenEditform] = useState(false);
+
   const dataUserLike = {
     title,
     link,
@@ -43,8 +46,6 @@ const Link = ({
   const createdAtFormated = useDateTimeFormat(
     createdAt !== undefined && createdAt
   );
-  const user = useUser();
-  const [openEditform, setOpenEditform] = useState(false);
 
   const titleWithUppercase = title.charAt(0).toUpperCase() + title.slice(1);
   const descriptionWithUppercase =
@@ -108,14 +109,6 @@ const Link = ({
         </div>
 
         {image && (
-          // <div className="relative w-full h-full">
-          //   <Image
-          //     src={image}
-          //     layout="fill"
-          //     alt={title}
-          //     objectFit="contain"
-          //   />
-          // </div>
           <div>
             <img src={image} className="w-full h-auto" alt={title} />
           </div>
@@ -123,7 +116,6 @@ const Link = ({
 
         <Footer
           id={id}
-          username={username}
           dataUserLike={dataUserLike}
           githubRepo={githubRepo}
           link={link}
