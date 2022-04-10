@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Link from './Link';
 import ButtonOpenModalForm from './Buttons/ButtonOpenModalForm';
 import useUser from 'hooks/useUser';
 import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
 import { getLinks } from 'firebaseFunction/getLinks';
+import OrderByLinks from './OrderByLinks';
+import { OrderByValue } from 'context/OrderByContext';
 
 const ListOfLinks = () => {
   const [links, setLinks] = useState([]);
   const [noLinks, setNoLinks] = useState(false);
-  const user = useUser();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => getLinks(setNoLinks, setLinks), []);
+  const user = useUser();
+  const { value } = useContext(OrderByValue);
+
+  useEffect(() => getLinks(setNoLinks, setLinks, value, setIsLoading), [value]);
 
   // const getMoreLinks = async () => {
   //   setHasNextPage(true);
@@ -38,7 +43,8 @@ const ListOfLinks = () => {
   return (
     <>
       {user && <ButtonOpenModalForm />}
-      {links.length === 0 && !noLinks ? (
+      <OrderByLinks />
+      {isLoading ? (
         <>
           <SkeletonLoaderLink />
           <SkeletonLoaderLink />

@@ -4,20 +4,10 @@ import { linkFormSchema } from 'validations/LinkFormValidation';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useTheme } from 'next-themes';
 import { imageValidation } from 'utils/ImageValidation';
-import Swal from 'sweetalert2';
-
 import { uploadLink } from 'firebaseFunction/uploadLink';
 import TextareaAutosize from 'react-textarea-autosize';
 import Image from 'next/image';
 import { editLink } from 'firebaseFunction/editLink';
-import { swalUploadingEditLinkDark } from 'swals/dark/swalUploadingEditLinkDark';
-import { swalUploadingEditLinkLight } from 'swals/light/swalUploadingEditLinkLight';
-import { swalUploadEditLinkSuccessDark } from 'swals/dark/swalUploadEditLinkSuccessDark';
-import { swalUploadEditLinkSuccessLight } from 'swals/light/swalUploadEditLinkSuccessLight';
-import { swalUploadingLinkDark } from 'swals/dark/swalUploadingLinkDark';
-import { swalUploadingLinkLight } from 'swals/light/swalUploadingLinkLight';
-import { swalUploadLinkSuccessDark } from 'swals/dark/swalUploadLinkSuccessDark';
-import { swalUploadLinkSuccessLight } from 'swals/light/swalUploadLinkSuccessLight';
 
 const FormLink = ({
   setOpenForm,
@@ -35,35 +25,29 @@ const FormLink = ({
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorFileExtension, setErrorFileExtension] = useState('');
   const [erroFileSize, setErroFileSize] = useState('');
-  const { systemTheme, theme } = useTheme();
 
-  const currentTheme = theme === 'system' ? systemTheme : theme;
   const user = useUser();
+  const { systemTheme, theme } = useTheme();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
+  const initialValues = {
+    title: title ? title : '',
+    link: link ? link : '',
+    description: description ? description : '',
+    githubRepo: githubRepo ? githubRepo : '',
+    tecnologies: tecnologies ? tecnologies : '',
+  };
 
   const handleUploadLink = (values) => {
     if (isEditing) {
-      currentTheme === 'dark'
-        ? Swal.fire(swalUploadingEditLinkDark(values?.title))
-        : Swal.fire(swalUploadingEditLinkLight(values?.title));
-
       editLink(id, values, selectedFile, setLinks, links, currentTheme).then(
         () => {
-          currentTheme === 'dark'
-            ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
-            : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
           setSelectedFile('');
           setOpenForm(false);
         }
       );
     } else {
-      currentTheme === 'dark'
-        ? Swal.fire(swalUploadingLinkDark(values?.title))
-        : Swal.fire(swalUploadingLinkLight(values?.title));
-
-      uploadLink(values, selectedFile, user).then(() => {
-        currentTheme === 'dark'
-          ? Swal.fire(swalUploadLinkSuccessDark(values?.title))
-          : Swal.fire(swalUploadLinkSuccessLight(values?.title));
+      uploadLink(values, selectedFile, user, currentTheme).then(() => {
         setSelectedFile('');
         setOpenForm(false);
       });
@@ -72,13 +56,7 @@ const FormLink = ({
 
   return (
     <Formik
-      initialValues={{
-        title: title ? title : '',
-        link: link ? link : '',
-        description: description ? description : '',
-        githubRepo: githubRepo ? githubRepo : '',
-        tecnologies: tecnologies ? tecnologies : '',
-      }}
+      initialValues={initialValues}
       validationSchema={linkFormSchema}
       onSubmit={(values) => {
         return handleUploadLink(values);

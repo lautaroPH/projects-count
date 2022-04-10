@@ -1,10 +1,11 @@
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 import { useDeleteArray } from 'hooks/useDeleteArray';
 import { swalNoLInkDark } from 'swals/dark/swalNoLInkDark';
 import { swalNoLInkLight } from 'swals/light/swalNoLInkLight';
 import Swal from 'sweetalert2';
 import { getOneLink } from './getOneLink';
+import { uploadOneMoreLikeForLink } from './uploadOneMoreLikeForLink';
 import { uploadUserLike } from './uploadUserLike';
 
 export const uploadLike = async (
@@ -13,7 +14,8 @@ export const uploadLike = async (
   dataUserLike,
   links,
   setLinks,
-  currentTheme
+  currentTheme,
+  likes
 ) => {
   const { id: userId, username } = user;
 
@@ -25,6 +27,7 @@ export const uploadLike = async (
         timestamp: serverTimestamp(),
       });
 
+      uploadOneMoreLikeForLink(id, likes);
       uploadUserLike(id, userId, dataUserLike);
     })
     .catch(() => {

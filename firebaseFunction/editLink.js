@@ -3,7 +3,11 @@ import { db } from 'firebaseMain/firebase';
 import { useDeleteArray } from 'hooks/useDeleteArray';
 import { useEditArray } from 'hooks/useEditArray';
 import { swalNoLInkDark } from 'swals/dark/swalNoLInkDark';
+import { swalUploadEditLinkSuccessDark } from 'swals/dark/swalUploadEditLinkSuccessDark';
+import { swalUploadingEditLinkDark } from 'swals/dark/swalUploadingEditLinkDark';
 import { swalNoLInkLight } from 'swals/light/swalNoLInkLight';
+import { swalUploadEditLinkSuccessLight } from 'swals/light/swalUploadEditLinkSuccessLight';
+import { swalUploadingEditLinkLight } from 'swals/light/swalUploadingEditLinkLight';
 import Swal from 'sweetalert2';
 import { getOneLink } from './getOneLink';
 import { uploadImage } from './uploadImage';
@@ -16,6 +20,10 @@ export const editLink = async (
   links,
   currentTheme
 ) => {
+  currentTheme === 'dark'
+    ? Swal.fire(swalUploadingEditLinkDark(values?.title))
+    : Swal.fire(swalUploadingEditLinkLight(values?.title));
+
   await updateDoc(doc(db, 'links', id), {
     title: values.title.trim(),
     link: values.link.trim(),
@@ -34,11 +42,15 @@ export const editLink = async (
 
         setLinks(newArray);
       });
+
+      currentTheme === 'dark'
+        ? Swal.fire(swalUploadEditLinkSuccessDark(values?.title))
+        : Swal.fire(swalUploadEditLinkSuccessLight(values?.title));
     })
     .catch(() => {
-      currentTheme === 'light'
-        ? Swal.fire(swalNoLInkLight)
-        : Swal.fire(swalNoLInkDark);
+      currentTheme === 'dark'
+        ? Swal.fire(swalNoLInkDark)
+        : Swal.fire(swalNoLInkLight);
 
       const newArray = useDeleteArray(links, id);
 

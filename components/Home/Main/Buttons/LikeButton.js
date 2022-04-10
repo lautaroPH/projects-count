@@ -21,9 +21,17 @@ const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
 
   const likeLink = async () => {
     if (hasLiked) {
-      await deleteLike(id, user?.id);
+      await deleteLike(id, user?.id, likes.length);
     } else {
-      await uploadLike(id, user, dataUserLike, links, setLinks, currentTheme);
+      await uploadLike(
+        id,
+        user,
+        dataUserLike,
+        links,
+        setLinks,
+        currentTheme,
+        likes.length
+      );
     }
   };
 

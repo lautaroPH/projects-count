@@ -6,5 +6,5 @@ export const getCommentsNumber = async (id) => {
 
   const commentRef = await getDoc(querySnapshot);
 
-  return commentRef?.data()?.commentsNumber;
+  return commentRef?.data()?.commentsNumber || 0;
 };

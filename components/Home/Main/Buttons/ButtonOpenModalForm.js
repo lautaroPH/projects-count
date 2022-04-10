@@ -7,7 +7,7 @@ const ButtonOpenModalForm = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center mb-7">
+      <div className="flex items-center justify-center">
         <div className="fixed bottom-0 right-0 py-[3.25rem] px-1 z-20 sm:p-3 lg:relative lg:flex lg:justify-between lg:items-center lg:bg-white lg:dark:bg-gray-900 lg:w-full xl:w-full lg:p-4 lg:rounded-lg">
           <button
             onClick={() => setOpenForm(true)}

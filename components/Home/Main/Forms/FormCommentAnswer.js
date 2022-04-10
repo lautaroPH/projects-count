@@ -6,6 +6,7 @@ import { uploadAnswer } from 'firebaseFunction/uploadAnswer';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editAnswer } from 'firebaseFunction/editAnswer';
 import { useTheme } from 'next-themes';
+import MensajeForCommentAndAnswerValidation from 'utils/MensajeForCommentAndAnswerValidation';
 
 const FormCommentAnswer = ({
   linkId,
@@ -98,11 +99,7 @@ const FormCommentAnswer = ({
                     className={`${
                       isEditing
                         ? `pr-2 text-sm font-semibold text-violet-600 hover:underline dark:text-white`
-                        : ` bg-violet-700 border border-violet-800 text-white  px-2 rounded-full font-semibold text-sm py-[2px]
-                    dark:border-white dark:bg-white  dark:text-black  
-                    hover:bg-transparent dark:hover:bg-transparent dark:hover:text-white hover:text-black
-                    transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-violet-700
-                    disabled:hover:text-white dark:disabled:hover:text-black dark:disabled:opacity-60 dark:disabled:hover:bg-white`
+                        : `buttonCommentForm`
                     }`}
                     type="submit"
                     disabled={
@@ -114,18 +111,9 @@ const FormCommentAnswer = ({
                     {isSubmitting ? 'Respondiendo...' : 'Responder'}
                   </button>
 
-                  {values.answer.trim().length >= 1200 &&
-                    values.answer.trim().length <= 1250 && (
-                      <p className="ml-3 text-sm font-semibold text-violet-600 dark:text-gray-300">
-                        {values.answer.trim().length}
-                      </p>
-                    )}
-                  {values.answer.trim().length > 1250 && (
-                    <p className="ml-3 text-sm font-semibold text-red-500 dark:text-red-600 mt-[-5px]">
-                      <span className="-mt-48 text-base">-</span>
-                      {values.answer.trim().length - 1250}
-                    </p>
-                  )}
+                  <MensajeForCommentAndAnswerValidation
+                    value={values.answer.trim().length}
+                  />
                 </div>
               )}
             </div>

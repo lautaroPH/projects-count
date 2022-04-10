@@ -4,10 +4,10 @@ import { authentication } from 'firebaseMain/firebase';
 const mapUserFromFirebaseAuthToUser = (user) => {
   if (user !== null && user !== undefined) {
     const { displayName, email, photoURL, uid } = user;
-
+    const nameEmail = email.split('@')[0];
     return {
       avatar: photoURL,
-      username: displayName,
+      username: displayName ? displayName : nameEmail,
       email,
       id: uid,
     };
