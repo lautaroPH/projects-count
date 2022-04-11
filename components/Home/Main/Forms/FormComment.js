@@ -6,7 +6,7 @@ import { uploadComment } from 'firebaseFunction/uploadComment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editComment } from 'firebaseFunction/editComment';
 import { useTheme } from 'next-themes';
-import MensajeForCommentAndAnswerValidation from 'utils/MensajeForCommentAndAnswerValidation';
+import MensajeForValidation from 'utils/MensajeForValidation';
 
 const FormComment = ({
   setOpenEditComment,
@@ -127,8 +127,10 @@ const FormComment = ({
                   >
                     {isSubmitting ? 'Publicando...' : 'Publicar'}
                   </button>
-                  <MensajeForCommentAndAnswerValidation
+                  <MensajeForValidation
                     value={values?.comment?.trim().length}
+                    firstAlertNumber={1200}
+                    alertNumber={1250}
                   />
                 </div>
               )}

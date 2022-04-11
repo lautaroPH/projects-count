@@ -1,8 +1,18 @@
 import useUser from 'hooks/useUser';
 import AsideActivity from './AsideActivity';
+import { useState, useEffect } from 'react';
+import { getUserOnSpanshot } from 'firebaseFunction/getUserOnSpanshot';
+import Profession from './Profession';
 
 const AsideAboutMe = () => {
   const user = useUser();
+  const [userProfession, setUserProfession] = useState(null);
+
+  useEffect(
+    () => user?.id && getUserOnSpanshot(user?.id, setUserProfession),
+    [user?.id]
+  );
+
   return (
     <div>
       {user && (
@@ -17,15 +27,10 @@ const AsideAboutMe = () => {
                   <div className="mt-2 text-center">
                     <h4 className="text-lg font-semibold">{user?.username}</h4>
                   </div>
-                  <div className="flex cursor-pointer">
-                    {/* <p className="mr-2 text-gray-500">Profesion</p> */}
-                    <p className="mr-2 text-gray-500 dark:text-gray-300">
-                      Frontend
-                    </p>
-                    <button className="text-violet-600 dark:text-white hover:underline">
-                      Editar
-                    </button>
-                  </div>
+                  <Profession
+                    profession={userProfession?.profession}
+                    userId={user?.id}
+                  />
                 </div>
                 <div className="px-4 py-2">
                   <h2 className="text-violet-600 mb-[2px] font-semibold text-center dark:text-white">

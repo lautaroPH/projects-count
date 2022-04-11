@@ -6,7 +6,7 @@ import { uploadAnswer } from 'firebaseFunction/uploadAnswer';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editAnswer } from 'firebaseFunction/editAnswer';
 import { useTheme } from 'next-themes';
-import MensajeForCommentAndAnswerValidation from 'utils/MensajeForCommentAndAnswerValidation';
+import MensajeForValidation from 'utils/MensajeForValidation';
 
 const FormCommentAnswer = ({
   linkId,
@@ -111,8 +111,10 @@ const FormCommentAnswer = ({
                     {isSubmitting ? 'Respondiendo...' : 'Responder'}
                   </button>
 
-                  <MensajeForCommentAndAnswerValidation
+                  <MensajeForValidation
                     value={values.answer.trim().length}
+                    firstAlertNumber={1200}
+                    alertNumber={1250}
                   />
                 </div>
               )}
