@@ -1,15 +1,17 @@
 import useUser from 'hooks/useUser';
 import AsideActivity from './AsideActivity';
+import Profession from './Profession';
+import AboutMe from './AboutMe';
 import { useState, useEffect } from 'react';
 import { getUserOnSpanshot } from 'firebaseFunction/getUserOnSpanshot';
-import Profession from './Profession';
+import ModalUserForm from 'components/Modals/ModalUserForm';
 
 const AsideAboutMe = () => {
   const user = useUser();
-  const [userProfession, setUserProfession] = useState(null);
-
+  const [userProfile, setUserProfile] = useState(null);
+  const [openForm, setOpenForm] = useState(false);
   useEffect(
-    () => user?.id && getUserOnSpanshot(user?.id, setUserProfession),
+    () => user?.id && getUserOnSpanshot(user?.id, setUserProfile),
     [user?.id]
   );
 
@@ -27,32 +29,29 @@ const AsideAboutMe = () => {
                   <div className="mt-2 text-center">
                     <h4 className="text-lg font-semibold">{user?.username}</h4>
                   </div>
-                  <Profession
-                    profession={userProfession?.profession}
-                    userId={user?.id}
-                  />
+                  <Profession profession={userProfile?.profession} />
                 </div>
-                <div className="px-4 py-2">
-                  <h2 className="text-violet-600 mb-[2px] font-semibold text-center dark:text-white">
-                    Sobre mi
-                  </h2>
-                  {/* <p className="pb-2 text-sm text-center">
-                orem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industrys standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essent
-              </p> */}
-                  <button className="w-full pb-2 text-sm text-center text-gray-900 dark:text-white hover:underline">
-                    Crear sobre mi
-                  </button>
-                </div>
+                <AboutMe aboutMe={userProfile?.aboutMe} />
+                <button
+                  onClick={() => setOpenForm(true)}
+                  className="w-full pt-4 pb-2 text-sm text-center text-violet-600 dark:text-white hover:underline"
+                >
+                  Editar perfil
+                </button>
               </div>
             </div>
           </div>
 
           <AsideActivity />
+          {openForm && (
+            <ModalUserForm
+              userId={user?.id}
+              openForm={openForm}
+              setOpenForm={setOpenForm}
+              aboutMe={userProfile?.aboutMe}
+              profession={userProfile?.profession}
+            />
+          )}
         </>
       )}
     </div>

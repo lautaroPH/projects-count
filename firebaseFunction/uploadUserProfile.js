@@ -1,8 +1,9 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
-export const uploadUserProfession = async (userId, profession) => {
+export const uploadUserProfile = async (userId, aboutMe, profession) => {
   await updateDoc(doc(db, 'users', userId), {
+    aboutMe,
     profession,
   });
 };
