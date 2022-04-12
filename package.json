@@ -13,6 +13,7 @@
     "cors": "2.8.5",
     "firebase": "9.6.1",
     "formik": "^2.2.9",
+    "intersection-observer": "^0.12.0",
     "lottie-react": "^2.2.1",
     "next": "12.0.7",
     "next-themes": "0.0.15",
