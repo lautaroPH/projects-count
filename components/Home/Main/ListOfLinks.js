@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import Link from './Link';
 import ButtonOpenModalForm from './Buttons/ButtonOpenModalForm';
 import useUser from 'hooks/useUser';
@@ -6,39 +6,39 @@ import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
 import { getLinks } from 'firebaseFunction/getLinks';
 import OrderByLinks from './OrderByLinks';
 import { OrderByValue } from 'context/OrderByContext';
+import useNearScreen from 'hooks/useNearScreen';
+import { getMoreLinks } from 'firebaseFunction/getMoreLinks';
 
 const ListOfLinks = () => {
   const [links, setLinks] = useState([]);
   const [noLinks, setNoLinks] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMoreLinks, setIsLoadingMoreLinks] = useState(false);
 
   const user = useUser();
   const { value } = useContext(OrderByValue);
 
+  const externalRef = useRef();
+
   useEffect(() => getLinks(setNoLinks, setLinks, value, setIsLoading), [value]);
 
-  // const getMoreLinks = async () => {
-  //   setHasNextPage(true);
-  //   if (links.length > 1) {
-  //     const lastVisible = links[links.length - 1];
+  const { isNearScreen } = useNearScreen({
+    externalRef: !links ? null : externalRef,
+    once: false,
+  });
 
-  //     const next = query(
-  //       collection(db, 'links'),
-  //       orderBy('timestamp', 'desc'),
-  //       startAfter(lastVisible),
-  //       limit(30)
-  //     );
-
-  //     const documentSnapshotsNew = await getDocs(next);
-
-  //     setLinks((link) => [...link, ...documentSnapshotsNew.docs]);
-
-  //     documentSnapshotsNew.docs.length === 0
-  //       ? setHasMore(false)
-  //       : setHasMore(true);
-  //   }
-  //   setHasNextPage(false);
-  // };
+  useEffect(() => {
+    if (isNearScreen && !noLinks && !isLoadingMoreLinks) {
+      const lastVisible = links[links.length - 1];
+      getMoreLinks(
+        setNoLinks,
+        setLinks,
+        value,
+        setIsLoadingMoreLinks,
+        lastVisible
+      );
+    }
+  }, [isNearScreen, value, links, noLinks, isLoadingMoreLinks]);
 
   return (
     <>
@@ -50,33 +50,32 @@ const ListOfLinks = () => {
           <SkeletonLoaderLink />
         </>
       ) : (
-        <div className="mb-20 border-t border-gray-300 sm:border-none">
-          {links.map((link) => (
-            <Link
-              id={link?.id}
-              key={link?.id}
-              title={link?.data()?.title}
-              link={link?.data()?.link}
-              description={link?.data()?.description}
-              email={link?.data()?.email}
-              userId={link?.data()?.id}
-              username={link?.data()?.username}
-              githubRepo={link?.data()?.githubRepo}
-              tecnologies={link?.data()?.tecnologies}
-              image={link?.data()?.image}
-              avatar={link?.data()?.userImage}
-              timestamp={link?.data()?.timestamp}
-              setLinks={setLinks}
-              links={links}
-              isEdited={link?.data()?.isEdited}
-            />
-          ))}
-        </div>
-      )}
-      {noLinks && (
-        <h4 className="ml-4 font-medium text-red-600 sm:ml-16">
-          No hay links para mostrar
-        </h4>
+        <>
+          <div className="mb-20 border-t border-gray-300 sm:border-none">
+            {links.map((link) => (
+              <Link
+                id={link?.id}
+                key={link?.id}
+                title={link?.data()?.title}
+                link={link?.data()?.link}
+                description={link?.data()?.description}
+                email={link?.data()?.email}
+                userId={link?.data()?.id}
+                username={link?.data()?.username}
+                githubRepo={link?.data()?.githubRepo}
+                tecnologies={link?.data()?.tecnologies}
+                image={link?.data()?.image}
+                avatar={link?.data()?.userImage}
+                timestamp={link?.data()?.timestamp}
+                setLinks={setLinks}
+                links={links}
+                isEdited={link?.data()?.isEdited}
+              />
+            ))}
+            {isLoadingMoreLinks && !noLinks && <SkeletonLoaderLink />}
+          </div>
+          <div id="visor" ref={externalRef}></div>
+        </>
       )}
     </>
   );
