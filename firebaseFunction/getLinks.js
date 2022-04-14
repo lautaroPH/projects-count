@@ -15,15 +15,16 @@ export const getLinks = (
         : valueOrder === orderByValues.POPULARES && 'allLikes';
 
     isLoading(true);
+
     const querySnapshot = query(
       collection(db, 'links'),
       orderBy(orderByValue, 'desc'),
       limit(30)
     );
 
-    getDocs(querySnapshot).then((snapshot) => {
-      callbackNoLink(snapshot.empty);
-      callbackLinks(snapshot.docs);
+    getDocs(querySnapshot).then(({ empty, docs }) => {
+      callbackNoLink(empty);
+      callbackLinks(docs);
       isLoading(false);
     });
   }

@@ -17,15 +17,13 @@ const ListOfLinks = () => {
 
   const user = useUser();
   const { value } = useContext(OrderByValue);
-
   const externalRef = useRef();
-
-  useEffect(() => getLinks(setNoLinks, setLinks, value, setIsLoading), [value]);
-
   const { isNearScreen } = useNearScreen({
     externalRef: !links ? null : externalRef,
     once: false,
   });
+
+  useEffect(() => getLinks(setNoLinks, setLinks, value, setIsLoading), [value]);
 
   useEffect(() => {
     if (isNearScreen && !noLinks && !isLoadingMoreLinks) {
@@ -67,9 +65,9 @@ const ListOfLinks = () => {
                 image={link?.data()?.image}
                 avatar={link?.data()?.userImage}
                 timestamp={link?.data()?.timestamp}
+                isEdited={link?.data()?.isEdited}
                 setLinks={setLinks}
                 links={links}
-                isEdited={link?.data()?.isEdited}
               />
             ))}
             {isLoadingMoreLinks && !noLinks && <SkeletonLoaderLink />}

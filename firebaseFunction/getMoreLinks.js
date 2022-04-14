@@ -30,9 +30,9 @@ export const getMoreLinks = (
       limit(30)
     );
 
-    getDocs(querySnapshot).then((snapshot) => {
-      callbackNoLink(snapshot.empty);
-      callbackLinks((links) => [...links, ...snapshot.docs].flat(1));
+    getDocs(querySnapshot).then(({ empty, docs }) => {
+      callbackNoLink(empty);
+      callbackLinks((links) => [...links, ...docs].flat(1));
       setIsLoadingMoreLinks(false);
     });
   }
