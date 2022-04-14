@@ -39,9 +39,8 @@ const Link = ({
     username,
   };
 
-  if (timestamp !== null) {
-    const createdAt = new Date(parseInt(timestamp?.seconds * 1000));
-  }
+  const createdAt =
+    timestamp !== null && new Date(parseInt(timestamp?.seconds * 1000));
   const timeago = useTimeAgo(createdAt !== undefined && createdAt);
   const createdAtFormated = useDateTimeFormat(
     createdAt !== undefined && createdAt
