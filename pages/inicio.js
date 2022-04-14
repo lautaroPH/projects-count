@@ -1,13 +1,15 @@
 import Header from 'components/Header/Header';
 import AsideAboutMe from 'components/Home/AsideProfile/AsideAboutMe';
 import ListOfLinks from 'components/Home/Main/ListOfLinks';
-export default function Home() {
+
+export default function Home({ data }) {
   return (
     <div>
       <Header
         title="Links"
         description="Dejar links, titulos, descripciones de videos +18 
         para compartir con los demas de forma totalmente anonima"
+        data={data}
       />
 
       <div className="flex items-center justify-center w-full">
@@ -21,4 +23,15 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const data = {
+    title: 'TITULO A VER',
+    inicio: 'Inicio',
+    ranking: 'Ranking',
+    misProyectos: 'Mis proyectos',
+  };
+
+  return { props: { data } };
 }
