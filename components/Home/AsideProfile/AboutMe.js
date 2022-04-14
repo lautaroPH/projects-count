@@ -5,7 +5,7 @@ const AboutMe = ({ aboutMe }) => {
         Sobre mi
       </h2>
 
-      <p className="text-sm">{aboutMe ? aboutMe : 'undefined'}</p>
+      <p className="text-sm text-center">{aboutMe ? aboutMe : 'undefined'}</p>
     </div>
   );
 };

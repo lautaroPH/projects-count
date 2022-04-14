@@ -35,7 +35,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
                   'border border-red-700 dark:border-red-700'
                 } inputLinks`}
                 name="profession"
-                placeholder="Titulo de la página"
+                placeholder="Profesion"
                 autoComplete="off"
                 type="text"
               />
@@ -51,13 +51,12 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
               </label>
               <TextareaAutosize
                 className={`${
-                  errors.description &&
-                  'border border-red-700 dark:border-red-700'
+                  errors.aboutMe && 'border border-red-700 dark:border-red-700'
                 } textareaScrollNone inputLinks resize-none h-auto`}
                 value={values.aboutMe}
                 onChange={handleChange}
                 name="aboutMe"
-                placeholder="Escribe aquí tu profesión"
+                placeholder="Sobre mi"
                 autoComplete="off"
                 minRows={5}
                 rows={5}
