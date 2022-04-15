@@ -187,6 +187,7 @@ const FormLink = ({
                   layout="fill"
                   alt="preview"
                   className="w-full"
+                  priority={true}
                 />
               </div>
             )}
@@ -197,6 +198,7 @@ const FormLink = ({
                   layout="fill"
                   alt="preview"
                   className="w-full"
+                  priority={true}
                 />
               </div>
             )}
