@@ -1,10 +1,10 @@
-import { onAuthStateChanged } from 'firebase/auth';
-import { authentication } from 'firebaseMain/firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import { authentication } from "firebaseMain/firebase";
 
-const mapUserFromFirebaseAuthToUser = (user) => {
+export const mapUserFromFirebaseAuthToUser = (user) => {
   if (user !== null && user !== undefined) {
     const { displayName, email, photoURL, uid } = user;
-    const nameEmail = email.split('@')[0];
+    const nameEmail = email.split("@")[0];
     return {
       avatar: photoURL,
       username: displayName ? displayName : nameEmail,

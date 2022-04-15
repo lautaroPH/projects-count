@@ -1,11 +1,14 @@
-import { loginWithGithub } from 'firebaseFunction/loginWithGithub';
-import { useState } from 'react';
+import { getUser } from "firebaseFunction/getUser";
+import { loginWithGithub } from "firebaseFunction/loginWithGithub";
+import { uploadUser } from "firebaseFunction/uploadUser";
+import { useState } from "react";
 
 const ButtonSelectSvgToLogin = ({ firstIcon, secondIcon }) => {
   const [githubHoverIcon, setGithubHoverIcon] = useState(false);
 
-  const handleClick = () => {
-    loginWithGithub();
+  const handleClick = async () => {
+    const userLogin = await loginWithGithub();
+    uploadUser(userLogin.user);
   };
   return (
     <button

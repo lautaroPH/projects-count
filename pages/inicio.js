@@ -1,6 +1,7 @@
-import Header from 'components/Header/Header';
-import AsideAboutMe from 'components/Home/AsideProfile/AsideAboutMe';
-import ListOfLinks from 'components/Home/Main/ListOfLinks';
+import Header from "components/Header/Header";
+import AsideAboutMe from "components/Home/AsideProfile/AsideAboutMe";
+import AsideRanking from "components/Home/AsideRanking/AsideRanking";
+import ListOfLinks from "components/Home/Main/ListOfLinks";
 
 export default function Home({ data }) {
   return (
@@ -18,7 +19,9 @@ export default function Home({ data }) {
           <div className="mx-7">
             <ListOfLinks />
           </div>
-          <div className="bg-white h-72 w-80"></div>
+          <div>
+            <AsideRanking />
+          </div>
         </div>
       </div>
     </div>
@@ -27,10 +30,10 @@ export default function Home({ data }) {
 
 export async function getServerSideProps() {
   const data = {
-    title: 'TITULO A VER',
-    inicio: 'Inicio',
-    ranking: 'Ranking',
-    misProyectos: 'Mis proyectos',
+    title: "TITULO A VER",
+    inicio: "Inicio",
+    ranking: "Ranking",
+    misProyectos: "Mis proyectos",
   };
 
   return { props: { data } };

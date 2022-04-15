@@ -1,13 +1,13 @@
-import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
-import { useTimeAgo } from 'hooks/useTimeAgo';
-import useUser from 'hooks/useUser';
-import Image from 'next/image';
-import Tecnologies from './Tecnologies';
-import ButtonDelete from './Buttons/ButtonDelete';
-import Footer from './Footer';
-import ButtonEditLink from './Buttons/ButtonEditLink';
-import ModalForm from 'components/Modals/ModalForm';
-import { useState } from 'react';
+import { useDateTimeFormat } from "hooks/useDateTimeFormat";
+import { useTimeAgo } from "hooks/useTimeAgo";
+import useUser from "hooks/useUser";
+import Image from "next/image";
+import Tecnologies from "./Tecnologies";
+import ButtonDelete from "./Buttons/ButtonDelete";
+import Footer from "./Footer";
+import ButtonEditLink from "./Buttons/ButtonEditLink";
+import ModalForm from "components/Modals/ModalForm";
+import { useState } from "react";
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -50,7 +50,7 @@ const Link = ({
   const descriptionWithUppercase =
     description.charAt(0).toUpperCase() + description.slice(1);
 
-  const tecnologiesArray = tecnologies?.split(',');
+  const tecnologiesArray = tecnologies?.split(",");
 
   return (
     <>
@@ -108,18 +108,9 @@ const Link = ({
         </div>
 
         {image && (
-          <>
-            <div className="w-full h-auto">
-              <Image
-                src={image}
-                width="100%"
-                height="60%"
-                layout="responsive"
-                alt={title}
-                className="w-full h-auto"
-              />
-            </div>
-          </>
+          <div className="w-full h-auto">
+            <img src={image} alt={title} className="w-full h-auto" />
+          </div>
         )}
 
         <Footer
