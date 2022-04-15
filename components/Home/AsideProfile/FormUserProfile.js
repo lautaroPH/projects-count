@@ -12,14 +12,13 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
         profession: profession ? profession : '',
       }}
       validationSchema={UserProfileFormValidation}
-      onSubmit={async (values, { resetForm }) => {
+      onSubmit={async (values) => {
         await uploadUserProfile(
           userId,
           values.aboutMe.trim(),
           values.profession.trim()
         );
         setOpenForm(false);
-        resetForm();
       }}
     >
       {({ values, isSubmitting, errors, handleChange }) => (
