@@ -108,9 +108,27 @@ const Link = ({
         </div>
 
         {image && (
-          <div>
-            <img src={image} className="w-full h-auto" alt={title} />
-          </div>
+          <>
+            {/* <div className="w-full h-auto">
+              <Image
+                src={image}
+                width="100%"
+                height="100%"
+                layout="intrinsic"
+                alt={title}
+                objectFit="contain"
+                className="w-full h-full rounded-full"
+              />
+            </div> */}
+            <div>
+              <img
+                loading="lazy"
+                src={image}
+                className="w-full h-auto"
+                alt={title}
+              />
+            </div>
+          </>
         )}
 
         <Footer
