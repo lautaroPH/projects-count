@@ -9,7 +9,7 @@ const AsideRanking = () => {
   useEffect(() => getUsers(setUsersRanks), []);
 
   return (
-    <div className="bg-white w-80 px-5 dark:bg-gray-900">
+    <div className="bg-white rounded-xl w-80 px-5 dark:bg-gray-900">
       <h2 className="text-center text-violet-700 dark:text-white pt-2 text-xl">
         Ranking
       </h2>
