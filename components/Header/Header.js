@@ -5,6 +5,7 @@ import Navigation from "./Navigation";
 import useUser from "hooks/useUser";
 import LoginButton from "./LoginButton";
 import Head from "next/head";
+import { SearchIcon } from "@heroicons/react/solid";
 
 const Header = ({ title, description, data }) => {
   const user = useUser();
@@ -19,10 +20,15 @@ const Header = ({ title, description, data }) => {
         className="py-4 flex flex-col gap-4 sm:gap-5 px-10 lg:flex-row
       place-content-between bg-white dark:bg-gray-900 items-center w-[75%]"
       >
-        <div className="flex">
+        <div className="flex items-center">
           <Title title={data?.title} />
-          <div>
-            <input type="text" className="border-2 ml-20 w-72" />
+          <div className="flex items-center">
+            <input
+              type="text"
+              placeholder="Buscar..."
+              className="ml-20 bg-transparent flex justify-start border border-gray-400 dark:border-gray-500 rounded-full focus:outline-none px-2 py-1 w-60"
+            />
+            <SearchIcon className="h-6 w-6 text-violet-700 dark:text-white ml-2 cursor-pointer" />
           </div>
         </div>
         <div className="flex">
