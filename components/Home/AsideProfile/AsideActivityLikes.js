@@ -1,4 +1,4 @@
-import SkeletonLoaderCommentAsideUser from 'components/Loaders/SkeletonLoaderCommentAsideUser';
+import SkeletonLoaderUserLikes from 'components/Loaders/SkeletonLoaderUserLikes';
 import { getUserLikes } from 'firebaseFunction/getUserLikes';
 import useUser from 'hooks/useUser';
 import { useState, useEffect } from 'react';
@@ -22,7 +22,10 @@ const AsideActivityLikes = () => {
         Te gustó
       </h5>
       {likes.length === 0 && !noLikes ? (
-        <SkeletonLoaderCommentAsideUser />
+        <>
+          <SkeletonLoaderUserLikes />
+          <SkeletonLoaderUserLikes />
+        </>
       ) : (
         likes.map((like, i) => (
           <UserLike

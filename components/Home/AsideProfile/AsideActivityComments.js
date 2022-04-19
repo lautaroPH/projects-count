@@ -22,7 +22,10 @@ const AsideActivityComments = () => {
         Comentarios recientes
       </h5>
       {comments.length === 0 && !noComments ? (
-        <SkeletonLoaderCommentAsideUser />
+        <>
+          <SkeletonLoaderCommentAsideUser />
+          <SkeletonLoaderCommentAsideUser />
+        </>
       ) : (
         comments.map((comment, i) => (
           <UserComment

@@ -1,13 +1,13 @@
-import { useEffect, useState, useContext, useRef } from "react";
-import Link from "./Link";
-import ButtonOpenModalForm from "./Buttons/ButtonOpenModalForm";
-import useUser from "hooks/useUser";
-import SkeletonLoaderLink from "components/Loaders/SkeletonLoaderLink";
-import { getLinks } from "firebaseFunction/getLinks";
-import OrderByLinks from "./OrderByLinks";
-import { OrderByValue } from "context/OrderByContext";
-import useNearScreen from "hooks/useNearScreen";
-import { getMoreLinks } from "firebaseFunction/getMoreLinks";
+import { useEffect, useState, useContext, useRef } from 'react';
+import Link from './Link';
+import ButtonOpenModalForm from './Buttons/ButtonOpenModalForm';
+import useUser from 'hooks/useUser';
+import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
+import { getLinks } from 'firebaseFunction/getLinks';
+import OrderByLinks from './OrderByLinks';
+import { OrderByValue } from 'context/OrderByContext';
+import useNearScreen from 'hooks/useNearScreen';
+import { getMoreLinks } from 'firebaseFunction/getMoreLinks';
 
 const ListOfLinks = () => {
   const [links, setLinks] = useState([]);
@@ -40,11 +40,11 @@ const ListOfLinks = () => {
 
   return (
     <>
-      {/* {user && <ButtonOpenModalForm />}
-      <OrderByLinks /> */}
-      <h3 className="text-center text-gray-500 -mt-4 mb-3">
+      {user && <ButtonOpenModalForm />}
+      <OrderByLinks />
+      {/* <h3 className="mb-3 -mt-4 text-center text-gray-500">
         Resultados de tu busqueda
-      </h3>
+      </h3> */}
       {isLoading ? (
         <>
           <SkeletonLoaderLink />
