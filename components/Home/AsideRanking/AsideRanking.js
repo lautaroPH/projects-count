@@ -6,15 +6,16 @@ import SkeletonLoaderAsideRanking from 'components/Loaders/SkeletonLoaderAsideRa
 
 const AsideRanking = () => {
   const [usersRanks, setUsersRanks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => getUsers(setUsersRanks), []);
+  useEffect(() => getUsers(setUsersRanks, setIsLoading, 5), []);
 
   return (
     <div className="px-5 bg-white rounded-xl w-80 dark:bg-gray-900">
       <h2 className="pt-2 text-xl text-center text-violet-700 dark:text-white">
         Ranking
       </h2>
-      {usersRanks.length > 0 ? (
+      {!isLoading ? (
         usersRanks.map((userRank) => (
           <UserRank
             key={userRank.id}
