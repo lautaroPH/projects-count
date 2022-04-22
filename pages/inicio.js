@@ -1,25 +1,30 @@
-import Header from "components/Header/Header";
-import AsideAboutMe from "components/Home/AsideProfile/AsideAboutMe";
-import AsideRanking from "components/Home/AsideRanking/AsideRanking";
-import ListOfLinks from "components/Home/Main/ListOfLinks";
+import Header from 'components/Header/Header';
+import AsideProfile from 'components/Home/AsideProfile/AsideProfile';
+import AsideRanking from 'components/Home/AsideRanking/AsideRanking';
+import ListOfLinks from 'components/Home/Main/ListOfLinks';
+import ResultsLinks from 'components/Home/Main/ResultsLinks';
+import { useRouter } from 'next/router';
 
 export default function Home({ data }) {
+  const router = useRouter();
+
+  const query = router.query.keyword;
+
   return (
     <div>
       <Header
-        title="Links"
-        description="Dejar links, titulos, descripciones de videos +18 
-        para compartir con los demas de forma totalmente anonima"
+        title="Inicio"
+        description="Crear publicacion sobre los proyectos que desarrollaste o que estás apoyando para darle más reconocimiento y asi poder seguir creciendo."
         data={data}
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[25%_50%_25%] xl:grid-cols-[20%_35%_20%] justify-center mt-7 w-full">
-          <AsideAboutMe />
+        <div className="grid grid-cols-1 lg:grid-cols-[25%_50%_25%] xl:grid-cols-[20%_35%_20%] justify-center w-full">
+          <AsideProfile />
           <div className="mx-7">
-            <ListOfLinks />
+            {query ? <ResultsLinks query={query} /> : <ListOfLinks />}
           </div>
-          <div>
+          <div className="mt-7">
             <AsideRanking />
           </div>
         </div>
@@ -30,10 +35,10 @@ export default function Home({ data }) {
 
 export async function getServerSideProps() {
   const data = {
-    title: "TITULO A VER",
-    inicio: "Inicio",
-    ranking: "Ranking",
-    misProyectos: "Mis proyectos",
+    title: 'TITULO A VER',
+    inicio: 'Inicio',
+    ranking: 'Ranking',
+    misProyectos: 'Mis proyectos',
   };
 
   return { props: { data } };

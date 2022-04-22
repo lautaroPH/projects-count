@@ -19,7 +19,7 @@ export const getLinks = (
     const querySnapshot = query(
       collection(db, 'links'),
       orderBy(orderByValue, 'desc'),
-      limit(30)
+      limit(20)
     );
 
     getDocs(querySnapshot).then(({ empty, docs }) => {

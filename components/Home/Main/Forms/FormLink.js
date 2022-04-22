@@ -21,6 +21,7 @@ const FormLink = ({
   image,
   links,
   setLinks,
+  isSearch,
 }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorFileExtension, setErrorFileExtension] = useState('');
@@ -40,12 +41,18 @@ const FormLink = ({
 
   const handleUploadLink = (values) => {
     if (isEditing) {
-      editLink(id, values, selectedFile, setLinks, links, currentTheme).then(
-        () => {
-          setSelectedFile('');
-          setOpenForm(false);
-        }
-      );
+      editLink(
+        id,
+        values,
+        selectedFile,
+        setLinks,
+        links,
+        currentTheme,
+        isSearch
+      ).then(() => {
+        setSelectedFile('');
+        setOpenForm(false);
+      });
     } else {
       uploadLink(values, selectedFile, user, currentTheme).then(() => {
         setSelectedFile('');

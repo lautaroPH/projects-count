@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { BriefcaseIcon, ChartBarIcon, HomeIcon } from '@heroicons/react/solid';
+import { ChartBarIcon, HomeIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { pagesLinks } from 'utils/defaultValues';
 
-const Navigation = ({ inicio, rankingWord, misProyectos }) => {
+const Navigation = ({ inicio, rankingWord }) => {
   const { pathname } = useRouter();
 
-  const { home, myProjects, ranking } = pagesLinks;
+  const { home, ranking } = pagesLinks;
 
   return (
     <div className="fixed bottom-0 z-10 flex justify-center w-full gap-6 py-1 bg-white border-t sm:p-0 dark:bg-gray-900 sm:bg-transparent sm:static sm:w-auto sm:border-none">
@@ -22,16 +22,6 @@ const Navigation = ({ inicio, rankingWord, misProyectos }) => {
         >
           <ChartBarIcon className="w-6 h-6" />
           <span className="hidden sm:block">{rankingWord}</span>
-        </a>
-      </Link>
-      <Link href={myProjects} passHref>
-        <a
-          className={
-            pathname == myProjects ? 'navigation-active' : 'navigation '
-          }
-        >
-          <BriefcaseIcon className="w-6 h-6" />
-          <span className="hidden sm:block">{misProyectos}</span>
         </a>
       </Link>
     </div>

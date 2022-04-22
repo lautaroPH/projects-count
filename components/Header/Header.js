@@ -25,14 +25,14 @@ const Header = ({ title, description, data }) => {
           <InputSearch />
         </div>
         <div className="flex">
-          <Navigation
-            inicio={data?.inicio}
-            rankingWord={data?.ranking}
-            misProyectos={data?.misProyectos}
-          />
+          <Navigation inicio={data?.inicio} rankingWord={data?.ranking} />
 
           <div className="flex items-center ml-20">
-            {user ? <LogoutDropDown user={user} /> : <LoginButton />}
+            {user ? (
+              <LogoutDropDown user={user} misProyectos={data?.misProyectos} />
+            ) : (
+              <LoginButton />
+            )}
             {renderThemeChanger()}
           </div>
         </div>

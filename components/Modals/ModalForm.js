@@ -15,6 +15,7 @@ const ModalForm = ({
   image,
   links,
   setLinks,
+  isSearch,
 }) => {
   return (
     <Transition.Root show={openForm} as={Fragment}>
@@ -64,6 +65,7 @@ const ModalForm = ({
                 isEditing={isEditing}
                 links={links}
                 setLinks={setLinks}
+                isSearch={isSearch}
               />
             </div>
           </Transition.Child>

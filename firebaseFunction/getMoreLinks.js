@@ -27,7 +27,7 @@ export const getMoreLinks = (
       collection(db, 'links'),
       orderBy(orderByValue, 'desc'),
       startAfter(lastVisible),
-      limit(30)
+      limit(20)
     );
 
     getDocs(querySnapshot).then(({ empty, docs }) => {

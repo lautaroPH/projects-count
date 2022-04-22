@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/react": "1.4.2",
     "@heroicons/react": "1.0.5",
+    "algoliasearch": "^4.13.0",
     "cors": "2.8.5",
     "firebase": "9.6.1",
     "firebase-admin": "^10.0.2",

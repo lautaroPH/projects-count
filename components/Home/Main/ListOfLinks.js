@@ -39,12 +39,10 @@ const ListOfLinks = () => {
   }, [isNearScreen, value, links, noLinks, isLoadingMoreLinks]);
 
   return (
-    <>
+    <div className="mt-7">
       {user && <ButtonOpenModalForm />}
       <OrderByLinks />
-      {/* <h3 className="mb-3 -mt-4 text-center text-gray-500">
-        Resultados de tu busqueda
-      </h3> */}
+
       {isLoading ? (
         <>
           <SkeletonLoaderLink />
@@ -67,7 +65,7 @@ const ListOfLinks = () => {
                 tecnologies={link?.data()?.tecnologies}
                 image={link?.data()?.image}
                 avatar={link?.data()?.userImage}
-                timestamp={link?.data()?.timestamp}
+                timestamp={link?.data()?.timestamp?.seconds * 1000}
                 isEdited={link?.data()?.isEdited}
                 setLinks={setLinks}
                 links={links}
@@ -78,7 +76,7 @@ const ListOfLinks = () => {
           <div id="visor" ref={externalRef}></div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

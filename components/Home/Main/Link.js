@@ -1,13 +1,13 @@
-import { useDateTimeFormat } from "hooks/useDateTimeFormat";
-import { useTimeAgo } from "hooks/useTimeAgo";
-import useUser from "hooks/useUser";
-import Image from "next/image";
-import Tecnologies from "./Tecnologies";
-import ButtonDelete from "./Buttons/ButtonDelete";
-import Footer from "./Footer";
-import ButtonEditLink from "./Buttons/ButtonEditLink";
-import ModalForm from "components/Modals/ModalForm";
-import { useState } from "react";
+import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
+import { useTimeAgo } from 'hooks/useTimeAgo';
+import useUser from 'hooks/useUser';
+import Image from 'next/image';
+import Tecnologies from './Tecnologies';
+import ButtonDelete from './Buttons/ButtonDelete';
+import Footer from './Footer';
+import ButtonEditLink from './Buttons/ButtonEditLink';
+import ModalForm from 'components/Modals/ModalForm';
+import { useState } from 'react';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
@@ -24,6 +24,7 @@ const Link = ({
   image,
   username,
   setLinks,
+  isSearch,
   links,
   isEdited,
 }) => {
@@ -39,8 +40,7 @@ const Link = ({
     username,
   };
 
-  const createdAt =
-    timestamp !== null && new Date(parseInt(timestamp?.seconds * 1000));
+  const createdAt = timestamp !== null && new Date(parseInt(timestamp));
   const timeago = useTimeAgo(createdAt !== undefined && createdAt);
   const createdAtFormated = useDateTimeFormat(
     createdAt !== undefined && createdAt
@@ -50,7 +50,7 @@ const Link = ({
   const descriptionWithUppercase =
     description.charAt(0).toUpperCase() + description.slice(1);
 
-  const tecnologiesArray = tecnologies?.split(",");
+  const tecnologiesArray = tecnologies?.split(',');
 
   return (
     <>
@@ -137,6 +137,7 @@ const Link = ({
           image={image}
           links={links}
           setLinks={setLinks}
+          isSearch={isSearch}
         />
       )}
     </>
