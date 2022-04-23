@@ -12,12 +12,12 @@ const ListUserRank = ({ username, linksNumber, index, id, avatar, userId }) => {
       }`}
     >
       <td className="px-2 py-2 font-bold">
-        <p className="flex items-center gap-4 ml-4 text-blue-900 align-middle dark:text-blue-200">
+        <p className="flex items-center gap-4 ml-4 align-middle text-violet-700 dark:text-blue-200">
           {index + 1}.
         </p>
       </td>
       <td className="px-2 py-2 font-bold">
-        <div className="flex items-center gap-4 text-blue-900 align-middle dark:text-blue-100">
+        <div className="flex items-center gap-4 align-middle text-violet-700 dark:text-blue-100">
           <div className="w-8 h-8">
             {avatar && (
               <Image
@@ -36,7 +36,7 @@ const ListUserRank = ({ username, linksNumber, index, id, avatar, userId }) => {
         </div>
       </td>
       <td className="px-2 py-2 font-bold">
-        <p className="flex items-center gap-4 text-blue-900 align-middle dark:text-gray-300">
+        <p className="flex items-center gap-4 align-middle text-violet-700 dark:text-gray-300">
           {linksNumber}
         </p>
       </td>
