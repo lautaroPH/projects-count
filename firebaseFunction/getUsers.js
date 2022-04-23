@@ -7,7 +7,7 @@ import {
 } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
-export const getUsers = (callback, setIsLoading, limitUsers) => {
+export const getUsers = (callback, setIsLoading, limitUsers = Infinity) => {
   return onSnapshot(
     query(
       collection(db, 'users'),

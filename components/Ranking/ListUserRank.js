@@ -27,6 +27,7 @@ const ListUserRank = ({ username, linksNumber, index, id, avatar, userId }) => {
                 width={32}
                 height={32}
                 layout="responsive"
+                priority={index <= 20}
               />
             )}
           </div>
