@@ -21,7 +21,7 @@ const UserLike = ({ id, title, avatar, description, i, likesLength }) => {
         />
       </div>
       <div className="flex-1">
-        <Link passHref href={`/${id}`}>
+        <Link passHref href={`/link/${id}`}>
           <a>
             <h2 className="font-semibold hover:underline">
               {titleWithUppercase}

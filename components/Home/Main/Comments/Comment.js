@@ -24,6 +24,7 @@ const Comment = ({
   links,
   setLinks,
   setCommentsNumber,
+  isOneLink,
 }) => {
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
@@ -106,6 +107,7 @@ const Comment = ({
                 links={links}
                 setLinks={setLinks}
                 setCommentsNumber={setCommentsNumber}
+                isOneLink={isOneLink}
               />
             )}
           </div>

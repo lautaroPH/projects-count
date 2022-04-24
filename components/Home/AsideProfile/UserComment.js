@@ -13,7 +13,7 @@ const UserComment = ({ id, linkId, commentLength, i, title, comment }) => {
           commentLength - 1 === i && `px-3`
         } border-b-2 dark:border-b-gray-800`}
       >
-        <Link passHref href={`/${linkId}`}>
+        <Link passHref href={`/link/${linkId}`}>
           <a className="items-center mb-1 text-[13px] text-gray-500 cursor-pointer dark:text-gray-300 hover:underline">
             Comentario en {title}
           </a>

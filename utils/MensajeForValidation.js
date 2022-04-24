@@ -1,4 +1,4 @@
-const MensajeForValidation = ({ value, firstAlertNumber, alertNumber }) => {
+const MessageForValidation = ({ value, firstAlertNumber, alertNumber }) => {
   return (
     <>
       {value >= firstAlertNumber && value <= alertNumber && (
@@ -16,4 +16,4 @@ const MensajeForValidation = ({ value, firstAlertNumber, alertNumber }) => {
   );
 };
 
-export default MensajeForValidation;
+export default MessageForValidation;

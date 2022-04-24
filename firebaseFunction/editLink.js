@@ -19,7 +19,8 @@ export const editLink = async (
   setLinks,
   links,
   currentTheme,
-  isSearch
+  isSearch,
+  isOneLink
 ) => {
   currentTheme === 'dark'
     ? Swal.fire(swalUploadingEditLinkDark(values?.title))
@@ -38,10 +39,14 @@ export const editLink = async (
         await uploadImage(selectedFile, id);
       }
 
-      await getOneLink(id, isSearch).then((linkEditedRef) => {
-        const newArray = useEditArray(linkEditedRef, links, id);
+      await getOneLink(id, isSearch, isOneLink).then((linkEditedRef) => {
+        if (isOneLink) {
+          setLinks(linkEditedRef);
+        } else {
+          const newArray = useEditArray(linkEditedRef, links, id);
 
-        setLinks(newArray);
+          setLinks(newArray);
+        }
       });
 
       currentTheme === 'dark'

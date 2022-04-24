@@ -17,10 +17,11 @@ export const uploadComment = async (
   setComments,
   setLinks,
   links,
-  currentTheme
+  currentTheme,
+  isOneLink,
+  router
 ) => {
   const { id: userId, username, avatar } = user;
-
   await getOneLink(id)
     .then(async () => {
       const commentRef = await addDoc(collection(db, 'links', id, 'comments'), {
@@ -38,9 +39,12 @@ export const uploadComment = async (
       currentTheme === 'light'
         ? Swal.fire(swalNoLInkLight)
         : Swal.fire(swalNoLInkDark);
+      if (isOneLink) {
+        router.push('/');
+      } else {
+        const newArray = useDeleteArray(links, id);
 
-      const newArray = useDeleteArray(links, id);
-
-      setLinks(newArray);
+        setLinks(newArray);
+      }
     });
 };

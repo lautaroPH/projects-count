@@ -21,7 +21,9 @@ export const editComment = async (
   setLinks,
   links,
   currentTheme,
-  setCommentsNumber
+  setCommentsNumber,
+  isOneLink,
+  router
 ) => {
   await getOneLink(linkId)
     .then(async () => {
@@ -53,9 +55,12 @@ export const editComment = async (
       currentTheme === 'light'
         ? Swal.fire(swalNoLInkLight)
         : Swal.fire(swalNoLInkDark);
+      if (isOneLink) {
+        router.push('/');
+      } else {
+        const newArray = useDeleteArray(links, linkId);
 
-      const newArray = useDeleteArray(links, linkId);
-
-      setLinks(newArray);
+        setLinks(newArray);
+      }
     });
 };

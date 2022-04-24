@@ -8,15 +8,23 @@ import { deleteOneLinkNumberForUser } from './deleteOneLinkNumberForUser';
 import { deleteUserCommentCollection } from './deleteUserCommentCollection';
 import { deleteUserLikesCollection } from './deleteUserLikesCollection';
 
-export const deleteLink = async (id, image, userId, setLinks, links) => {
+export const deleteLink = async (
+  id,
+  image,
+  userId,
+  setLinks,
+  links,
+  isOneLink
+) => {
   await deleteDoc(doc(db, 'links', id));
   if (image) {
     deleteImageStorage(id);
   }
+  if (!isOneLink) {
+    const newLinks = links.filter((link) => link.id !== id);
+    setLinks(newLinks);
+  }
 
-  const newLinks = links.filter((link) => link.id !== id);
-
-  setLinks(newLinks);
   deleteOneLinkNumberForUser(userId);
   deleteCommentNumbers(id);
   deleteLikesCollection(id);

@@ -12,6 +12,7 @@ const AllButtons = ({
   dataUserLike,
   links,
   setLinks,
+  isOneLink,
 }) => {
   return (
     <div className="flex items-center h-auto my-1 justify-evenly sm:justify-around">
@@ -21,6 +22,7 @@ const AllButtons = ({
         dataUserLike={dataUserLike}
         links={links}
         setLinks={setLinks}
+        isOneLink={isOneLink}
       />
       <CommentButton
         setOpenCommentInput={setOpenCommentInput}

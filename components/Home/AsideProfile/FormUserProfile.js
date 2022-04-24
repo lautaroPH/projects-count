@@ -1,28 +1,28 @@
-import { uploadUserProfile } from "firebaseFunction/uploadUserProfile";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useTheme } from "next-themes";
-import TextareaAutosize from "react-textarea-autosize";
-import { swalUploadUserProfileDark } from "swals/dark/swalUploadUserProfileDark";
-import { swalUploadUserProfileLight } from "swals/light/swalUploadUserProfileLight";
-import Swal from "sweetalert2";
-import MensajeForValidation from "utils/MensajeForValidation";
-import { UserProfileFormValidation } from "validations/UserProfileFormValidation";
+import { uploadUserProfile } from 'firebaseFunction/uploadUserProfile';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useTheme } from 'next-themes';
+import TextareaAutosize from 'react-textarea-autosize';
+import { swalUploadUserProfileDark } from 'swals/dark/swalUploadUserProfileDark';
+import { swalUploadUserProfileLight } from 'swals/light/swalUploadUserProfileLight';
+import Swal from 'sweetalert2';
+import MessageForValidation from 'utils/MensajeForValidation';
+import { UserProfileFormValidation } from 'validations/UserProfileFormValidation';
 
 const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
   const { systemTheme, theme } = useTheme();
 
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  const currentTheme = theme === 'system' ? systemTheme : theme;
 
   return (
     <Formik
       initialValues={{
-        aboutMe: aboutMe ? aboutMe : "",
-        profession: profession ? profession : "",
+        aboutMe: aboutMe ? aboutMe : '',
+        profession: profession ? profession : '',
       }}
       validationSchema={UserProfileFormValidation}
       onSubmit={async (values) => {
         setOpenForm(false);
-        currentTheme === "dark"
+        currentTheme === 'dark'
           ? Swal.fire(swalUploadUserProfileDark)
           : Swal.fire(swalUploadUserProfileLight);
         await uploadUserProfile(
@@ -42,7 +42,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
               <Field
                 className={`${
                   errors.profession &&
-                  "border border-red-700 dark:border-red-700"
+                  'border border-red-700 dark:border-red-700'
                 } inputLinks`}
                 name="profession"
                 placeholder="Profesion"
@@ -61,7 +61,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
               </label>
               <TextareaAutosize
                 className={`${
-                  errors.aboutMe && "border border-red-700 dark:border-red-700"
+                  errors.aboutMe && 'border border-red-700 dark:border-red-700'
                 } textareaScrollNone inputLinks resize-none h-auto`}
                 value={values.aboutMe}
                 onChange={handleChange}
@@ -78,7 +78,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
                     {errors.aboutMe}
                   </small>
                 )}
-                <MensajeForValidation
+                <MessageForValidation
                   value={values?.aboutMe?.trim().length}
                   firstAlertNumber={350}
                   alertNumber={400}
@@ -92,7 +92,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
                 type="submit"
                 disabled={errors?.aboutMe || errors?.profession || isSubmitting}
               >
-                {isSubmitting ? "Publicando..." : "Publicar"}
+                {isSubmitting ? 'Publicando...' : 'Publicar'}
               </button>
             </div>
           </div>

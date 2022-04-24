@@ -5,7 +5,7 @@ module.exports = {
       'avatars.githubusercontent.com',
       'firebasestorage.googleapis.com',
       'res.cloudinary.com',
-      'placehold.it',
+      'via.placeholder.com',
     ],
   },
 };

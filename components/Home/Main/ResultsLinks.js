@@ -2,7 +2,7 @@ import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
 import useNearScreen from 'hooks/useNearScreen';
 import { useState, useRef, useEffect } from 'react';
 import { getLinksResults } from 'utils/getLinksResults';
-import Link from './Link';
+import Linklist from './Link';
 
 const ResultsLinks = ({ query }) => {
   const [links, setLinks] = useState([]);
@@ -69,7 +69,7 @@ const ResultsLinks = ({ query }) => {
           <div className="mb-20 border-t border-gray-300 sm:border-none">
             {links.length > 0 &&
               links.map((link) => (
-                <Link
+                <Linklist
                   id={link.id}
                   key={link.id}
                   title={link.title}

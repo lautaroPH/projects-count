@@ -15,7 +15,9 @@ export const uploadLike = async (
   links,
   setLinks,
   currentTheme,
-  likes
+  likes,
+  isOneLink,
+  router
 ) => {
   const { id: userId, username } = user;
 
@@ -34,9 +36,12 @@ export const uploadLike = async (
       currentTheme === 'light'
         ? Swal.fire(swalNoLInkLight)
         : Swal.fire(swalNoLInkDark);
+      if (isOneLink) {
+        router.push('/');
+      } else {
+        const newArray = useDeleteArray(links, id);
 
-      const newArray = useDeleteArray(links, id);
-
-      setLinks(newArray);
+        setLinks(newArray);
+      }
     });
 };

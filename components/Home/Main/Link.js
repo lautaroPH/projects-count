@@ -8,10 +8,11 @@ import Footer from './Footer';
 import ButtonEditLink from './Buttons/ButtonEditLink';
 import ModalForm from 'components/Modals/ModalForm';
 import { useState } from 'react';
+import Link from 'next/link';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
-const Link = ({
+const Linklist = ({
   title,
   link,
   description,
@@ -27,6 +28,8 @@ const Link = ({
   isSearch,
   links,
   isEdited,
+  openComment,
+  isOneLink,
 }) => {
   const user = useUser();
   const [openEditform, setOpenEditform] = useState(false);
@@ -90,15 +93,20 @@ const Link = ({
                 id={id}
                 image={image}
                 userId={user?.id}
+                isOneLink={isOneLink}
               />
             </p>
           )}
         </div>
 
         <div className="pl-4 mt-2">
-          <h3 className="mb-2 text-xl font-bold dark:text-gray-50">
-            {titleWithUppercase}
-          </h3>
+          <Link passHref href={`/link/${id}`}>
+            <a>
+              <h3 className="mb-2 text-xl font-bold dark:text-gray-50 hover:underline">
+                {titleWithUppercase}
+              </h3>
+            </a>
+          </Link>
 
           <p className="pr-3 mb-2 dark:text-gray-200">
             {descriptionWithUppercase}
@@ -121,6 +129,8 @@ const Link = ({
           title={title}
           links={links}
           setLinks={setLinks}
+          openComment={openComment}
+          isOneLink={isOneLink}
         />
       </div>
       {openEditform && (
@@ -138,10 +148,11 @@ const Link = ({
           links={links}
           setLinks={setLinks}
           isSearch={isSearch}
+          isOneLink={isOneLink}
         />
       )}
     </>
   );
 };
 
-export default Link;
+export default Linklist;

@@ -6,7 +6,8 @@ import { uploadComment } from 'firebaseFunction/uploadComment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editComment } from 'firebaseFunction/editComment';
 import { useTheme } from 'next-themes';
-import MensajeForValidation from 'utils/MensajeForValidation';
+import MessageForValidation from 'utils/MensajeForValidation';
+import { useRouter } from 'next/router';
 
 const FormComment = ({
   setOpenEditComment,
@@ -22,8 +23,10 @@ const FormComment = ({
   setLinks,
   links,
   setCommentsNumber,
+  isOneLink,
 }) => {
   const user = useUser();
+  const router = useRouter();
   const { systemTheme, theme } = useTheme();
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -43,7 +46,9 @@ const FormComment = ({
             setLinks,
             links,
             currentTheme,
-            setCommentsNumber
+            setCommentsNumber,
+            isOneLink,
+            router
           );
           setOpenEditComment(false);
         } else {
@@ -55,7 +60,9 @@ const FormComment = ({
             setComments,
             setLinks,
             links,
-            currentTheme
+            currentTheme,
+            isOneLink,
+            router
           );
           setCommentsNumber(commentsNumber + 1);
         }
@@ -127,7 +134,7 @@ const FormComment = ({
                   >
                     {isSubmitting ? 'Publicando...' : 'Publicar'}
                   </button>
-                  <MensajeForValidation
+                  <MessageForValidation
                     value={values?.comment?.trim().length}
                     firstAlertNumber={1200}
                     alertNumber={1250}

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from 'react';
-import Link from './Link';
+import Linklist from './Link';
 import ButtonOpenModalForm from './Buttons/ButtonOpenModalForm';
 import useUser from 'hooks/useUser';
 import SkeletonLoaderLink from 'components/Loaders/SkeletonLoaderLink';
@@ -52,7 +52,7 @@ const ListOfLinks = () => {
         <>
           <div className="mb-20 border-t border-gray-300 sm:border-none">
             {links.map((link) => (
-              <Link
+              <Linklist
                 id={link?.id}
                 key={link?.id}
                 title={link?.data()?.title}
@@ -69,6 +69,7 @@ const ListOfLinks = () => {
                 isEdited={link?.data()?.isEdited}
                 setLinks={setLinks}
                 links={links}
+                openComment={false}
               />
             ))}
             {isLoadingMoreLinks && !noLinks && <SkeletonLoaderLink />}

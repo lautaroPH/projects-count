@@ -5,11 +5,20 @@ import { HeartIcon } from '@heroicons/react/outline';
 import { deleteLike } from 'firebaseFunction/deleteLike';
 import { uploadLike } from 'firebaseFunction/uploadLike';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
 
-const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
+const LikeButton = ({
+  id,
+  likes,
+  dataUserLike,
+  links,
+  setLinks,
+  isOneLink,
+}) => {
   const [hasLiked, setHasLiked] = useState(false);
 
   const user = useUser();
+  const router = useRouter();
   const { systemTheme, theme } = useTheme();
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -30,7 +39,9 @@ const LikeButton = ({ id, likes, dataUserLike, links, setLinks }) => {
         links,
         setLinks,
         currentTheme,
-        likes.length
+        likes.length,
+        isOneLink,
+        router
       );
     }
   };

@@ -19,13 +19,15 @@ const Footer = ({
   userIdFromLink,
   links,
   setLinks,
+  openComment,
+  isOneLink,
 }) => {
   const user = useUser();
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [noComments, setNoComments] = useState(false);
   const [commentsNumber, setCommentsNumber] = useState(null);
-  const [openCommentInput, setOpenCommentInput] = useState(false);
+  const [openCommentInput, setOpenCommentInput] = useState(openComment);
 
   useEffect(() => getLikes(id, setLikes), [id]);
   useEffect(() => getComments(id, setComments, setNoComments), [id]);
@@ -57,6 +59,7 @@ const Footer = ({
         openCommentInput={openCommentInput}
         links={links}
         setLinks={setLinks}
+        isOneLink={isOneLink}
       />
 
       {openCommentInput && (
@@ -72,6 +75,7 @@ const Footer = ({
               links={links}
               setLinks={setLinks}
               setCommentsNumber={setCommentsNumber}
+              isOneLink={isOneLink}
             />
           )}
           {comments.map((comment) => (
@@ -92,6 +96,7 @@ const Footer = ({
               links={links}
               setLinks={setLinks}
               setCommentsNumber={setCommentsNumber}
+              isOneLink={isOneLink}
             />
           ))}
 

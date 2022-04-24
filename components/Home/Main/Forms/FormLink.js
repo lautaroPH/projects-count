@@ -8,6 +8,12 @@ import { uploadLink } from 'firebaseFunction/uploadLink';
 import TextareaAutosize from 'react-textarea-autosize';
 import Image from 'next/image';
 import { editLink } from 'firebaseFunction/editLink';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
+import { swalUploadLinkSuccessDark } from 'swals/dark/swalUploadLinkSuccessDark';
+import { swalUploadLinkSuccessLight } from 'swals/light/swalUploadLinkSuccessLight';
+import { swalUploadingLinkDark } from 'swals/dark/swalUploadingLinkDark';
+import { swalUploadingLinkLight } from 'swals/light/swalUploadingLinkLight';
 
 const FormLink = ({
   setOpenForm,
@@ -22,11 +28,13 @@ const FormLink = ({
   links,
   setLinks,
   isSearch,
+  isOneLink,
 }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorFileExtension, setErrorFileExtension] = useState('');
   const [erroFileSize, setErroFileSize] = useState('');
 
+  const router = useRouter();
   const user = useUser();
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -48,13 +56,23 @@ const FormLink = ({
         setLinks,
         links,
         currentTheme,
-        isSearch
+        isSearch,
+        isOneLink
       ).then(() => {
         setSelectedFile('');
         setOpenForm(false);
       });
     } else {
-      uploadLink(values, selectedFile, user, currentTheme).then(() => {
+      currentTheme === 'dark'
+        ? Swal.fire(swalUploadingLinkDark(values?.title))
+        : Swal.fire(swalUploadingLinkLight(values?.title));
+
+      uploadLink(values, selectedFile, user, currentTheme).then((id) => {
+        router.push(`/link/${id}`);
+
+        currentTheme === 'dark'
+          ? Swal.fire(swalUploadLinkSuccessDark(values?.title))
+          : Swal.fire(swalUploadLinkSuccessLight(values?.title));
         setSelectedFile('');
         setOpenForm(false);
       });
