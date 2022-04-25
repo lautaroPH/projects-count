@@ -77,7 +77,13 @@ const Linklist = ({
             </div>
 
             <div className="ml-2">
-              <h4 className="text-base sm:text-xl">{username}</h4>
+              <Link href={`/usuario/${userId}`}>
+                <a>
+                  <h4 className="text-base sm:text-xl hover:underline">
+                    {username}
+                  </h4>
+                </a>
+              </Link>
               <p className="mb-1 text-xs font-light sm:text-sm">
                 <time title={createdAtFormated}>{timeago}</time>
                 {isEdited && <span className="ml-1">• Editado •</span>}

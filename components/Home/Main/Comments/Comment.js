@@ -8,6 +8,7 @@ import ButtonDeleteComment from '../Buttons/ButtonDeleteComment';
 import { ButtonEditComment } from '../Buttons/ButtonEditComment';
 import FormComment from '../Forms/FormComment';
 import { XIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 const Comment = ({
   commentId,
@@ -54,7 +55,13 @@ const Comment = ({
           <div className="bg-gray-100 dark:bg-gray-800 w-[90%] rounded-lg p-2 relative">
             <div className="flex justify-between">
               <div>
-                <p className="mr-2 font-semibold">{username}</p>
+                <Link href={`/usuario/${userId}`}>
+                  <a>
+                    <p className="mr-2 font-semibold hover:underline">
+                      {username}
+                    </p>
+                  </a>
+                </Link>
                 <p className="mb-1 text-xs font-light dark:text-gray-300 sm:text-sm">
                   <time title={createdAtFormated}>{timeago}</time>
                   {isEdited && <span className="ml-1">• Editado •</span>}

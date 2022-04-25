@@ -49,14 +49,9 @@ const ResultsLinks = ({ query }) => {
           <span className="font-semibold">{query}</span>
         </h3>
       ) : (
-        <>
-          <h3 className="my-2 font-semibold text-center">
-            Ningún resultado encontrado
-          </h3>
-          <p className="font-thin text-center text-gray-700">
-            Prueba a acortar o reformular la búsqueda.
-          </p>
-        </>
+        <h3 className="font-semibold text-center text-gray-700 mt-7">
+          No hay resultados
+        </h3>
       )}
 
       {isLoading ? (

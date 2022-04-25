@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ButtonDeleteAnswer from '../Buttons/ButtonDeleteAnswer';
 import { ButtonEditComment } from '../Buttons/ButtonEditComment';
 import FormCommentAnswer from '../Forms/FormCommentAnswer';
+import Link from 'next/link';
 
 const Answer = ({
   id,
@@ -47,7 +48,11 @@ const Answer = ({
       <div className="p-2 w-[90%] bg-gray-100 rounded-lg dark:bg-gray-800">
         <div className="flex justify-between">
           <div>
-            <p className="mr-2 font-semibold">{username}</p>
+            <Link href={`/usuario/${userId}`}>
+              <a>
+                <p className="mr-2 font-semibold hover:underline">{username}</p>
+              </a>
+            </Link>
 
             <p className="mb-1 text-xs font-light dark:text-gray-300 sm:text-sm">
               <time title={createdAtFormated}>{timeago}</time>

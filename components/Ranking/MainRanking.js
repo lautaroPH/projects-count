@@ -17,7 +17,7 @@ const MainRanking = () => {
       {isLoading ? (
         <SkeletonLoaderRanking />
       ) : (
-        <div className="px-4 pt-4 pb-20">
+        <div className="px-4 pb-20 pt-7">
           <div className="flex justify-center">
             <table className="w-full overflow-hidden rounded-lg table-auto max-w-prose">
               <TableHead />

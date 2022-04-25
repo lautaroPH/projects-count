@@ -29,7 +29,11 @@ const Header = ({ title, description, data }) => {
 
           <div className="flex items-center ml-20">
             {user ? (
-              <LogoutDropDown user={user} misProyectos={data?.misProyectos} />
+              <LogoutDropDown
+                user={user}
+                miPerfil={data?.miPerfil}
+                misProyectos={data?.misProyectos}
+              />
             ) : (
               <LoginButton />
             )}

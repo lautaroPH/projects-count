@@ -1,20 +1,21 @@
 import Header from 'components/Header/Header';
 import Linklist from 'components/Home/Main/Link';
 import { useState } from 'react';
+
 export default function Link({ data, dataLink }) {
   const [link, setlink] = useState(dataLink);
 
   return (
     <div>
       <Header
-        title="Ranking"
+        title={link.title}
         description="Ranking para saber quien ha realizada la gran mayoria 
         de pajas a lo largo del tiempo, para descubrir quien es el más pajero"
         data={data}
       />
 
-      <div className="flex items-center justify-center mt-7">
-        <div className="mb-20 border-t border-gray-300 sm:border-none">
+      <div className="flex items-center justify-center ">
+        <div className="w-2/4 mb-20 ml-6 border-t border-gray-300 mt-7 sm:border-none">
           <Linklist
             id={link?.id}
             key={link?.id}
@@ -66,6 +67,7 @@ export async function getStaticProps({ params }) {
     inicio: 'Inicio',
     ranking: 'Ranking',
     misProyectos: 'Mis proyectos',
+    miPerfil: 'Mi perfil',
   };
 
   return {
@@ -73,5 +75,6 @@ export async function getStaticProps({ params }) {
       data,
       dataLink,
     },
+    revalidate: 60,
   };
 }

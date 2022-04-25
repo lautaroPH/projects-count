@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { logout } from 'firebaseFunction/logout';
 import Link from 'next/link';
 
-const LogoutDropDown = ({ user, misProyectos }) => {
+const LogoutDropDown = ({ user, misProyectos, miPerfil }) => {
   return (
     <Menu as="div" className="relative text-left md:inline-block">
       <div>
@@ -41,15 +41,24 @@ const LogoutDropDown = ({ user, misProyectos }) => {
           <Link href="/proyectos" passHref>
             <a className="w-full text-sm font-semibold text-purple-600 cursor-pointer md:text-sm">
               <Menu.Item>
-                <span className="hidden py-1 transition-colors duration-300 ease-in-out sm:block rounded-t-md hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700">
+                <span className="hidden py-2 transition-colors duration-300 ease-in-out sm:block rounded-t-md hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700">
                   {misProyectos}
+                </span>
+              </Menu.Item>
+            </a>
+          </Link>
+          <Link href="/proyectos" passHref>
+            <a className="w-full text-sm font-semibold text-purple-600 cursor-pointer md:text-sm">
+              <Menu.Item>
+                <span className="hidden py-2 transition-colors duration-300 ease-in-out sm:block hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700">
+                  {miPerfil}
                 </span>
               </Menu.Item>
             </a>
           </Link>
           <button
             onClick={logout}
-            className="w-full py-1 text-xs font-semibold text-center text-purple-600 transition-colors duration-300 ease-in-out rounded-b-md hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700 md:text-sm"
+            className="w-full py-2 text-xs font-semibold text-center text-purple-600 transition-colors duration-300 ease-in-out rounded-b-md hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700 md:text-sm"
           >
             <Menu.Item>
               <span>Cerrar sesion</span>

@@ -22,6 +22,7 @@ export async function getServerSideProps() {
     inicio: 'Inicio',
     ranking: 'Ranking',
     misProyectos: 'Mis proyectos',
+    miPerfil: 'Mi perfil',
   };
 
   return { props: { data } };
