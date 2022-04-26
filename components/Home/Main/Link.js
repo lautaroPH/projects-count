@@ -30,6 +30,7 @@ const Linklist = ({
   isEdited,
   openComment,
   isOneLink,
+  isUser,
 }) => {
   const user = useUser();
   const [openEditform, setOpenEditform] = useState(false);
@@ -100,6 +101,7 @@ const Linklist = ({
                 image={image}
                 userId={user?.id}
                 isOneLink={isOneLink}
+                isUser={isUser}
               />
             </p>
           )}
@@ -155,6 +157,7 @@ const Linklist = ({
           setLinks={setLinks}
           isSearch={isSearch}
           isOneLink={isOneLink}
+          isUser={isUser}
         />
       )}
     </>

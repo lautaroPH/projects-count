@@ -9,7 +9,15 @@ import { swalDeleteSuccessLight } from 'swals/light/swalDeleteSuccessLight';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 
-const ButtonDelete = ({ id, image, userId, setLinks, links, isOneLink }) => {
+const ButtonDelete = ({
+  id,
+  image,
+  userId,
+  setLinks,
+  links,
+  isOneLink,
+  isUser,
+}) => {
   const router = useRouter();
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -19,7 +27,15 @@ const ButtonDelete = ({ id, image, userId, setLinks, links, isOneLink }) => {
       Swal.fire(swalConfirmDeleteDark).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingDark);
-          deleteLink(id, image, userId, setLinks, links, isOneLink).then(() => {
+          deleteLink(
+            id,
+            image,
+            userId,
+            setLinks,
+            links,
+            isOneLink,
+            isUser
+          ).then(() => {
             if (isOneLink) {
               router.push('/');
             }
@@ -31,7 +47,15 @@ const ButtonDelete = ({ id, image, userId, setLinks, links, isOneLink }) => {
       Swal.fire(swalConfirmDeleteLight).then((respuesta) => {
         if (respuesta.isConfirmed) {
           Swal.fire(swalDeleteLoadingLight);
-          deleteLink(id, image, userId, setLinks, links, isOneLink).then(() => {
+          deleteLink(
+            id,
+            image,
+            userId,
+            setLinks,
+            links,
+            isOneLink,
+            isUser
+          ).then(() => {
             if (isOneLink) {
               router.push('/');
             }

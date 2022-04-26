@@ -75,6 +75,6 @@ export async function getStaticProps({ params }) {
       data,
       dataLink,
     },
-    revalidate: 60,
+    revalidate: 10,
   };
 }

@@ -22,6 +22,7 @@ const AsideProfile = () => {
             profession={userProfile.profession}
             username={userProfile.username}
             id={userProfile.id}
+            userId={user?.id}
           />
 
           <AsideActivity />

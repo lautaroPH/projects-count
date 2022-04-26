@@ -20,7 +20,7 @@ export const deleteLink = async (
   if (image) {
     deleteImageStorage(id);
   }
-  if (!isOneLink) {
+  if (!isOneLink || !isUser) {
     const newLinks = links.filter((link) => link.id !== id);
     setLinks(newLinks);
   }

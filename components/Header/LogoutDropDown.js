@@ -38,7 +38,7 @@ const LogoutDropDown = ({ user, misProyectos, miPerfil }) => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 mt-2 text-center origin-top-right bg-white rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <Link href="/proyectos" passHref>
+          <Link href={`/usuario/${user?.id}`} passHref>
             <a className="w-full text-sm font-semibold text-purple-600 cursor-pointer md:text-sm">
               <Menu.Item>
                 <span className="hidden py-2 transition-colors duration-300 ease-in-out sm:block rounded-t-md hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700">
@@ -47,7 +47,7 @@ const LogoutDropDown = ({ user, misProyectos, miPerfil }) => {
               </Menu.Item>
             </a>
           </Link>
-          <Link href="/proyectos" passHref>
+          <Link href={`/usuario/${user?.id}`} passHref>
             <a className="w-full text-sm font-semibold text-purple-600 cursor-pointer md:text-sm">
               <Menu.Item>
                 <span className="hidden py-2 transition-colors duration-300 ease-in-out sm:block hover:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-700">

@@ -1,4 +1,4 @@
-import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 import { useDeleteArray } from 'hooks/useDeleteArray';
 import { swalNoLInkDark } from 'swals/dark/swalNoLInkDark';

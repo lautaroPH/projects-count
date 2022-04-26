@@ -1,4 +1,3 @@
-import React from 'react';
 import FormCommentAnswer from '../Forms/FormCommentAnswer';
 import Answer from './Answer';
 import { useState, useEffect } from 'react';

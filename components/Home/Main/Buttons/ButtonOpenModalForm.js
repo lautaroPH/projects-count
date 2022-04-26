@@ -2,7 +2,7 @@ import { PlusCircleIcon } from '@heroicons/react/solid';
 import ModalForm from 'components/Modals/ModalForm';
 import { useState } from 'react';
 
-const ButtonOpenModalForm = () => {
+const ButtonOpenModalForm = ({ setLinks }) => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
@@ -27,6 +27,7 @@ const ButtonOpenModalForm = () => {
           openForm={openForm}
           setOpenForm={setOpenForm}
           isEditing={false}
+          setLinks={setLinks}
         />
       )}
     </>

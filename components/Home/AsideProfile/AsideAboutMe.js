@@ -3,7 +3,7 @@ import AboutMe from './AboutMe';
 import Profession from './Profession';
 import { useState } from 'react';
 
-const AsideAboutMe = ({ username, profession, aboutMe, id }) => {
+const AsideAboutMe = ({ username, profession, aboutMe, id, userId }) => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
@@ -20,12 +20,14 @@ const AsideAboutMe = ({ username, profession, aboutMe, id }) => {
             <Profession profession={profession} />
           </div>
           <AboutMe aboutMe={aboutMe} />
-          <button
-            onClick={() => setOpenForm(true)}
-            className="w-full pt-4 pb-2 text-sm text-center text-violet-600 dark:text-white hover:underline"
-          >
-            Editar perfil
-          </button>
+          {userId === id && (
+            <button
+              onClick={() => setOpenForm(true)}
+              className="w-full pb-2 text-sm text-center text-violet-600 dark:text-white hover:underline"
+            >
+              Editar perfil
+            </button>
+          )}
         </div>
       </div>
       {openForm && (

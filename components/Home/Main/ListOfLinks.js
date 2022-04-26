@@ -40,7 +40,7 @@ const ListOfLinks = () => {
 
   return (
     <div className="mt-7">
-      {user && <ButtonOpenModalForm />}
+      {user && <ButtonOpenModalForm setLinks={setLinks} />}
       <OrderByLinks />
 
       {isLoading ? (

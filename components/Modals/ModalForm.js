@@ -17,6 +17,7 @@ const ModalForm = ({
   setLinks,
   isSearch,
   isOneLink,
+  isUser,
 }) => {
   return (
     <Transition.Root show={openForm} as={Fragment}>
@@ -68,6 +69,7 @@ const ModalForm = ({
                 setLinks={setLinks}
                 isSearch={isSearch}
                 isOneLink={isOneLink}
+                isUser={isUser}
               />
             </div>
           </Transition.Child>

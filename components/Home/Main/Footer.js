@@ -1,4 +1,3 @@
-import React from 'react';
 import AllButtons from './Buttons/AllButtons';
 import LikesCommentsNumber from './LikesCommentsNumber';
 import { useState, useEffect } from 'react';

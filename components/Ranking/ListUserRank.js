@@ -12,7 +12,7 @@ const ListUserRank = ({ username, linksNumber, index, id, avatar, userId }) => {
       }`}
     >
       <td className="px-2 py-2 font-bold">
-        <Link href={`/usuario/${userId}`}>
+        <Link href={`/usuario/${id}`}>
           <a>
             <div className="flex items-center gap-4 align-middle dark:text-white">
               <div className="w-8 h-8">

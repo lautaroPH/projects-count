@@ -84,7 +84,7 @@ const ResultsLinks = ({ query }) => {
                   links={links}
                 />
               ))}
-            {/* {isLoadingMoreLinks && !noLinks && <SkeletonLoaderLink />} */}
+            {isLoadingMoreLinks && !noLinks && <SkeletonLoaderLink />}
           </div>
           <div id="visor" ref={externalRef}></div>
         </>
