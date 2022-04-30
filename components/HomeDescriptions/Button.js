@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { loginWithGithub } from 'firebaseFunction/loginWithGithub';
+import { uploadUser } from 'firebaseFunction/uploadUser';
 
 const Button = ({ firstIcon, secondIcon }) => {
   const [githubHoverIcon, setGithubHoverIcon] = useState(false);
   const router = useRouter();
 
   const handleClick = () => {
-    loginWithGithub().then(() => {
+    loginWithGithub().then((userLogin) => {
+      uploadUser(userLogin.user);
       router.push('/inicio');
     });
   };

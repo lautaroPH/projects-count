@@ -1,7 +1,6 @@
-import { getUser } from "firebaseFunction/getUser";
-import { loginWithGithub } from "firebaseFunction/loginWithGithub";
-import { uploadUser } from "firebaseFunction/uploadUser";
-import { useState } from "react";
+import { loginWithGithub } from 'firebaseFunction/loginWithGithub';
+import { uploadUser } from 'firebaseFunction/uploadUser';
+import { useState } from 'react';
 
 const ButtonSelectSvgToLogin = ({ firstIcon, secondIcon }) => {
   const [githubHoverIcon, setGithubHoverIcon] = useState(false);
@@ -12,8 +11,7 @@ const ButtonSelectSvgToLogin = ({ firstIcon, secondIcon }) => {
   };
   return (
     <button
-      className="flex items-center border border-violet-800 dark:border-white  h-12 rounded focus:outline-none  
-    transition-all duration-300 font-normal bg-violet-800 hover:text-violet-800 text-white dark:bg-white dark:hover:text-white hover:bg-transparent dark:hover:bg-transparent dark:text-black px-4 mr-7"
+      className="flex items-center h-12 px-4 font-normal text-white transition-all duration-300 border rounded border-violet-800 dark:border-white focus:outline-none bg-violet-800 hover:text-violet-800 dark:bg-white dark:hover:text-white hover:bg-transparent dark:hover:bg-transparent dark:text-black mr-7"
       onClick={handleClick}
       onMouseOver={() => setGithubHoverIcon(true)}
       onMouseLeave={() => setGithubHoverIcon(false)}

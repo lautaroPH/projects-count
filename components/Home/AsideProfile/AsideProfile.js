@@ -15,7 +15,7 @@ const AsideProfile = () => {
 
   return (
     <div className="my-7">
-      {userProfile && (
+      {userProfile && user && (
         <>
           <AsideAboutMe
             aboutMe={userProfile.aboutMe}

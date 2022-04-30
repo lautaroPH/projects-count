@@ -3,6 +3,7 @@ import { db } from 'firebaseMain/firebase';
 
 export const uploadUserProfile = async (userId, aboutMe, profession) => {
   await updateDoc(doc(db, 'users', userId), {
+    id: userId,
     aboutMe,
     profession,
   });

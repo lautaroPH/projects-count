@@ -14,13 +14,15 @@ export const deleteLink = async (
   userId,
   setLinks,
   links,
-  isOneLink
+  isOneLink,
+  isUser
 ) => {
   await deleteDoc(doc(db, 'links', id));
+
   if (image) {
     deleteImageStorage(id);
   }
-  if (!isOneLink || !isUser) {
+  if (!isOneLink && !isUser) {
     const newLinks = links.filter((link) => link.id !== id);
     setLinks(newLinks);
   }

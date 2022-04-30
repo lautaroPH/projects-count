@@ -4,7 +4,7 @@ import { getOneLink } from './getOneLink';
 import { uploadImage } from './uploadImage';
 import { uploadOneMoreLinkForUser } from './uploadOneMoreLinkForUser';
 
-export const uploadLink = async (values, selectedFile, user, setLinks) => {
+export const uploadLink = async (values, selectedFile, user) => {
   const { title, link, githubRepo, tecnologies, description } = values;
 
   const docRef = await addDoc(collection(db, 'links'), {

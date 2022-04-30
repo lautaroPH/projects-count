@@ -29,7 +29,7 @@ const FormCommentAnswer = ({
       validationSchema={AnswerFormValidation}
       onSubmit={async (values, { resetForm }) => {
         if (isEditing) {
-          await editAnswer(linkId, commentId, id, values.answer);
+          await editAnswer(linkId, commentId, id, values.answer, user?.id);
           setOpenEditAnswer(false);
         } else {
           await uploadAnswer(

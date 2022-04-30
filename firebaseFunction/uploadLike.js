@@ -29,7 +29,7 @@ export const uploadLike = async (
         timestamp: serverTimestamp(),
       });
 
-      uploadOneMoreLikeForLink(id, likes);
+      uploadOneMoreLikeForLink(id, likes, userId);
       uploadUserLike(id, userId, dataUserLike);
     })
     .catch(() => {

@@ -4,6 +4,7 @@ import AsideRanking from 'components/Home/AsideRanking/AsideRanking';
 import ListOfLinks from 'components/Home/Main/ListOfLinks';
 import ResultsLinks from 'components/Home/Main/ResultsLinks';
 import { useRouter } from 'next/router';
+import { firebaseKey } from 'firebase-key';
 
 export default function Home({ data }) {
   const router = useRouter();

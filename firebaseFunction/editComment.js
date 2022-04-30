@@ -28,6 +28,7 @@ export const editComment = async (
   await getOneLink(linkId)
     .then(async () => {
       await updateDoc(doc(db, 'links', linkId, 'comments', commentId), {
+        userId,
         comment: comment.trim(),
         isEdited: true,
       })
