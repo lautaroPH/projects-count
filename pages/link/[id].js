@@ -72,7 +72,7 @@ export default function Link({ data }) {
 //   };
 // }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // const { id } = params;
 
   // const res = await fetch(`http://localhost:3000/api/link/${id}`);
@@ -90,6 +90,5 @@ export async function getStaticProps() {
     props: {
       data,
     },
-    revalidate: 10,
   };
 }
