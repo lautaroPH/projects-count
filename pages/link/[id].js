@@ -42,39 +42,39 @@ export default function Link({ data, dataLink }) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch('https://projects-count.vercel.app/api/links');
-  const links = await res.json();
+// export async function getStaticPaths() {
+//   const res = await fetch('https://projects-count.vercel.app/api/links');
+//   const links = await res.json();
 
-  const paths = links.map((link) => ({
-    params: { id: link.id },
-  }));
+//   const paths = links.map((link) => ({
+//     params: { id: link.id },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const { id } = params;
+// export async function getStaticProps({ params }) {
+//   const { id } = params;
 
-  const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
-  const dataLink = await res.json();
+//   const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
+//   const dataLink = await res.json();
 
-  const data = {
-    title: 'TITULO A VER',
-    inicio: 'Inicio',
-    ranking: 'Ranking',
-    misProyectos: 'Mis proyectos',
-    miPerfil: 'Mi perfil',
-  };
+//   const data = {
+//     title: 'TITULO A VER',
+//     inicio: 'Inicio',
+//     ranking: 'Ranking',
+//     misProyectos: 'Mis proyectos',
+//     miPerfil: 'Mi perfil',
+//   };
 
-  return {
-    props: {
-      data,
-      dataLink,
-    },
-    revalidate: 10,
-  };
-}
+//   return {
+//     props: {
+//       data,
+//       dataLink,
+//     },
+//     revalidate: 10,
+//   };
+// }
