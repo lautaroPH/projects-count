@@ -4,7 +4,7 @@ export default async function links(request, response) {
   db.collection('links')
     .orderBy('timestamp', 'desc')
     .get()
-    .then(({ docs, empty }) => {
+    .then(({ docs }) => {
       const links = docs.map((doc) => ({
         id: doc.id,
       }));
