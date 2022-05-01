@@ -43,7 +43,7 @@ export default function Link({ data, dataLink }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3000/api/links');
+  const res = await fetch('https://projects-count.vercel.app/api/links');
   const links = await res.json();
 
   const paths = links.map((link) => ({
@@ -59,7 +59,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { id } = params;
 
-  const res = await fetch(`http://localhost:3000/api/link/${id}`);
+  const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
   const dataLink = await res.json();
 
   const data = {

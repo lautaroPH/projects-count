@@ -86,7 +86,9 @@ export default function User({ data, userId }) {
 
 export async function getServerSideProps({ params }) {
   const { userId } = params;
-  const res = await fetch(`http://localhost:3000/api/user/${userId}`);
+  const res = await fetch(
+    `https://projects-count.vercel.app/api/user/${userId}`
+  );
   const dataUser = await res.json();
 
   const data = {
