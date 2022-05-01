@@ -14,7 +14,7 @@ export default function Home({ data }) {
     <div>
       <Header
         title="Inicio"
-        description="Crear publicacion sobre los proyectos que desarrollaste o que estás apoyando para darle más reconocimiento y asi poder seguir creciendo."
+        description="Crear publicacion sobre los proyectos que desarrollaste, compartir con otros y comenta sobre otras publicaciones"
         data={data}
       />
 

@@ -9,8 +9,7 @@ export default function Link({ data, dataLink }) {
     <div>
       <Header
         title={link.title}
-        description="Ranking para saber quien ha realizada la gran mayoria 
-        de pajas a lo largo del tiempo, para descubrir quien es el más pajero"
+        description={`Publicacion creada por: ${link.username}, llamada: ${link.title}, sobre: ${link.description}`}
         data={data}
       />
 
@@ -42,21 +41,7 @@ export default function Link({ data, dataLink }) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch('https://projects-count.vercel.app/api/links');
-  const links = await res.json();
-
-  const paths = links.map((link) => ({
-    params: { id: link.id },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { id } = params;
 
   const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
@@ -75,6 +60,5 @@ export async function getStaticProps({ params }) {
       data,
       dataLink,
     },
-    revalidate: 5,
   };
 }

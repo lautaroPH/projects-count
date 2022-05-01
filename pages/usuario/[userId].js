@@ -24,8 +24,10 @@ export default function User({ data, userId }) {
   return (
     <div>
       <Header
-        title="Inicio"
-        description="Crear publicacion sobre los proyectos que desarrollaste o que estás apoyando para darle más reconocimiento y asi poder seguir creciendo."
+        title={dataUser?.username || 'Usuario'}
+        description={`Ver perfil y todas las publicacion creadas por el usuario: ${
+          dataUser?.username || 'Usuario'
+        }`}
         data={data}
       />
       <div className="flex items-center justify-center w-full">

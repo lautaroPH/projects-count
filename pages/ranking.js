@@ -6,8 +6,7 @@ export default function Rank({ data }) {
     <div>
       <Header
         title="Ranking"
-        description="Ranking para saber quien ha realizada la gran mayoria 
-        de pajas a lo largo del tiempo, para descubrir quien es el más pajero"
+        description="Ranking para demostrar quien es el usuario más activo y competir con los demás usuarios para lograr el top 1"
         data={data}
       />
 

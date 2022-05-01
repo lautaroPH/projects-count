@@ -1,6 +1,7 @@
 import HomeDescription from 'components/HomeDescriptions';
 import useUser from 'hooks/useUser';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Index() {
   const user = useUser();
@@ -10,5 +11,16 @@ export default function Index() {
     router.push('/inicio');
   }
 
-  return <div>{user === undefined && <HomeDescription />}</div>;
+  return (
+    <div>
+      <Head>
+        <title>Titulo a ver xd</title>
+        <meta
+          name="description"
+          content="Compartí tus proyectos, interactua con otros programadores y aprende en el proceso"
+        />
+      </Head>
+      {user === undefined && <HomeDescription />}
+    </div>
+  );
 }
