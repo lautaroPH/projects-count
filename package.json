@@ -13,7 +13,7 @@
     "algoliasearch": "^4.13.0",
     "cors": "2.8.5",
     "firebase": "9.6.1",
-    "firebase-admin": "^10.0.2",
+    "firebase-admin": "9.1.1",
     "formik": "^2.2.9",
     "intersection-observer": "^0.12.0",
     "lottie-react": "^2.2.1",
