@@ -6,7 +6,7 @@ import { swalUploadUserProfileDark } from 'swals/dark/swalUploadUserProfileDark'
 import { swalUploadUserProfileLight } from 'swals/light/swalUploadUserProfileLight';
 import Swal from 'sweetalert2';
 import MessageForValidation from 'utils/MensajeForValidation';
-import { UserProfileFormValidation } from 'validations/UserProfileFormValidation';
+import { UserProfileFormValidation } from 'Validations/UserProfileFormValidation';
 
 const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
   const { systemTheme, theme } = useTheme();

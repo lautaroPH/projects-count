@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import useUser from 'hooks/useUser';
 import Image from 'next/image';
-import { AnswerFormValidation } from 'validations/AnswerFormValidation';
+import { AnswerFormValidation } from 'Validations/AnswerFormValidation';
 import { uploadAnswer } from 'firebaseFunction/uploadAnswer';
 import TextareaAutosize from 'react-textarea-autosize';
 import { editAnswer } from 'firebaseFunction/editAnswer';

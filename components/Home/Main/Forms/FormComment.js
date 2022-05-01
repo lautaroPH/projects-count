@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import useUser from 'hooks/useUser';
-import { commentFormSchema } from 'validations/CommentFormValidation';
+import { commentFormSchema } from 'Validations/CommentFormValidation';
 import Image from 'next/image';
 import { uploadComment } from 'firebaseFunction/uploadComment';
 import TextareaAutosize from 'react-textarea-autosize';

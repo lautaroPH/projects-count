@@ -1,6 +1,6 @@
 import useUser from 'hooks/useUser';
 import { useState } from 'react';
-import { linkFormSchema } from 'validations/LinkFormValidation';
+import { linkFormSchema } from 'Validations/LinkFormValidation';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useTheme } from 'next-themes';
 import { imageValidation } from 'utils/ImageValidation';
