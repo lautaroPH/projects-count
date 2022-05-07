@@ -7,8 +7,8 @@ const AllButtons = ({
   likes,
   githubRepo,
   link,
-  setOpenCommentInput,
-  openCommentInput,
+  setOpenCommentModal,
+  openCommentModal,
   dataUserLike,
   links,
   setLinks,
@@ -25,8 +25,8 @@ const AllButtons = ({
         isOneLink={isOneLink}
       />
       <CommentButton
-        setOpenCommentInput={setOpenCommentInput}
-        openCommentInput={openCommentInput}
+        setOpenCommentModal={setOpenCommentModal}
+        openCommentModal={openCommentModal}
       />
       <a
         href={link}
@@ -35,7 +35,7 @@ const AllButtons = ({
         className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300"
       >
         <ExternalLinkIcon className="h-6 mr-1" />{' '}
-        <span className="hidden sm:block">Visitar</span>
+        <span className="hidden sm:block md:hidden lg:block">Visitar</span>
       </a>
       {githubRepo && (
         <a
@@ -45,7 +45,9 @@ const AllButtons = ({
           className="flex text-purple-700 items-center dark:text-white hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300"
         >
           <CodeIcon className="h-6 mr-1" />{' '}
-          <span className="hidden sm:block">Repositorio</span>
+          <span className="hidden sm:block md:hidden lg:block">
+            Repositorio
+          </span>
         </a>
       )}
     </div>

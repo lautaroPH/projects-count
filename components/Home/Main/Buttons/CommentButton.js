@@ -1,18 +1,18 @@
 import { ChatIcon } from '@heroicons/react/outline';
 
-const CommentButton = ({ setOpenCommentInput, openCommentInput }) => {
+const CommentButton = ({ setOpenCommentModal, openCommentModal }) => {
   return (
     <>
       <button
         onClick={() => {
-          openCommentInput
-            ? setOpenCommentInput(false)
-            : setOpenCommentInput(true);
+          openCommentModal
+            ? setOpenCommentModal(false)
+            : setOpenCommentModal(true);
         }}
         className="flex text-purple-700 dark:text-white items-center hover:bg-gray-200 dark:hover:bg-[#282C34] p-2 rounded transition-all ease-in-out duration-300"
       >
         <ChatIcon className="h-6 mr-1" />{' '}
-        <span className="hidden sm:block">Comentar</span>
+        <span className="hidden sm:block md:hidden lg:block">Comentar</span>
       </button>
     </>
   );

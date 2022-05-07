@@ -1,15 +1,15 @@
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
-import { OrderByValue } from "context/OrderByContext";
-import { Fragment, useContext } from "react";
-import { orderByValues } from "utils/defaultValues";
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import { OrderByValue } from 'context/OrderByContext';
+import { Fragment, useContext } from 'react';
+import { orderByValues } from 'utils/defaultValues';
 
 const OrderByLinks = () => {
   const { value, setValue } = useContext(OrderByValue);
 
   const handleClick = (e) => {
     const valueText = e.target.innerText;
-    localStorage.setItem("orderBy", valueText);
+    localStorage.setItem('orderBy', valueText);
     setValue(valueText);
   };
 

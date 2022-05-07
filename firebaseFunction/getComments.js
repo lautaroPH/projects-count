@@ -1,7 +1,9 @@
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
-export const getComments = (id, callback, callbackEmpty) => {
+export const getComments = (id, callback, callbackEmpty, callbackLoading) => {
+  callbackLoading(true);
+
   const querySnapshot = query(
     collection(db, 'links', id, 'comments'),
     orderBy('timestamp', 'desc'),
@@ -11,5 +13,6 @@ export const getComments = (id, callback, callbackEmpty) => {
   getDocs(querySnapshot).then((snapshot) => {
     callbackEmpty(snapshot.empty);
     callback(snapshot.docs);
+    callbackLoading(false);
   });
 };

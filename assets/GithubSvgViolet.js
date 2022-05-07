@@ -1,7 +1,7 @@
 const GithubSvgViolet = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="h-8 w-8 mr-2"
+    className="h-8 w-8 "
     viewBox="-1 -2 50 50"
   >
     <path

@@ -68,7 +68,7 @@ const ButtonDelete = ({
 
   return (
     <button
-      className="p-1 text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
+      className="p-1 text-sm md:text-base text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
       onClick={() => handleClick(id, image)}
     >
       Eliminar

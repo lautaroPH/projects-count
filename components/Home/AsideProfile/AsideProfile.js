@@ -14,7 +14,7 @@ const AsideProfile = () => {
   );
 
   return (
-    <div className="my-7">
+    <div className="my-7 hidden md:block">
       {userProfile && user && (
         <>
           <AsideAboutMe

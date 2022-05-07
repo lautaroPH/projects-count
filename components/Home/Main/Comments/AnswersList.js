@@ -1,8 +1,8 @@
-import FormCommentAnswer from '../Forms/FormCommentAnswer';
 import Answer from './Answer';
 import { useState, useEffect } from 'react';
 import { getAnswers } from 'firebaseFunction/getAnswers';
 import useUser from 'hooks/useUser';
+import ModalAnswerForm from 'components/Modals/ModalAnswerForm';
 
 const AnswersList = ({
   linkId,
@@ -10,9 +10,17 @@ const AnswersList = ({
   comments,
   setComments,
   setCommentsNumber,
+  openAnswers,
+  setOpenAnswers,
+  avatar,
+  username,
+  createdAtFormated,
+  timeago,
+  comment,
 }) => {
-  const [openAnswerForm, setOpenAnswerForm] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [openAnswerFormModal, setOpenAnswerFormModal] = useState(false);
+
   const user = useUser();
 
   useEffect(
@@ -20,16 +28,21 @@ const AnswersList = ({
     [linkId, commentId]
   );
 
+  useEffect(
+    () => answers.length === 0 && setOpenAnswers(false),
+    [answers, setOpenAnswers]
+  );
+
   return (
-    <>
-      <div className="flex items-center justify-end px-2 pb-3 mt-1 text-xs">
+    <div className="relative w-full">
+      {openAnswers && (
+        <div className="absolute w-1 text-center bg-gray-300 h-7 -top-2 rounded-s left-[14px] md:left-5 dark:bg-gray-800"></div>
+      )}
+
+      <div className="flex items-center justify-end pb-3 mt-1 text-xs w-full sm:w-[96%] md:w-full  xl:px-2">
         {user && (
           <button
-            onClick={() => {
-              openAnswerForm
-                ? setOpenAnswerForm(false)
-                : setOpenAnswerForm(true);
-            }}
+            onClick={() => setOpenAnswerFormModal(true)}
             className="px-1 font-semibold text-gray-500 transition-all duration-200 ease-in-out rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800"
           >
             Responder
@@ -40,9 +53,7 @@ const AnswersList = ({
             {user && <span className="mx-2 -mt-1">.</span>}
             <button
               onClick={() => {
-                openAnswerForm
-                  ? setOpenAnswerForm(false)
-                  : setOpenAnswerForm(true);
+                openAnswers ? setOpenAnswers(false) : setOpenAnswers(true);
               }}
               className="px-1 transition-all duration-200 ease-in-out rounded-sm hover:bg-gray-200 dark:hover:bg-gray-800"
             >
@@ -55,22 +66,14 @@ const AnswersList = ({
           </>
         )}
       </div>
-      {openAnswerForm && (
-        <div className="ml-[48px]">
-          {user && (
-            <FormCommentAnswer
-              linkId={linkId}
-              commentId={commentId}
-              comments={comments}
-              setComments={setComments}
-              setCommentsNumber={setCommentsNumber}
-            />
-          )}
+      {openAnswers && (
+        <div>
           {answers.length > 0 &&
-            answers?.map((answer) => (
+            answers?.map((answer, i) => (
               <Answer
                 key={answer.id}
                 id={answer.id}
+                lastAnswer={i === answers.length - 1}
                 linkId={linkId}
                 userId={answer.data().userId}
                 username={answer.data().username}
@@ -85,7 +88,24 @@ const AnswersList = ({
             ))}
         </div>
       )}
-    </>
+      {openAnswerFormModal && (
+        <ModalAnswerForm
+          openForm={openAnswerFormModal}
+          setOpenForm={setOpenAnswerFormModal}
+          linkId={linkId}
+          commentId={commentId}
+          comments={comments}
+          setComments={setComments}
+          setCommentsNumber={setCommentsNumber}
+          avatar={avatar}
+          username={username}
+          createdAtFormated={createdAtFormated}
+          timeago={timeago}
+          comment={comment}
+          setOpenAnswers={setOpenAnswers}
+        />
+      )}
+    </div>
   );
 };
 

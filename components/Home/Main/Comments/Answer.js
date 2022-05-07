@@ -21,6 +21,7 @@ const Answer = ({
   isEdited,
   comments,
   setComments,
+  lastAnswer,
 }) => {
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
@@ -35,22 +36,30 @@ const Answer = ({
   );
 
   return (
-    <div className="flex justify-center w-full pb-4 ml-1">
-      <div className="w-8 h-8 mt-1 mr-2">
-        <Image
-          className="rounded-full"
-          src={avatar}
-          height={150}
-          width={150}
-          alt={answer}
-        />
+    <div className="flex w-full">
+      <div className="relative flex flex-col items-center mt-2 mr-3">
+        <div className="absolute w-1 h-4 mt-1 text-center bg-gray-300 rounded-sm -top-6 dark:bg-gray-800"></div>
+        <div className="w-8 h-8 md:w-11 md:h-11">
+          <Image
+            className="rounded-full"
+            src={avatar}
+            height={150}
+            width={150}
+            alt={answer}
+          />
+        </div>
+        {!lastAnswer && (
+          <div className="w-1 h-full mt-1 text-center bg-gray-300 rounded-sm dark:bg-gray-800"></div>
+        )}
       </div>
-      <div className="p-2 w-[90%] bg-gray-100 rounded-lg dark:bg-gray-800">
+      <div className="p-2 w-[90%] bg-gray-100 rounded-lg dark:bg-gray-800 mb-4">
         <div className="flex justify-between">
           <div>
             <Link href={`/usuario/${userId}`}>
               <a>
-                <p className="mr-2 font-semibold hover:underline">{username}</p>
+                <p className="mr-2 text-sm font-semibold hover:underline">
+                  {username}
+                </p>
               </a>
             </Link>
 
@@ -81,7 +90,7 @@ const Answer = ({
         </div>
         {openEditAnswer ? (
           <FormCommentAnswer
-            setOpenEditAnswer={setOpenEditAnswer}
+            setOpenForm={setOpenEditAnswer}
             answer={answer}
             linkId={linkId}
             commentId={commentId}

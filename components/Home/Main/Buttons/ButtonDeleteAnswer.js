@@ -37,7 +37,7 @@ const ButtonDeleteAnswer = ({ linkId, commentId, answerId }) => {
 
   return (
     <button
-      className="p-1 text-sm text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
+      className="p-1 text-xs text-red-500 transition-colors duration-300 ease-out border-2 border-transparent rounded-lg md:text-sm hover:text-red-700 dark:hover:text-red-400 hover:border-red-600"
       onClick={() => handleClick(linkId, commentId, answerId)}
     >
       Eliminar

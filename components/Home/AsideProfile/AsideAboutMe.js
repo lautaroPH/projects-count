@@ -8,7 +8,7 @@ const AsideAboutMe = ({ username, profession, aboutMe, id, userId }) => {
 
   return (
     <div className="flex justify-end w-full ">
-      <div className="w-[75%]">
+      <div className="w-[90%] xl:w-[80%]">
         <div className="w-full px-2 bg-white dark:bg-gray-900 rounded-xl">
           <div className="flex flex-col items-center p-2 border-b-2 dark:border-b-gray-800">
             <h2 className="text-xl text-center text-violet-700 dark:text-white">

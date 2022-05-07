@@ -58,7 +58,7 @@ const LikeButton = ({
       ) : (
         <HeartIcon className="h-6 mr-1" />
       )}
-      <span className="hidden sm:block">Me gusta</span>
+      <span className="hidden sm:block md:hidden lg:block">Me gusta</span>
     </button>
   );
 };

@@ -19,12 +19,12 @@ export default function Home({ data }) {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[25%_50%_25%] xl:grid-cols-[20%_35%_20%] justify-center w-full">
+        <div className="grid md grid-cols-1 md:grid-cols-[40%_60%] lg:grid-cols-[25%_50%_25%] xl:grid-cols-[20%_40%_20%] justify-center w-full">
           <AsideProfile />
-          <div className="mx-7">
+          <div className="md:mx-7">
             {query ? <ResultsLinks query={query} /> : <ListOfLinks />}
           </div>
-          <div className="mt-7">
+          <div className="hidden mt-7 lg:block">
             <AsideRanking />
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function Home({ data }) {
 
 export async function getServerSideProps() {
   const data = {
-    title: 'TITULO A VER',
+    title: 'Shareit',
     inicio: 'Inicio',
     ranking: 'Ranking',
     misProyectos: 'Mis proyectos',

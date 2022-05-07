@@ -30,6 +30,7 @@ const Comment = ({
   const user = useUser();
   const [openAllComment, setOpenAllComment] = useState(false);
   const [openEditComment, setOpenEditComment] = useState(false);
+  const [openAnswers, setOpenAnswers] = useState(false);
 
   if (timestamp !== null) {
     const createdAt = new Date(parseInt(timestamp?.seconds * 1000));
@@ -42,22 +43,27 @@ const Comment = ({
   return (
     <>
       <div className="px-4 pb-1">
-        <div className="flex justify-center">
-          <div className="mt-2 mr-2 w-11 h-11">
-            <Image
-              className="rounded-full"
-              src={avatar}
-              height={150}
-              width={150}
-              alt={comment}
-            />
+        <div className="flex w-full">
+          <div className="relative flex flex-col items-center mt-2 mr-3">
+            <div className="w-8 h-8 md:w-11 md:h-11">
+              <Image
+                className="rounded-full"
+                src={avatar}
+                height={150}
+                width={150}
+                alt={comment}
+              />
+            </div>
+            {openAnswers && (
+              <div className="w-1 h-full mt-1 text-center bg-gray-300 rounded-sm dark:bg-gray-800"></div>
+            )}
           </div>
           <div className="bg-gray-100 dark:bg-gray-800 w-[90%] rounded-lg p-2 relative">
             <div className="flex justify-between">
               <div>
                 <Link href={`/usuario/${userId}`}>
                   <a>
-                    <p className="mr-2 font-semibold hover:underline">
+                    <p className="mr-2 text-sm font-semibold hover:underline">
                       {username}
                     </p>
                   </a>
@@ -103,7 +109,7 @@ const Comment = ({
               </p>
             ) : (
               <FormComment
-                setOpenEditComment={setOpenEditComment}
+                setOpenForm={setOpenEditComment}
                 comment={comment}
                 linkId={linkId}
                 commentId={commentId}
@@ -125,6 +131,13 @@ const Comment = ({
           comments={comments}
           setComments={setComments}
           setCommentsNumber={setCommentsNumber}
+          openAnswers={openAnswers}
+          setOpenAnswers={setOpenAnswers}
+          avatar={avatar}
+          username={username}
+          createdAtFormated={createdAtFormated}
+          timeago={timeago}
+          comment={comment}
         />
       </div>
     </>

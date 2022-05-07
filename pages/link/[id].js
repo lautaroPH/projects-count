@@ -14,7 +14,7 @@ export default function Link({ data, dataLink }) {
       />
 
       <div className="flex items-center justify-center ">
-        <div className="w-2/4 mb-20 ml-6 border-t border-gray-300 mt-7 sm:border-none">
+        <div className="w-full mb-20 md:w-3/4 lg:w-2/4 mt-7">
           <Linklist
             id={link?.id}
             key={link?.id}

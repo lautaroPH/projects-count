@@ -39,7 +39,7 @@ const ListOfLinks = () => {
   }, [isNearScreen, value, links, noLinks, isLoadingMoreLinks]);
 
   return (
-    <div className="mt-7">
+    <div className="lg:mt-7">
       {user && <ButtonOpenModalForm setLinks={setLinks} />}
       <OrderByLinks />
 
@@ -50,7 +50,7 @@ const ListOfLinks = () => {
         </>
       ) : (
         <>
-          <div className="mb-20 border-t border-gray-300 sm:border-none">
+          <div className="mb-20 border-t border-gray-300 dark:border-gray-800 md:border-none">
             {links.map((link) => (
               <Linklist
                 id={link?.id}

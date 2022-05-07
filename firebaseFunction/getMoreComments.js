@@ -8,7 +8,13 @@ import {
 } from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
-export const getMoreComments = (id, callback, callbackEmpty, lastComment) => {
+export const getMoreComments = (
+  id,
+  callback,
+  callbackEmpty,
+  lastComment,
+  callbackLoading
+) => {
   const querySnapshot = query(
     collection(db, 'links', id, 'comments'),
     orderBy('timestamp', 'desc'),
@@ -19,5 +25,6 @@ export const getMoreComments = (id, callback, callbackEmpty, lastComment) => {
   getDocs(querySnapshot).then((snapshot) => {
     callbackEmpty(snapshot.empty);
     callback((comments) => [...comments, ...snapshot.docs]);
+    callbackLoading(false);
   });
 };

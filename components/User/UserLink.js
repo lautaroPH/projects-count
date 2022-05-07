@@ -2,17 +2,17 @@ import { useDateTimeFormat } from 'hooks/useDateTimeFormat';
 import { useTimeAgo } from 'hooks/useTimeAgo';
 import useUser from 'hooks/useUser';
 import Image from 'next/image';
-import Tecnologies from './Tecnologies';
-import ButtonDelete from './Buttons/ButtonDelete';
-import Footer from './Footer';
-import ButtonEditLink from './Buttons/ButtonEditLink';
 import ModalForm from 'components/Modals/ModalForm';
 import { useState } from 'react';
 import Link from 'next/link';
+import ButtonEditLink from 'components/Home/Main/Buttons/ButtonEditLink';
+import ButtonDelete from 'components/Home/Main/Buttons/ButtonDelete';
+import Tecnologies from 'components/Home/Main/Tecnologies';
+import Footer from 'components/Home/Main/Footer';
 
 //TODO: intentar hacer que se muestre quien le da like con las caritas
 
-const Linklist = ({
+const UserLink = ({
   title,
   link,
   description,
@@ -25,11 +25,8 @@ const Linklist = ({
   image,
   username,
   setLinks,
-  isSearch,
   links,
   isEdited,
-  openComment,
-  isOneLink,
   isUser,
 }) => {
   const user = useUser();
@@ -102,7 +99,6 @@ const Linklist = ({
                 id={id}
                 image={image}
                 userId={user?.id}
-                isOneLink={isOneLink}
                 isUser={isUser}
               />
             </p>
@@ -138,8 +134,6 @@ const Linklist = ({
           link={link}
           links={links}
           setLinks={setLinks}
-          openComment={openComment}
-          isOneLink={isOneLink}
           title={titleWithUppercase}
           avatar={avatar}
           username={username}
@@ -162,8 +156,6 @@ const Linklist = ({
           image={image}
           links={links}
           setLinks={setLinks}
-          isSearch={isSearch}
-          isOneLink={isOneLink}
           isUser={isUser}
         />
       )}
@@ -171,4 +163,4 @@ const Linklist = ({
   );
 };
 
-export default Linklist;
+export default UserLink;

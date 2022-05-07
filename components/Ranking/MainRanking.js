@@ -17,27 +17,29 @@ const MainRanking = () => {
       {isLoading ? (
         <SkeletonLoaderRanking />
       ) : (
-        <div className="px-4 pb-20 pt-7">
-          <div className="flex justify-center">
-            <table className="w-full overflow-hidden rounded-lg table-auto max-w-prose">
-              <TableHead />
-              <tbody>
-                {userRanks.length > 0 &&
-                  userRanks.map((userRank, index) => (
-                    <ListUserRank
-                      key={userRank.id}
-                      username={userRank.data().username}
-                      linksNumber={userRank.data().linksNumber}
-                      id={userRank.id}
-                      userId={user?.id}
-                      index={index}
-                      avatar={userRank.data().avatar}
-                    />
-                  ))}
-              </tbody>
-            </table>
+        <>
+          <div className="px-4 pb-20 pt-7">
+            <div className="flex justify-center">
+              <table className="w-full overflow-hidden rounded-lg table-auto max-w-prose">
+                <TableHead />
+                <tbody>
+                  {userRanks.length > 0 &&
+                    userRanks.map((userRank, index) => (
+                      <ListUserRank
+                        key={userRank.id}
+                        username={userRank.data().username}
+                        linksNumber={userRank.data().linksNumber}
+                        id={userRank.id}
+                        userId={user?.id}
+                        index={index}
+                        avatar={userRank.data().avatar}
+                      />
+                    ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

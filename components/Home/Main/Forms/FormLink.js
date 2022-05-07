@@ -246,6 +246,7 @@ const FormLink = ({
                 values?.title?.trim() === '' ||
                 values?.link?.trim() === '' ||
                 values?.description?.trim() === '' ||
+                selectedFile === null ||
                 errors?.title ||
                 errors?.link ||
                 errors?.githubRepo ||

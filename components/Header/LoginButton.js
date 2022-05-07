@@ -5,7 +5,7 @@ import GithubSvgViolet from 'assets/GithubSvgViolet';
 import { useTheme } from 'next-themes';
 import ButtonSelectSvgToLogin from './ButtonSelectSvgToLogin';
 
-const LoginButton = () => {
+const LoginButton = ({ searchMobile }) => {
   const { systemTheme, theme } = useTheme();
   const [currentTheme, setCurrentTheme] = useState('');
 
@@ -20,11 +20,13 @@ const LoginButton = () => {
         <ButtonSelectSvgToLogin
           firstIcon={<GithubSvgDark />}
           secondIcon={<GithubSvgLight />}
+          searchMobile={searchMobile}
         />
       ) : (
         <ButtonSelectSvgToLogin
           firstIcon={<GithubSvgLight />}
           secondIcon={<GithubSvgViolet />}
+          searchMobile={searchMobile}
         />
       )}
     </div>

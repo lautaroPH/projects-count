@@ -10,7 +10,7 @@ import MessageForValidation from 'utils/MensajeForValidation';
 import { useRouter } from 'next/router';
 
 const FormComment = ({
-  setOpenEditComment,
+  setOpenForm,
   comment,
   commentId,
   linkId,
@@ -24,6 +24,7 @@ const FormComment = ({
   links,
   setCommentsNumber,
   isOneLink,
+  setOpenComments,
 }) => {
   const user = useUser();
   const router = useRouter();
@@ -50,7 +51,7 @@ const FormComment = ({
             isOneLink,
             router
           );
-          setOpenEditComment(false);
+          setOpenForm(false);
         } else {
           await uploadComment(
             linkId,
@@ -65,19 +66,19 @@ const FormComment = ({
             router
           );
           setCommentsNumber(commentsNumber + 1);
+          setOpenForm(false);
+          setOpenComments(true);
         }
         resetForm();
       }}
     >
       {({ values, isSubmitting, errors, handleChange }) => (
         <Form
-          className={`${
-            !isEditing && `pt-2 mb-4 ml-4 mr-4 rounded`
-          } bg-transparent `}
+          className={`${!isEditing && `pt-2 pl-4 rounded`} bg-transparent `}
         >
           <div className={`${!isEditing && `flex w-full mb-4`}`}>
             {!isEditing && (
-              <div className="w-12 h-12 mr-2">
+              <div className="w-10 h-10 mr-2 md:w-12 md:h-12">
                 {user?.avatar && (
                   <Image
                     src={user?.avatar}
@@ -91,12 +92,10 @@ const FormComment = ({
               </div>
             )}
 
-            <div className={`${!isEditing && `w-full`}`}>
+            <div className={`${!isEditing && `w-[90%] flex items-center`}`}>
               <TextareaAutosize
                 className={`${
-                  isEditing
-                    ? `focus:border focus:rounded-md`
-                    : `px-3 py-3 border rounded-3xl `
+                  isEditing && `focus:border focus:rounded-md`
                 } w-full leading-tight dark:placeholder-gray-400 dark:text-white text-gray-700 bg-transparent border-gray-400 appearance-none resize-none textareaScrollNone dark:border-gray-500  focus:outline-none focus:shadow-outline`}
                 value={values?.comment}
                 onChange={handleChange}
@@ -107,41 +106,38 @@ const FormComment = ({
                 autoComplete="off"
                 autoFocus={true}
               />
-              {values?.comment?.trim().length > 1250 && (
-                <small className="px-1 text-sm font-semibold text-red-500 dark:text-red-600">
-                  {errors.comment}
-                </small>
-              )}
-
-              {values?.comment?.trim() !== '' && (
-                <div
-                  className={`${
-                    isEditing && `justify-end`
-                  } flex items-center mt-2`}
-                >
-                  <button
-                    className={`${
-                      isEditing
-                        ? `pr-2 text-sm font-semibold text-violet-600 hover:underline dark:text-white`
-                        : `buttonCommentForm`
-                    }`}
-                    type="submit"
-                    disabled={
-                      values?.comment?.trim() === '' ||
-                      errors?.comment ||
-                      isSubmitting
-                    }
-                  >
-                    {isSubmitting ? 'Publicando...' : 'Publicar'}
-                  </button>
-                  <MessageForValidation
-                    value={values?.comment?.trim().length}
-                    firstAlertNumber={1200}
-                    alertNumber={1250}
-                  />
-                </div>
-              )}
             </div>
+          </div>
+          <div
+            className={`${
+              isEditing && `justify-end`
+            } flex items-center justify-end mt-2 w-full`}
+          >
+            {values?.comment?.trim().length > 1250 && (
+              <small className="px-1 mr-2 text-sm font-semibold text-red-500 dark:text-red-600">
+                {errors.comment}
+              </small>
+            )}
+            <MessageForValidation
+              value={values?.comment?.trim().length}
+              firstAlertNumber={1200}
+              alertNumber={1250}
+            />
+            <button
+              className={`${
+                isEditing
+                  ? `pr-2 text-sm font-semibold text-violet-600 hover:underline disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:no-underline dark:text-white ml-2`
+                  : `buttonCommentForm ml-2`
+              }`}
+              type="submit"
+              disabled={
+                values?.comment?.trim() === '' ||
+                errors?.comment ||
+                isSubmitting
+              }
+            >
+              {isSubmitting ? 'Publicando...' : 'Publicar'}
+            </button>
           </div>
         </Form>
       )}

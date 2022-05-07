@@ -44,12 +44,12 @@ const ResultsLinks = ({ query }) => {
   return (
     <>
       {!noLinks ? (
-        <h3 className="my-2 text-center text-gray-500">
+        <h3 className="my-2 text-center text-gray-500 dark:text-gray-300">
           Resultados de la busqueda:{' '}
           <span className="font-semibold">{query}</span>
         </h3>
       ) : (
-        <h3 className="font-semibold text-center text-gray-700 mt-7">
+        <h3 className="font-semibold text-center text-gray-700 dark:text-gray-300 mt-7">
           No hay resultados
         </h3>
       )}
@@ -61,7 +61,7 @@ const ResultsLinks = ({ query }) => {
         </>
       ) : (
         <>
-          <div className="mb-20 border-t border-gray-300 sm:border-none">
+          <div className="mb-20">
             {links.length > 0 &&
               links.map((link) => (
                 <Linklist
