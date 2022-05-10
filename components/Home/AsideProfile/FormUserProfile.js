@@ -108,8 +108,8 @@ const FormUserProfile = ({
                 )}
                 <MessageForValidation
                   value={values?.aboutMe?.trim().length}
-                  firstAlertNumber={350}
-                  alertNumber={400}
+                  firstAlertNumber={750}
+                  alertNumber={800}
                 />
               </div>
             </div>
