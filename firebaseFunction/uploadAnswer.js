@@ -17,6 +17,7 @@ export const uploadAnswer = async (
   setCommentsNumber
 ) => {
   const { id: userId, username, avatar } = user;
+  const answerTrim = answer.trim();
 
   getOneComment(id, commentId)
     .then(async () => {
@@ -26,7 +27,7 @@ export const uploadAnswer = async (
           userId,
           username,
           avatar,
-          answer,
+          answer: answerTrim,
           commentId,
           timestamp: serverTimestamp(),
         }

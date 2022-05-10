@@ -100,7 +100,7 @@ const Answer = ({
             setComments={setComments}
           />
         ) : (
-          <p className="overflow-hidden text-sm">
+          <p className="overflow-hidden text-sm whitespace-pre-line">
             {answer.substring(0, 260)}
             {answer.length > 240 && !openAllComment && (
               <button

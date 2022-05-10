@@ -93,7 +93,9 @@ const UserProfile = ({
           >
             {portfolio}
           </a>
-          <p className="mt-3 sm:w-[70ch] xl:w-[60ch]">{aboutMe}</p>
+          <p className="mt-3 sm:w-[70ch] xl:w-[60ch] whitespace-pre-line">
+            {aboutMe}
+          </p>
         </div>
       </div>
       {openForm && (

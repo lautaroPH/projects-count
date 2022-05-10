@@ -29,7 +29,7 @@ export const editComment = async (
     .then(async () => {
       await updateDoc(doc(db, 'links', linkId, 'comments', commentId), {
         userId,
-        comment: comment,
+        comment: comment.trim(),
         isEdited: true,
       })
         .then(async () => {

@@ -12,7 +12,7 @@ export const uploadLink = async (values, selectedFile, user) => {
     link: link.trim(),
     githubRepo: githubRepo.trim(),
     tecnologies: tecnologies.trim(),
-    description: description,
+    description: description.trim(),
     allLikes: 0,
     username: user?.username,
     email: user?.email,

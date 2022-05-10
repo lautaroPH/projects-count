@@ -95,7 +95,7 @@ const Comment = ({
               )}
             </div>
             {!openEditComment ? (
-              <p className="overflow-hidden text-sm">
+              <p className="overflow-hidden text-sm whitespace-pre-line">
                 {comment.substring(0, 260)}
                 {comment.length > 240 && !openAllComment && (
                   <button

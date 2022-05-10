@@ -9,7 +9,7 @@ const AboutMe = ({ aboutMe }) => {
       {aboutMe === undefined ? (
         <SkeletonAboutMeLoader />
       ) : (
-        <p className="text-sm text-center ">
+        <p className="text-sm text-center whitespace-pre-line">
           {aboutMe === '' ? 'undefined' : aboutMe}
         </p>
       )}

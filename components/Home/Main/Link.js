@@ -121,7 +121,7 @@ const Linklist = ({
             </a>
           </Link>
 
-          <p className="pr-3 mb-2 dark:text-gray-200">
+          <p className="pr-3 mb-2 whitespace-pre-line dark:text-gray-200">
             {descriptionWithUppercase}
           </p>
 
