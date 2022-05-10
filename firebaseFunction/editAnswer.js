@@ -13,7 +13,7 @@ export const editAnswer = async (
     {
       userId,
       commentId,
-      answer: answer.trim(),
+      answer: answer,
       isEdited: true,
     }
   );

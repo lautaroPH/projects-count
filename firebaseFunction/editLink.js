@@ -32,7 +32,7 @@ export const editLink = async (
     link: values.link.trim(),
     githubRepo: values.githubRepo.trim(),
     tecnologies: values.tecnologies.trim(),
-    description: values.description.trim(),
+    description: values.description,
     isEdited: true,
   })
     .then(async () => {

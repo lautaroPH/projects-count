@@ -28,7 +28,7 @@ export const uploadComment = async (
         userId,
         username,
         avatar,
-        comment: comment.trim(),
+        comment: comment,
         timestamp: serverTimestamp(),
       });
       await getLastCommentUpload(id, commentRef.id, setComments);

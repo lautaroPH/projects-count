@@ -34,7 +34,7 @@ const FormUserProfile = ({
           : Swal.fire(swalUploadUserProfileLight);
         await uploadUserProfile(
           userId,
-          values.aboutMe.trim(),
+          values.aboutMe,
           values.profession.trim(),
           values.portfolio.trim()
         );
