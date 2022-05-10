@@ -6,6 +6,6 @@ import { deleteUserLike } from './deleteUserLike';
 export const deleteLike = async (id, userId, likes) => {
   await deleteDoc(doc(db, 'links', id, 'likes', userId));
 
-  deleteOneLikeNumberForLink(id, likes);
-  deleteUserLike(id, userId);
+  await deleteOneLikeNumberForLink(id, likes);
+  await deleteUserLike(id, userId);
 };

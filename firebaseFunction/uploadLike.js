@@ -29,8 +29,8 @@ export const uploadLike = async (
         timestamp: serverTimestamp(),
       });
 
-      uploadOneMoreLikeForLink(id, likes, userId);
-      uploadUserLike(id, userId, dataUserLike);
+      await uploadOneMoreLikeForLink(id, likes);
+      await uploadUserLike(id, userId, dataUserLike);
     })
     .catch(() => {
       currentTheme === 'light'

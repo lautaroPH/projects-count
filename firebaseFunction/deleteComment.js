@@ -17,7 +17,7 @@ export const deleteComment = async (
 
   setComments(newComments);
 
-  editCommentsNumber(linkId);
-  deleteUserComment(commentId, userId);
-  deleteAnswerCollection(linkId, commentId);
+  await editCommentsNumber(linkId);
+  await deleteUserComment(commentId, userId);
+  await deleteAnswerCollection(linkId, commentId);
 };

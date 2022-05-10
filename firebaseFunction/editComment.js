@@ -33,12 +33,12 @@ export const editComment = async (
         isEdited: true,
       })
         .then(async () => {
-          await getOneComment(linkId, commentId).then((commentEdited) => {
+          await getOneComment(linkId, commentId).then(async (commentEdited) => {
             const newArray = useEditArray(commentEdited, comments, commentId);
 
             setComments(newArray);
 
-            editUserComment(userId, commentId, comment.trim());
+            await editUserComment(userId, commentId, comment.trim());
           });
         })
         .catch(() => {

@@ -1,15 +1,22 @@
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
 export const getUserComments = (id, callbackDocs, callbackEmpty) => {
-  const commentQuery = query(
-    collection(db, 'users', id, 'comments'),
-    orderBy('timestamp', 'desc'),
-    limit(3)
+  return onSnapshot(
+    query(
+      collection(db, 'users', id, 'comments'),
+      orderBy('timestamp', 'desc'),
+      limit(3)
+    ),
+    ({ docs, empty }) => {
+      callbackDocs(docs);
+      callbackEmpty(empty);
+    }
   );
-
-  getDocs(commentQuery).then((documentSnapshotsNew) => {
-    callbackDocs(documentSnapshotsNew.docs);
-    callbackEmpty(documentSnapshotsNew.empty);
-  });
 };

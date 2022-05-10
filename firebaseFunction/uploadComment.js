@@ -32,8 +32,8 @@ export const uploadComment = async (
         timestamp: serverTimestamp(),
       });
       await getLastCommentUpload(id, commentRef.id, setComments);
-      uploadUserComment(id, userId, comment, title, commentRef.id);
-      uploadCommentsNumber(id);
+      await uploadUserComment(id, userId, comment, title, commentRef.id);
+      await uploadCommentsNumber(id);
     })
     .catch(() => {
       currentTheme === 'light'

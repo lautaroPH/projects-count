@@ -1,15 +1,22 @@
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { db } from 'firebaseMain/firebase';
 
 export const getUserLikes = async (id, callbackDocs, callbackEmpty) => {
-  const commentQuery = query(
-    collection(db, 'users', id, 'likes'),
-    orderBy('timestamp', 'desc'),
-    limit(3)
+  return onSnapshot(
+    query(
+      collection(db, 'users', id, 'likes'),
+      orderBy('timestamp', 'desc'),
+      limit(3)
+    ),
+    ({ docs, empty }) => {
+      callbackDocs(docs);
+      callbackEmpty(empty);
+    }
   );
-
-  await getDocs(commentQuery).then((documentSnapshotsNew) => {
-    callbackDocs(documentSnapshotsNew.docs);
-    callbackEmpty(documentSnapshotsNew.empty);
-  });
 };

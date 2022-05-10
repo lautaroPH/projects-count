@@ -20,17 +20,17 @@ export const deleteLink = async (
   await deleteDoc(doc(db, 'links', id));
 
   if (image) {
-    deleteImageStorage(id);
+    await deleteImageStorage(id);
   }
   if (!isOneLink && !isUser) {
     const newLinks = links.filter((link) => link.id !== id);
     setLinks(newLinks);
   }
 
-  deleteOneLinkNumberForUser(userId);
-  deleteCommentNumbers(id);
-  deleteLikesCollection(id);
-  deleteCommentCollection(id);
-  deleteUserCommentCollection(userId, id);
-  deleteUserLikesCollection(userId, id);
+  await deleteOneLinkNumberForUser(userId);
+  await deleteCommentNumbers(id);
+  await deleteLikesCollection(id);
+  await deleteCommentCollection(id);
+  await deleteUserCommentCollection(userId, id);
+  await deleteUserLikesCollection(userId, id);
 };

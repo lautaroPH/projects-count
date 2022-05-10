@@ -7,7 +7,7 @@ export const deleteCommentCollection = async (id) => {
   const documentSnapshot = await getDocs(commentRef);
 
   documentSnapshot.docs.map(async (comment) => {
-    deleteAnswerCollection(id, comment.id);
+    await deleteAnswerCollection(id, comment.id);
     await deleteDoc(doc(db, `links/${id}/comments/${comment.id}`));
   });
 };
