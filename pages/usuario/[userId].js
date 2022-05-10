@@ -63,7 +63,7 @@ export default function User({ data, userId, dataUserServer }) {
 
 export async function getServerSideProps({ params }) {
   const { userId } = params;
-  const res = await fetch(`http://localhost:3000/api/user/${userId}`);
+  const res = await fetch(`https://shareweb.vercel.app/api/user/${userId}`);
   if (res.ok) {
     const dataUserServer = await res.json();
 

@@ -44,7 +44,7 @@ export default function Link({ data, dataLink }) {
 export async function getServerSideProps({ params }) {
   const { id } = params;
 
-  const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
+  const res = await fetch(`https://shareweb.vercel.app/api/link/${id}`);
   if (res.ok) {
     const data = {
       title: 'Shareit',
