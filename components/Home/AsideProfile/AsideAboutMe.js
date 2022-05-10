@@ -3,7 +3,15 @@ import AboutMe from './AboutMe';
 import Profession from './Profession';
 import { useState } from 'react';
 
-const AsideAboutMe = ({ username, profession, aboutMe, id, userId }) => {
+const AsideAboutMe = ({
+  username,
+  profession,
+  aboutMe,
+  id,
+  userId,
+  user,
+  portfolio,
+}) => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
@@ -37,6 +45,8 @@ const AsideAboutMe = ({ username, profession, aboutMe, id, userId }) => {
           setOpenForm={setOpenForm}
           aboutMe={aboutMe}
           profession={profession}
+          user={user}
+          portfolio={portfolio}
         />
       )}
     </div>

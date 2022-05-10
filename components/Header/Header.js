@@ -16,7 +16,7 @@ const Header = ({ title, description, data }) => {
   return (
     <header className="flex items-center w-full bg-white lg:justify-center dark:bg-gray-900">
       <Head>
-        <title>{title ? `${title} - TITULO A VER` : 'TITULO A VER'}</title>
+        <title>{title ? `${title} - Shareit` : 'Shareit'}</title>
         {description && <meta name="description" content={description} />}
       </Head>
       <nav

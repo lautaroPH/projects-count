@@ -8,6 +8,7 @@ const ModalUserForm = ({
   setOpenForm,
   aboutMe,
   profession,
+  portfolio,
 }) => {
   return (
     <Transition.Root show={openForm} as={Fragment}>
@@ -50,6 +51,7 @@ const ModalUserForm = ({
                 setOpenForm={setOpenForm}
                 aboutMe={aboutMe}
                 profession={profession}
+                portfolio={portfolio}
               />
             </div>
           </Transition.Child>

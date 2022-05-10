@@ -14,15 +14,17 @@ const AsideProfile = () => {
   );
 
   return (
-    <div className="my-7 hidden md:block">
+    <div className="hidden my-7 md:block">
       {userProfile && user && (
         <>
           <AsideAboutMe
             aboutMe={userProfile.aboutMe}
             profession={userProfile.profession}
             username={userProfile.username}
+            portfolio={userProfile.portfolio}
             id={userProfile.id}
             userId={user?.id}
+            user={user}
           />
 
           <AsideActivity />

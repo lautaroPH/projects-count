@@ -45,20 +45,28 @@ export async function getServerSideProps({ params }) {
   const { id } = params;
 
   const res = await fetch(`https://projects-count.vercel.app/api/link/${id}`);
-  const dataLink = await res.json();
+  if (res.ok) {
+    const data = {
+      title: 'Shareit',
+      inicio: 'Inicio',
+      ranking: 'Ranking',
+      misProyectos: 'Mis proyectos',
+      miPerfil: 'Mi perfil',
+    };
 
-  const data = {
-    title: 'TITULO A VER',
-    inicio: 'Inicio',
-    ranking: 'Ranking',
-    misProyectos: 'Mis proyectos',
-    miPerfil: 'Mi perfil',
-  };
-
-  return {
-    props: {
-      data,
-      dataLink,
-    },
-  };
+    const dataLink = await res.json();
+    return {
+      props: {
+        data,
+        dataLink,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+    };
+  }
 }

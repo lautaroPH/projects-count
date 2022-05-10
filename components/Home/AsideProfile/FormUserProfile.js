@@ -8,7 +8,13 @@ import Swal from 'sweetalert2';
 import MessageForValidation from 'utils/MensajeForValidation';
 import { UserProfileFormValidation } from 'Validations/UserProfileFormValidation';
 
-const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
+const FormUserProfile = ({
+  userId,
+  aboutMe,
+  profession,
+  setOpenForm,
+  portfolio,
+}) => {
   const { systemTheme, theme } = useTheme();
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -18,6 +24,7 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
       initialValues={{
         aboutMe: aboutMe ? aboutMe : '',
         profession: profession ? profession : '',
+        portfolio: portfolio ? portfolio : '',
       }}
       validationSchema={UserProfileFormValidation}
       onSubmit={async (values) => {
@@ -28,12 +35,13 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
         await uploadUserProfile(
           userId,
           values.aboutMe.trim(),
-          values.profession.trim()
+          values.profession.trim(),
+          values.portfolio.trim()
         );
       }}
     >
       {({ values, isSubmitting, errors, handleChange }) => (
-        <Form className="w-full pl-[18px]">
+        <Form className="w-full">
           <div>
             <div className="mb-4">
               <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
@@ -51,6 +59,26 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
               />
               <ErrorMessage
                 name="profession"
+                component="small"
+                className="px-1 text-base text-red-800 dark:text-red-600"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block mb-2 text-sm font-bold text-violet-700 dark:text-gray-100">
+                Portfolio
+              </label>
+              <Field
+                className={`${
+                  errors.profession &&
+                  'border border-red-700 dark:border-red-700'
+                } inputLinks`}
+                name="portfolio"
+                placeholder="Portfolio"
+                autoComplete="off"
+                type="text"
+              />
+              <ErrorMessage
+                name="portfolio"
                 component="small"
                 className="px-1 text-base text-red-800 dark:text-red-600"
               />
@@ -85,12 +113,16 @@ const FormUserProfile = ({ userId, aboutMe, profession, setOpenForm }) => {
                 />
               </div>
             </div>
-
             <div className="flex items-center mt-2 ">
               <button
                 className="buttonFormSumbit"
                 type="submit"
-                disabled={errors?.aboutMe || errors?.profession || isSubmitting}
+                disabled={
+                  errors?.aboutMe ||
+                  errors?.profession ||
+                  errors?.portfolio ||
+                  isSubmitting
+                }
               >
                 {isSubmitting ? 'Publicando...' : 'Publicar'}
               </button>

@@ -14,7 +14,7 @@ export default function Index() {
   return (
     <div>
       <Head>
-        <title>Titulo a ver xd</title>
+        <title>Shareit</title>
         <meta
           name="description"
           content="Compartí tus proyectos, interactua con otros programadores y aprende en el proceso"

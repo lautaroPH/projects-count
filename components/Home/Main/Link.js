@@ -31,6 +31,7 @@ const Linklist = ({
   openComment,
   isOneLink,
   isUser,
+  index,
 }) => {
   const user = useUser();
   const [openEditform, setOpenEditform] = useState(false);
@@ -61,8 +62,10 @@ const Linklist = ({
       <div
         key={id}
         className={`${
-          !isUser && 'md:rounded-xl md:border-none md:mb-2'
-        } overflow-hidden bg-white border-b border-gray-100  border-b-gray-300  dark:border-gray-800 dark:bg-gray-900 `}
+          !isUser
+            ? 'md:rounded-xl md:border-none md:mb-2'
+            : links.length === index + 1 && 'lg:rounded-b-xl'
+        } overflow-hidden bg-white border-b border-gray-100  border-b-gray-300  dark:border-gray-800 dark:bg-gray-900`}
       >
         <div className="flex justify-between">
           <div className="flex items-center pt-3 pl-3">

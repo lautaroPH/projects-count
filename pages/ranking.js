@@ -17,7 +17,7 @@ export default function Rank({ data }) {
 
 export async function getServerSideProps() {
   const data = {
-    title: 'TITULO A VER',
+    title: 'Shareit',
     inicio: 'Inicio',
     ranking: 'Ranking',
     misProyectos: 'Mis proyectos',
