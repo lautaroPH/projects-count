@@ -6,6 +6,8 @@ import { deleteLike } from 'firebaseFunction/deleteLike';
 import { uploadLike } from 'firebaseFunction/uploadLike';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
+import { swalUserNotLoggedDark } from 'swals/dark/swalUserNotLoggedDark';
+import { swalUserNotLoggedLight } from 'swals/light/swalUserNotLoggedLight';
 
 const LikeButton = ({
   id,
@@ -48,7 +50,13 @@ const LikeButton = ({
 
   return (
     <button
-      onClick={user && likeLink}
+      onClick={
+        user
+          ? likeLink
+          : currentTheme === 'dark'
+          ? swalUserNotLoggedDark
+          : swalUserNotLoggedLight
+      }
       className="flex text-purple-700 transition-colors 
          mr-3 ease-in duration-300 hover:text-purple-800 cursor-pointer
          dark:text-white dark:hover:bg-[#282C34] hover:bg-gray-200 p-2 rounded "
