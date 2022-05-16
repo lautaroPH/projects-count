@@ -1,12 +1,13 @@
-var admin = require('firebase-admin');
+import { cert, getApp, getApps, initializeApp } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import { firebaseKey } from 'firebase-key';
 
-var { firebaseKey } = require('firebase-key.js');
+const admin = getApps().length
+  ? getApp()
+  : initializeApp({
+      credential: cert(firebaseKey),
+    });
 
-try {
-  admin.initializeApp({
-    credential: admin.credential.cert(firebaseKey),
-  });
-} catch (e) {}
+const db = getFirestore(admin);
 
-const db = admin.firestore();
 export { db };
