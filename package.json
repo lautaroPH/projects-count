@@ -1,5 +1,5 @@
 {
-  "name": "pajometro",
+  "name": "shareit",
   "private": true,
   "scripts": {
     "dev": "next dev",
